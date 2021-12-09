@@ -21,7 +21,7 @@ class AppFixtures extends Fixture
         $touriste2 = new Touriste();
         $touriste2->setNom("Monsieur");
         $touriste2->setPrenom("Cool");
-        $manager->persist($touriste1);
+        $manager->persist($touriste2);
 
         // Conseiller
 
