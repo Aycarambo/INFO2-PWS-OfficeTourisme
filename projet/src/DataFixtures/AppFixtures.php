@@ -14,8 +14,13 @@ class AppFixtures extends Fixture
     {
         //Touriste
         $touriste1 = new Touriste();
-        $touriste1->setNom("Smith");
-        $touriste1->setPrenom("John");
+        $touriste1->setNom("UwU");
+        $touriste1->setPrenom("Chloé");
+        $manager->persist($touriste1);
+
+        $touriste2 = new Touriste();
+        $touriste2->setNom("Monsieur");
+        $touriste2->setPrenom("Cool");
         $manager->persist($touriste1);
 
         // Conseiller
@@ -46,7 +51,7 @@ class AppFixtures extends Fixture
 
         $rdv2 = new RDV();
         $rdv2->setConseiller($conseiller2);
-        $rdv2->setTouriste($touriste1);
+        $rdv2->setTouriste($touriste2);
         $horaire2 = '10/15/2021 10:30:00';
         $rdv2->setHoraire(new \DateTime($horaire2));
         $rdv2->setLienVisio('google.com');
@@ -54,7 +59,7 @@ class AppFixtures extends Fixture
 
         $rdv3 = new RDV();
         $rdv3->setConseiller($conseiller1);
-        $rdv3->setTouriste($touriste1);
+        $rdv3->setTouriste($touriste2);
         $rdv3->setHoraire(new \DateTime($horaire2));
         $rdv3->setLienVisio('google.com');
         $manager->persist($rdv3);
