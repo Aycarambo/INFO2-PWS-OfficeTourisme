@@ -1,8 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Demander un RDV{% endblock %}
+{% block title %}Mes rendez-vous{% endblock %}
 
 {% block body %}
+
+    <style>
+        .example-wrapper
+        {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+        .row-cols-auto
+        {
+            padding: 5px;
+        }
+
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Semaine X
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#">Semaine X+1</a></li>
+            <li><a class="dropdown-item" href="#">Semaine X+2</a></li>
+            <li><a class="dropdown-item" href="#">Semaine X+3</a></li>
+        </ul>
+    </div>
+
+
+
     <style>
         .example-wrapper {
             margin: 1em auto;
@@ -29,85 +64,21 @@
             display: flex;
             flex-direction: row;
         }
-
-        /* Popup container */
-        .popup {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-        }
-
-        /* The actual popup (appears on top) */
-        .popup .popuptext {
-            visibility: hidden;
-            width: 160px;
-            background-color: #555;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 8px 0;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -80px;
-        }
-
-        /* Popup arrow */
-        .popup .popuptext::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: #555 transparent transparent transparent;
-        }
-
-        /* Toggle this class when clicking on the popup container (hide and show the popup) */
-        .popup .show {
-            visibility: visible;
-            -webkit-animation: fadeIn 1s;
-            animation: fadeIn 1s
-        }
-
-        /* Add animation (fade in the popup) */
-        @-webkit-keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity: 1;}
-        }
-
-        @keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity:1 ;}
-        }
     </style>
-
-    <script>
-        // When the user clicks on <div>, open the popup
-        function myFunction() {
-            var popup = document.getElementById("myPopup");
-            popup.classList.toggle("show");
-        }
-    </script>
 
     <div class="example-wrapper">
         <center>
             <form class="row g-3 needs-validation" novalidate>
                 <div class="div2">
-                    <div class="col-md-3 position-relative">
-                        <label for="validationTooltip04" class="form-label">Langue</label>
-                        <select class="form-select" id="validationTooltip04" required>
-                            <option selected disabled value="">Choisissez une langue</option>
-                            <option value="1">Français</option>
-                            <option value="2">English</option>
-                        </select>
-                        <div class="invalid-tooltip"> Sélectionnez une langue valide.</div>
-                    </div>
                     <span class="span1"></span>
-
-                    <table class="table text-center">
+                    <div class="dropdown">
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Semaine X+1</a></li>
+                            <li><a class="dropdown-item" href="#">Semaine X+2</a></li>
+                            <li><a class="dropdown-item" href="#">Semaine X+3</a></li>
+                        </ul>
+                    </div>
+                    <table class="table">
                         <thead>
                         <tr>
                             <th>
@@ -136,19 +107,14 @@
                                 8h
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                ---
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                         </tr>
                         <tr>
@@ -156,19 +122,14 @@
                                 8h30
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                         </tr>
                         <tr>
@@ -176,19 +137,14 @@
                                 9h
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                         </tr>
                         <tr>
@@ -196,19 +152,14 @@
                                 9h30
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                         </tr>
                         <tr>
@@ -216,19 +167,14 @@
                                 10h
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                ---
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                         </tr>
                         <tr>
@@ -236,19 +182,14 @@
                                 10h30
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                         </tr>
                         <tr>
@@ -256,19 +197,14 @@
                                 11h
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                         </tr>
                         <tr>
@@ -276,19 +212,15 @@
                                 11h30
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
-                            <td>
-                                <label><input type="radio" name="RDV"/></label>
+                            <td>X
+
                             </td>
                         </tr>
                         <tr>
@@ -296,19 +228,14 @@
                                 12h
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                         </tr>
                         <tr>
@@ -316,19 +243,14 @@
                                 12h30
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                         </tr>
                         <tr>
@@ -336,19 +258,14 @@
                                 13h
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                         </tr>
                         <tr>
@@ -356,19 +273,14 @@
                                 13h30
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                         </tr>
                         <tr>
@@ -376,19 +288,14 @@
                                 14h
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                         </tr>
                         <tr>
@@ -396,59 +303,55 @@
                                 14h30
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
                             </td>
-                            <td>
-                                <label><input type="radio" name="RDV"/></label>
+                            <td>X
+
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 15h
                             </td>
-                            <td>
-                                <label><input type="radio" name="RDV"/></label>
+                            <td>X
+
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
+
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
+
                             </td>
-                            <td>
-                                <label><input type="radio" name="RDV"/></label>
+                            <td>X
+
                             </td>
-                            <td>
-                                <label><input type="radio" name="RDV"/></label>
+                            <td>X
+
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 15h30
                             </td>
-                            <td>
-                                <label><input type="radio" name="RDV"/></label>
+                            <td>X
+
+                            </td>
+                            <td>X
+
+                            </td>
+                            <td>X
+
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
+
                             </td>
-                            <td>
-                                <label><input type="radio" name="RDV"/></label>
-                            </td>
-                            <td>
-                                <label><input type="radio" name="RDV"/></label>
-                            </td>
-                            <td>
-                                <label><input type="radio" name="RDV"/></label>
+                            <td>X
+
                             </td>
                         </tr>
                         <tr>
@@ -456,19 +359,19 @@
                                 16h
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
+
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
+
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
+
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
+
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
+
                             </td>
                         </tr>
                         <tr>
@@ -476,19 +379,18 @@
                                 16h30
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
+
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
+
                             </td>
                             <td>
-                                ---
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
+
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
+
                             </td>
                         </tr>
                         <tr>
@@ -496,19 +398,19 @@
                                 17h
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
+
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
+
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
+
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
+
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
+
                             </td>
                         </tr>
                         <tr>
@@ -516,35 +418,29 @@
                                 17h30
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
+
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
+
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
+
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
+
                             </td>
                             <td>
-                                <label><input type="radio" name="RDV"/></label>
+
                             </td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
-
-                <div class="popup" onclick="myFunction()">
-                    <div class="col-12">
-                        <button class="btn btn-primary" type="submit">Valider</button>
-                    </div>
-                    <span class="popuptext" id="myPopup">Votre RDV a bien été enregistré !</span>
-                </div>
-
             </form>
         </center>
 
 
     </div>
+
+
 {% endblock %}
