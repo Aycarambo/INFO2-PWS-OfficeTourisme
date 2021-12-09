@@ -43,4 +43,11 @@ class TouristeController extends AbstractController
             'listeRDV' => $listeRDV,
         ]);
     }
+    #[Route('/espaceTouriste/confirmationRDV', name: 'confirmation')]
+    public function confirmationRDV(): Response
+    {
+        return $this->render('touriste/confirmationRDV.html.twig', [
+
+        ]);
+    }
 }
