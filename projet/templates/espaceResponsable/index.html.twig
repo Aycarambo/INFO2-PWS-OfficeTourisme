@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace Responsable{% endblock %}
+
+{% block body %}
+<div class="container-fluid py-4">
+    <h1>Liste des conseillers</h1>
+    <table class="table table-hover align-middle">
+        <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for conseiller in conseillers %}
+                <tr onclick="window.location.href = '/espaceResponsable/ListeDesRDV/{{ conseiller.id }}'">
+                    <td>{{ conseiller.nom }}</td>
+                    <td>{{ conseiller.prenom }}</td>
+                    <td><a href="/espaceResponsable/ListeDesRDV/{{ conseiller.id }}" class="btn btn-success btn-lg" role="button" aria-disabled="true">Liste de ses RDV</a></td>
+                </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

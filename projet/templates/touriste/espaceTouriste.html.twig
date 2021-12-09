@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Touriste{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+        button{
+            width:300px;
+            height:100px;
+            background-color: #005cbf;
+            border-radius:10px;
+            font-size: 200%;
+        }
+        .span1{
+            padding: 120px 6px 40px 6px;
+            margin-left: 20px;
+            border-left: 3px solid;
+            font-size: 0;
+            position: relative;
+            top: 40px;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+    <div class="example-wrapper">
+        <h1 align="center">Bonjour Touriste</h1>
+        <br/>
+        <div align="center">
+            <button type="button"><a href="espaceTouriste/demandeRDV">Prendre RDV</a></button>
+            <span class="span1"></span>
+            <button type="button"><a href="espaceTouriste/mesRDV">Gérer mes RDV</a></button>
+        </div>
+    </div>
+{% endblock %}

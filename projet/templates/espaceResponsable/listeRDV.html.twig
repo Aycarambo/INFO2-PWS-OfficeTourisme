@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste RDV{% endblock %}
+
+{% block body %}
+<div class="container-fluid py-4">
+    <h1>Liste des rdv du conseiller {{ conseiller.prenom }}</h1>
+    {% for rdv in lrdv %}
+        <p>{{ rdv.getHoraire|format_datetime('full', locale='en') }}</p>
+    {% endfor %}
+</div>
+{% endblock %}

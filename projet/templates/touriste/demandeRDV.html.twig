@@ -1,0 +1,293 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demander un RDV{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+
+        .span1 {
+            padding: 120px 6px 40px 6px;
+            margin-left: 20px;
+            border-left: 3px solid;
+            font-size: 8;
+            position: relative;
+            top: 40px;
+        }
+
+        .div2 {
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
+
+    <div class="example-wrapper">
+        <center>
+            <form class="row g-3 needs-validation" novalidate>
+                <div class="div2">
+                    <div class="col-md-3 position-relative">
+                        <label for="validationTooltip04" class="form-label">Langue</label>
+                        <select class="form-select" id="validationTooltip04" required>
+                            <option selected disabled value="">Choisissez une langue</option>
+                            <option>
+                            <option value="1">Français</option>
+                            <option value="2">English</option>
+                            </option>
+                        </select>
+                        <div class="invalid-tooltip"> Sélectionnez une langue valide.</div>
+                    </div>
+                    <span class="span1"></span>
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>
+                                Horaire
+                            </th>
+                            <th>
+                                Lundi
+                            </th>
+                            <th>
+                                Mardi
+                            </th>
+                            <th>
+                                Mercredi
+                            </th>
+                            <th>
+                                Jeudi
+                            </th>
+                            <th>
+                                Vendredi
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                8h
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                8h30
+                            </td>
+                            <td></td>
+                            <td>---</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                9h
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                9h30
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                10h
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>---</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                10h30
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                11h
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                11h30
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <select class="form-select" id="validationTooltip04" required>
+                                    <option selected disabled value=""></option>
+                                    <option>
+                                    <option value="1">X</option>
+                                    </option>
+                                </select>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                12h
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                12h30
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                13h
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                13h30
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                14h
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                14h30
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                15h
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                15h30
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                16h
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                16h30
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>---</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                17h
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                17h30
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Valider</button>
+                </div>
+            </form>
+        </center>
+
+
+    </div>
+{% endblock %}
