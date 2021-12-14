@@ -37,8 +37,16 @@
             cursor: pointer;
         }
 
-        .lePadding {
-            margin-top: 25%
+        .boutonValider {
+            margin-top: 25%;
+        }
+
+        .langues {
+            margin-right: 25%;
+        }
+
+        .agenda {
+            margin-left: 25%;
         }
 
     </style>
@@ -47,19 +55,19 @@
         <center>
             <form class="row g-3 needs-validation" novalidate>
                 <div class="div2">
-                    <div class="col-md-3 position-relative">
-                        <label for="validationTooltip04" class="form-label">Langue <img src="drapeauChoixLangue.png"></label>
+                    <div class="col-md-3 position-relative langues">
+                        <label for="validationTooltip04" class="form-label">Langue <img src="drapeauChoixLangue.png" class="d-block w-100" alt="Erreur de chargement de l'image"></label>
                         <select class="form-select" id="validationTooltip04" required>
                             <option selected disabled value="">Choisissez une langue</option>
                             <option value="1">Français</option>
                             <option value="2">English</option>
                         </select>
                         <div class="invalid-tooltip"> Sélectionnez une langue valide.</div>
-                        <button class="btn btn-primary lePadding" type="submit">Valider</button>
+                        <button class="btn btn-primary boutonValider" type="submit">Valider</button>
                     </div>
                     <span class="span1"></span>
 
-                    <table class="table text-center">
+                    <table class="table text-center agenda">
                         <thead>
                         <tr>
                             <th>
