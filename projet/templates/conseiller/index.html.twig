@@ -23,8 +23,10 @@
     <div class="container" align="center">
         <br><h2 style="padding-bottom: 5%;">Bonjour {{ conseiller.prenom }}</h2>
     </div>
+
     <div style="display:flex;">
         <div style="margin:10px; flex-basis:33%;flex-grow: 0;flex-shrink: 0;">
+            <h2>{{ 'now'|date('d/m/Y') }}</h2>
             <table class="table rdvLayout">
                 <tr>
                     <th style="background-color:grey;">
@@ -54,7 +56,7 @@
             </table>
         </div>
         <div style="margin:10px;width: 100%;text-align: center;">
-            <a href="https://www.iledere.com/">Accueil office de tourisme Île de Ré</a><br><br>
+            <br><a href="https://www.iledere.com/">Accueil office de tourisme Île de Ré</a><br><br>
             <a href="https://www.tripadvisor.fr/Restaurants-g580156-Ile_de_Re_Charente_Maritime_Nouvelle_Aquitaine.html">Meilleurs restaurants Île de Ré</a><br><br>
             <a href="https://marine.meteoconsult.fr/meteo-marine/horaires-des-marees/ile-de-re-saint-martin-1026/mai-2021">Horaires des marées</a><br><br>
             <a href="https://generationvoyage.fr/visiter-ile-de-re-faire-voir/">Lieux à visiter</a>
