@@ -24,4 +24,27 @@ class ConnexionController extends AbstractController
             'error'         => $error,
         ]);
     }
+
+    #[Route('/connexion/redirection', name: 'connexionRedirection')]
+    public function connexionRedirection(): Response
+    {
+        if($this->isGranted('T'))
+        {
+            return $this->redirectToRoute('espaceTouriste');
+        }
+        else if($this->isGranted('C'))
+        {
+            return $this->redirectToRoute('conseiller');
+        }
+        else
+        {
+            return $this->redirectToRoute('espace-responsable');
+        }
+    }
+
+    #[Route('/connexion/logout', name: 'logout')]
+    public function logout(): Response
+    {
+
+    }
 }

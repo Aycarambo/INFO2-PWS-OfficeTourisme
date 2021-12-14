@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class RegistrationController extends AbstractController
 {
@@ -18,6 +20,17 @@ class RegistrationController extends AbstractController
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
+        $form->add('roles', ChoiceType::class, [
+            'choices' => [
+                'Touriste' => 'T',
+                'Conseiller' => 'C',
+                'Responsable' => 'R',
+            ],
+            'multiple' => true,
+        ]);
+        /*$form->add('roles', TextareaType::class, array(
+            'label' => 'monTexte',
+            'multiple' => true));*/
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -28,7 +41,7 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
+            $user->setRoles($form['roles']->getData());
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
