@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\ConseillerRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -31,5 +32,14 @@ class ListeConseillersController extends AbstractController
             'lrdv' => $lrdv,
             'conseiller' => $conseiller,
         ]);
+    }
+
+    #[Route('/espaceResponsable/ListeDesRDV/{idC}/remove/{idR}', name: 'remove_rdv_conseillers')]
+    public function removeRDVC(RDVRepository $repository, EntityManagerInterface $em, int $idC, int $idR): Response
+    {
+        $rdv = $repository->find($idR);
+        $em->remove($rdv);
+        $em->flush();
+        return $this->redirect("/espaceResponsable/ListeDesRDV/{$idC}");
     }
 }
