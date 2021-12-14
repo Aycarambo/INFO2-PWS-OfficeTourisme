@@ -3,20 +3,63 @@
 {% block title %}Mon espace{% endblock %}
 
 {% block body %}
-
+<style>
+    .rdvLayout {
+        border-radius: 10px;
+        background-color: lightgrey;
+        text-align: center;
+        padding:2%;
+    }
+    a {
+        text-decoration: none;
+        font-weight: bold;
+        color: black;
+    }
+    a:hover {
+        color:grey;
+        text-decoration: none;
+    }
+</style>
     <div class="container" align="center">
-        <h2>Bonjour {{ conseiller.prenom }}</h2>
-        <a href="{{ path("conseillerRDV") }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Mes rendez-vous</a>
+        <br><h2 style="padding-bottom: 5%;">Bonjour {{ conseiller.prenom }}</h2>
     </div>
-    {% set break = false %}
-    {% set index = 0 %}
-    {% for rdv in listeRDV %}
-        {% if not break %}
-            <li>Date : {{ rdv.horaire|format_datetime('short') }} ; Touriste : {{ rdv.Touriste.nom }} {{ rdv.Touriste.prenom }}</li>
-            {% set index = index + 1 %}
-            {% if index == 3 %}
-                {% set break = true %}
-            {% endif %}
-        {% endif %}
-    {% endfor %}
+    <div style="display:flex;">
+        <div style="margin:10px; flex-basis:33%;flex-grow: 0;flex-shrink: 0;">
+            <table class="table rdvLayout">
+                <tr>
+                    <th style="background-color:grey;">
+                        Rendez-vous à venir
+                    </th>
+                </tr>
+                {% set break = false %}
+                {% set index = 0 %}
+                {% for rdv in listeRDV %}
+                    {% if not break %}
+                        <tr>
+                            <th>
+                                {{ rdv.horaire|date('H:i') }} {{ rdv.Touriste.nom }} {{ rdv.Touriste.prenom }}
+                                {% set index = index + 1 %}
+                                {% if index == 3 %}
+                                    {% set break = true %}
+                                {% endif %}
+                            </th>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                <tr>
+                    <th>
+                        <a href="{{ path("conseillerRDV") }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Voir plus</a>
+                    </th>
+                </tr>
+            </table>
+        </div>
+        <div style="margin:10px;width: 100%;text-align: center;">
+            <a href="https://www.iledere.com/">Accueil office de tourisme Île de Ré</a><br><br>
+            <a href="https://www.tripadvisor.fr/Restaurants-g580156-Ile_de_Re_Charente_Maritime_Nouvelle_Aquitaine.html">Meilleurs restaurants Île de Ré</a><br><br>
+            <a href="https://marine.meteoconsult.fr/meteo-marine/horaires-des-marees/ile-de-re-saint-martin-1026/mai-2021">Horaires des marées</a><br><br>
+            <a href="https://generationvoyage.fr/visiter-ile-de-re-faire-voir/">Lieux à visiter</a>
+        </div>
+    </div>
+
+
 {% endblock %}
