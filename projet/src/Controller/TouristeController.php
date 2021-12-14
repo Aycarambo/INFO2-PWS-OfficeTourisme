@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\RDVRepository;
 use App\Repository\TouristeRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -43,4 +44,14 @@ class TouristeController extends AbstractController
             'listeRDV' => $listeRDV,
         ]);
     }
+
+    #[Route('/espaceTouriste/mesRDV/{idT}/remove/{idR}', name: 'remove_rdv_touriste')]
+    public function removeRDVT(RDVRepository $repository, EntityManagerInterface $em, int $idT, int $idR): Response
+    {
+        $rdv = $repository->find($idR);
+        $em->remove($rdv);
+        $em->flush();
+        return $this->redirect("/espaceTouriste/mesRDV/{idT}");
+    }
+
 }
