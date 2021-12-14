@@ -19,22 +19,6 @@ class RDVRepository extends ServiceEntityRepository
         parent::__construct($registry, RDV::class);
     }
 
-    public function delRDV($id)
-    {
-        // get EntityManager
-        $em = $this->getDoctrine()->getManager();
-
-        // Get a reference to the entity ( will not generate a query )
-        $rdv = $em->getReference('ProjectBundle:RDV', $id);
-
-        // OR you can get the entity itself ( will generate a query )
-        // $user = $em->getRepository('ProjectBundle:User')->find($id);
-
-        // Remove it and flush
-        $em->remove($rdv);
-        $em->flush();
-    }
-
     // /**
     //  * @return RDV[] Returns an array of RDV objects
     //  */
