@@ -4,7 +4,19 @@
 
 {% block body %}
 
-    <div class="container">
+    <div class="container" align="center">
+        <h2>Bonjour {{ conseiller.prenom }}</h2>
         <a href="{{ path("conseillerRDV") }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Mes rendez-vous</a>
     </div>
+    {% set break = false %}
+    {% set index = 0 %}
+    {% for rdv in listeRDV %}
+        {% if not break %}
+            <li>Date : {{ rdv.horaire|format_datetime('short') }} ; Touriste : {{ rdv.Touriste.nom }} {{ rdv.Touriste.prenom }}</li>
+            {% set index = index + 1 %}
+            {% if index == 3 %}
+                {% set break = true %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
 {% endblock %}
