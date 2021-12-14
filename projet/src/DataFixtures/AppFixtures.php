@@ -7,6 +7,8 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\Conseiller;
 use App\Entity\RDV;
+use App\Entity\User;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
@@ -63,6 +65,9 @@ class AppFixtures extends Fixture
         $rdv3->setHoraire(new \DateTime($horaire2));
         $rdv3->setLienVisio('google.com');
         $manager->persist($rdv3);
+
+        //Users
+
 
         $manager->flush();
     }
