@@ -17,8 +17,8 @@
             <tr>
                 <td>{{ rdv.getHoraire|format_datetime('full', locale='en') }}</td>
                 <td>{{ rdv.Touriste.prenom }} {{ rdv.Touriste.nom }}</td>
-                <td><a href="" class="btn btn-success btn-lg" role="button" aria-disabled="true">Modifier</a></td>
-                <td><a href="/espaceResponsable/ListeDesRDV/{{ conseiller.id }}/remove/{{ rdv.id }}" class="btn btn-danger btn-lg" role="button" aria-disabled="true">Supprimer</a></td>
+                <td><a href="" class="btn btn-success btn-lg" role="button" aria-disabled="true">Modifier</a>
+                <a href="/espaceResponsable/ListeDesRDV/{{ conseiller.id }}/remove/{{ rdv.id }}" class="btn btn-danger btn-lg" role="button" aria-disabled="true">Supprimer</a></td>
             </tr>
         {% endfor %}
         </tbody>
