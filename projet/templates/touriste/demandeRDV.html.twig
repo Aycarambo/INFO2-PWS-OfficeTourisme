@@ -18,7 +18,8 @@
 
         .span1 {
             padding: 120px 6px 40px 6px;
-            margin-left: 20px;
+            margin-left: 25%;
+            margin-right: 25%;
             border-left: 3px solid;
             font-size: 8;
             position: relative;
@@ -30,23 +31,8 @@
             flex-direction: row;
         }
 
-        /* Popup container */
-        .popup {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-        }
-
         .boutonValider {
             margin-top: 25%;
-        }
-
-        .langues {
-            margin-right: 25%;
-        }
-
-        .agenda {
-            margin-left: 25%;
         }
 
         divPartieDroite {
@@ -60,7 +46,7 @@
         <center>
             <form class="row g-3 needs-validation" novalidate>
                 <div class="div2">
-                    <div class="col-md-3 position-relative langues">
+                    <div class="col-md-3 position-relative">
                         <label for="validationTooltip04" class="form-label">Langue <img src="drapeauChoixLangue.png" class="d-block w-100" alt="Erreur de chargement de l'image"></label>
                         <select class="form-select" id="validationTooltip04" required>
                             <option selected disabled value="">Choisissez une langue</option>
@@ -78,7 +64,7 @@
                             <option value="2">Semaine prochaine</option>
                         </select>
                         <div class="invalid-tooltip"> Sélectionnez une semaine valide.</div>
-                        <table class="table text-center agenda">
+                        <table class="table text-center">
                             <thead>
                             <tr>
                                 <th>
