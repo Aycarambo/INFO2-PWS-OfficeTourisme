@@ -28,11 +28,11 @@ class ConnexionController extends AbstractController
     #[Route('/connexion/redirection', name: 'connexionRedirection')]
     public function connexionRedirection(): Response
     {
-        if($this->isGranted('T'))
+        if($this->isGranted("ROLE_TOURISTE"))
         {
             return $this->redirectToRoute('espaceTouriste');
         }
-        else if($this->isGranted('C'))
+        else if($this->isGranted('ROLE_CONSEILLER'))
         {
             return $this->redirectToRoute('conseiller');
         }
