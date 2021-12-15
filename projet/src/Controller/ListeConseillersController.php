@@ -26,11 +26,13 @@ class ListeConseillersController extends AbstractController
     public function listeRDVC(ConseillerRepository $conseillerRepository, RDVRepository $repository, int $id): Response
     {
         $lrdv = $repository->findBy(['Conseiller' => $id]);
+        $conseillers = $conseillerRepository->findAll();
         $conseiller = $conseillerRepository->find($id);
         return $this->render('espaceResponsable/listeRDV.html.twig', [
             'controller_name' => 'ListeConseillersController',
             'lrdv' => $lrdv,
             'conseiller' => $conseiller,
+            'conseillers' => $conseillers,
         ]);
     }
 
