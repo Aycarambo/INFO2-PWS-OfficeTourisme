@@ -22,7 +22,7 @@
                 <tr>
                     <td>{{ rdv.horaire|format_datetime('full') }}</td>
                     <td>{{ rdv.Conseiller.prenom }} {{ rdv.Conseiller.nom }}</td>
-                    <td><a href="/espaceTouriste/mesRDV/{{ rdv.Touriste.id }}/remove/{{ rdv.id }}" class="btn btn-danger btn-lg" role="button" aria-disabled="true">Supprimer</a></td>
+                    <td><a href="/espaceTouriste/mesRDV/remove/{{ rdv.id }}" class="btn btn-danger btn-lg" role="button" aria-disabled="true">Supprimer</a></td>
                 </tr>
             {% endfor %}
             </tbody>

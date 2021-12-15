@@ -45,13 +45,18 @@ class TouristeController extends AbstractController
         ]);
     }
 
-    #[Route('/espaceTouriste/mesRDV/{idT}/remove/{idR}', name: 'remove_rdv_touriste')]
-    public function removeRDVT(RDVRepository $repository, EntityManagerInterface $em, int $idT, int $idR): Response
+    #[Route('/espaceTouriste/mesRDV/remove/{idR}', name: 'remove_rdv_touriste')]
+    public function removeRDVT(RDVRepository $repositoryRDV, TouristeRepository $repositoryTouriste, EntityManagerInterface $em, int $idR): Response
     {
-        $rdv = $repository->find($idR);
+        $touriste = $this->utilisateurCourant($repositoryTouriste);
+
+        $rdv = $repositoryRDV->find($idR);
         $em->remove($rdv);
         $em->flush();
-        return $this->redirect("/espaceTouriste/mesRDV/{idT}");
+        $listeRDV = $repositoryRDV->findBy(['Touriste' => $touriste]);
+        return $this->render("touriste/mesRDVtouriste.html.twig", [
+            'listeRDV' => $listeRDV,
+        ]);
     }
 
 }
