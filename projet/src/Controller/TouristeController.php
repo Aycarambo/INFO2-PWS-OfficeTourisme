@@ -51,8 +51,12 @@ class TouristeController extends AbstractController
         $touriste = $this->utilisateurCourant($repositoryTouriste);
 
         $rdv = $repositoryRDV->find($idR);
-        $em->remove($rdv);
-        $em->flush();
+        if ($rdv != NULL)
+        {
+            $em->remove($rdv);
+            $em->flush();
+        }
+
         $listeRDV = $repositoryRDV->findBy(['Touriste' => $touriste]);
         return $this->render("touriste/mesRDVtouriste.html.twig", [
             'listeRDV' => $listeRDV,
