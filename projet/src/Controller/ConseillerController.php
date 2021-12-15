@@ -21,71 +21,156 @@ class ConseillerController extends AbstractController
     {
         date_default_timezone_set("Europe/Paris");
         $id = 1;
-        $date = 'now'|date('Y/m/d');
 
-        $mois = $date|date('m');
-        $semaine = $date|date('w');
+        $date = new \DateTime('now');
 
-        $annee = $date|date('Y');
+        $interval = new \DateInterval('P1D');
 
-        $jour = $date|date('l');
+        $mois = $date->format('m');
 
-        $lundi = $date|date('d');
-        $mardi = $date|date('d');
-        $mercredi = $date|date('d');
-        $jeudi = $date|date('d');
-        $vendredi = $date|date('d');
+        $semaine = $date->format('w');
+
+        $annee = $date->format('Y');
+
+        $jour = $date->format('l');
+
+        $lundi = new \DateTime('now');
+        $mardi = new \DateTime('now');
+        $mercredi = new \DateTime('now');
+        $jeudi = new \DateTime('now');
+        $vendredi = new \DateTime('now');
+
+
 
         if($jour == "Monday")
         {
-            date_modify($mardi, '+1 day');
-            date_modify($mercredi, '+2 day');
-            date_modify($jeudi, '+3 day');
-            date_modify($vendredi, '+4 day');
+            $lundi = $lundi->format('d');
+            $mardi->add($interval);
+            $mardi = $mardi->format('d');
+            $mercredi->add($interval);
+            $mercredi->add($interval);
+            $mercredi = $mercredi->format('d');
+            $jeudi->add($interval);
+            $jeudi->add($interval);
+            $jeudi->add($interval);
+            $jeudi = $jeudi->format('d');
+            $vendredi->add($interval);
+            $vendredi->add($interval);
+            $vendredi->add($interval);
+            $vendredi->add($interval);
+            $vendredi = $vendredi->format('d');
         }
         else if($jour == "Tuesday")
         {
-            date_modify($lundi, '-1 day');
-            date_modify($mercredi, '+1 day');
-            date_modify($jeudi, '+2 day');
-            date_modify($vendredi, '+3 day');
+            $lundi->sub($interval);
+            $mardi = $mardi->format('d');
+            $mercredi->add($interval);
+            $mercredi = $mercredi->format('d');
+            $jeudi->add($interval);
+            $jeudi->add($interval);
+            $jeudi = $jeudi->format('d');
+            $vendredi->add($interval);
+            $vendredi->add($interval);
+            $vendredi->add($interval);
+            $vendredi = $vendredi->format('d');
         }
         else if($jour == "Wednesday")
         {
-            date_modify($lundi, '-2 day');
-            date_modify($mardi, '-1 day');
-            date_modify($jeudi, '+1 day');
-            date_modify($vendredi, '+2 day');
+            $lundi->sub($interval);
+            $lundi->sub($interval);
+            $lundi = $lundi->format('d');
+            $mardi->sub($interval);
+            $mardi = $mardi->format('d');
+            $mercredi = $date->format('d');
+            $jeudi->add($interval);
+            $jeudi = $jeudi->format('d');
+            $vendredi->add($interval);
+            $vendredi->add($interval);
+            $vendredi = $vendredi->format('d');
         }
         else if($jour == "Thursday")
         {
-            date_modify($lundi, '-3 day');
-            date_modify($mardi, '-2 day');
-            date_modify($mercredi, '-1 day');
-            date_modify($vendredi, '+1 day');
+            $lundi->sub($interval);
+            $lundi->sub($interval);
+            $lundi->sub($interval);
+            $lundi = $lundi->format('d');
+            $mardi->sub($interval);
+            $mardi->sub($interval);
+            $mardi = $mardi->format('d');
+            $mercredi->sub($interval);
+            $mercredi = $mercredi->format('d');
+            $jeudi = $jeudi->format('d');
+            $vendredi->add($interval);
+            $vendredi = $vendredi->format('d');
         }
         else if($jour == "Friday")
         {
-            date_modify($lundi, '-4 day');
-            date_modify($mardi, '-3 day');
-            date_modify($mercredi, '-2 day');
-            date_modify($jeudi, '-1 day');
+            $lundi->sub($interval);
+            $lundi->sub($interval);
+            $lundi->sub($interval);
+            $lundi->sub($interval);
+            $lundi = $lundi->format('d');
+            $mardi->sub($interval);
+            $mardi->sub($interval);
+            $mardi->sub($interval);
+            $mardi= $mardi->format('d');
+            $mercredi->sub($interval);
+            $mercredi->sub($interval);
+            $mercredi = $mercredi->format('d');
+            $jeudi->sub($interval);
+            $jeudi = $jeudi->format('d');
+            $vendredi = $vendredi->format('d');
         }
         else if($jour == "Saturday")
         {
-            date_modify($lundi, '-5 day');
-            date_modify($mardi, '-4 day');
-            date_modify($mercredi, '-3 day');
-            date_modify($jeudi, '-2 day');
-            date_modify($vendredi, '-1 day');
+            $lundi->sub($interval);
+            $lundi->sub($interval);
+            $lundi->sub($interval);
+            $lundi->sub($interval);
+            $lundi->sub($interval);
+            $lundi = $lundi->format('d');
+            $mardi->sub($interval);
+            $mardi->sub($interval);
+            $mardi->sub($interval);
+            $mardi->sub($interval);
+            $mardi = $mardi->format('d');
+            $mercredi->sub($interval);
+            $mercredi->sub($interval);
+            $mercredi->sub($interval);
+            $mercredi = $mercredi->format('d');
+            $jeudi->sub($interval);
+            $jeudi->sub($interval);
+            $jeudi = $jeudi->format('d');
+            $vendredi->sub($interval);
+            $vendredi = $vendredi->format('d');
         }
         else if($jour == "Sunday")
         {
-            date_modify($lundi, '-6 day');
-            date_modify($mardi, '-5 day');
-            date_modify($mercredi, '-4 day');
-            date_modify($jeudi, '-3 day');
-            date_modify($vendredi, '-2 day');
+            $lundi->sub($interval);
+            $lundi->sub($interval);
+            $lundi->sub($interval);
+            $lundi->sub($interval);
+            $lundi->sub($interval);
+            $lundi->sub($interval);
+            $lundi = $lundi->format('d');
+            $mardi->sub($interval);
+            $mardi->sub($interval);
+            $mardi->sub($interval);
+            $mardi->sub($interval);
+            $mardi->sub($interval);
+            $mardi = $mardi->format('d');
+            $mercredi->sub($interval);
+            $mercredi->sub($interval);
+            $mercredi->sub($interval);
+            $mercredi->sub($interval);
+            $mercredi = $mercredi->format('d');
+            $jeudi->sub($interval);
+            $jeudi->sub($interval);
+            $jeudi->sub($interval);
+            $jeudi = $jeudi->format('d');
+            $vendredi->sub($interval);
+            $vendredi->sub($interval);
+            $vendredi = $vendredi->format('d');
         }
 
         if('22' < $semaine and $semaine < '35')
