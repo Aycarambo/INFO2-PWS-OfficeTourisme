@@ -21,7 +21,7 @@ class ConseillerController extends AbstractController
     {
         date_default_timezone_set("Europe/Paris");
         $id = 1;
-        $date = '2021/07/15'|date('Y/m/d');
+        $date = 'now'|date('Y/m/d');
         $semaine = $date|date('w');
 
         if('22' < $semaine and $semaine < '35')
