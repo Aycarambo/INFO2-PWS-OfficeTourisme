@@ -22,7 +22,76 @@ class ConseillerController extends AbstractController
         date_default_timezone_set("Europe/Paris");
         $id = 1;
         $date = 'now'|date('Y/m/d');
+
+        $mois = $date|date('m');
         $semaine = $date|date('w');
+
+        $annee = $date|date('Y');
+
+        $jour = $date|date('l');
+
+        $lundi = '';
+        $mardi = '';
+        $mercredi = '';
+        $jeudi = '';
+        $vendredi = '';
+
+        if($jour == "Monday")
+        {
+            $lundi = $date|date('d');
+            $mardi = date_modify($date|date('d'), '+1');
+            $mercredi = date_modify($date|date('d'), '+2');
+            $jeudi = date_modify($date|date('d'), '+3');
+            $vendredi = date_modify($date|date('d'), '+4');
+        }
+        else if($jour == "Tuesday")
+        {
+            $lundi = date_modify($date|date('d'), '-1');
+            $mardi = $date|date('d');
+            $mercredi = date_modify($date|date('d'), '+1');
+            $jeudi = date_modify($date|date('d'), '+2');
+            $vendredi = date_modify($date|date('d'), '+3');
+        }
+        else if($jour == "Wednesday")
+        {
+            $lundi = date_modify($date|date('d'), '-2');
+            $mardi = date_modify($date|date('d'), '-1');
+            $mercredi = $date|date('d');
+            $jeudi = date_modify($date|date('d'), '+1');
+            $vendredi = date_modify($date|date('d'), '+2');
+        }
+        else if($jour == "Thursday")
+        {
+            $lundi = date_modify($date|date('d'), '-3');
+            $mardi = date_modify($date|date('d'), '-2');
+            $mercredi = date_modify($date|date('d'), '-1');
+            $jeudi = $date|date('d');
+            $vendredi = date_modify($date|date('d'), '+1');
+        }
+        else if($jour == "Friday")
+        {
+            $lundi = date_modify($date|date('d'), '-4');
+            $mardi = date_modify($date|date('d'), '-3');
+            $mercredi = date_modify($date|date('d'), '-2');
+            $jeudi = date_modify($date|date('d'), '-1');
+            $vendredi = $jeudi = $date|date('d');
+        }
+        else if($jour == "Saturday")
+        {
+            $lundi = date_modify($date|date('d'), '-5');
+            $mardi = date_modify($date|date('d'), '-4');
+            $mercredi = date_modify($date|date('d'), '-3');
+            $jeudi = date_modify($date|date('d'), '-2');
+            $vendredi = date_modify($date|date('d'), '-1');
+        }
+        else if($jour == "Sunday")
+        {
+            $lundi = date_modify($date|date('d'), '-6');
+            $mardi = date_modify($date|date('d'), '-5');
+            $mercredi = date_modify($date|date('d'), '-4');
+            $jeudi = date_modify($date|date('d'), '-3');
+            $vendredi = date_modify($date|date('d'), '-2');
+        }
 
         if('22' < $semaine and $semaine < '35')
         {
@@ -34,135 +103,135 @@ class ConseillerController extends AbstractController
         }
         if($saisonHaute)
         {
-            $L8h = $aRepository->findRDV($id, "2021-12-13 08:00:00");
-            $L8h30 = $aRepository->findRDV($id, "2021-12-13 08:30:00");
-            $L9h = $aRepository->findRDV($id, "2021-12-13 09:00:00");
-            $L9h30 = $aRepository->findRDV($id, "2021-12-13 09:30:00");
-            $L10h = $aRepository->findRDV($id, "2021-12-13 10:00:00");
-            $L10h30 = $aRepository->findRDV($id, "2021-12-13 10:30:00");
-            $L11h = $aRepository->findRDV($id, "2021-12-13 11:00:00");
-            $L11h30 = $aRepository->findRDV($id, "2021-12-13 11:30:00");
-            $L12h = $aRepository->findRDV($id, "2021-12-13 12:00:00");
-            $L12h30 = $aRepository->findRDV($id, "2021-12-13 12:30:00");
-            $L13h = $aRepository->findRDV($id, "2021-12-13 13:00:00");
-            $L13h30 = $aRepository->findRDV($id, "2021-12-13 13:30:00");
-            $L14h = $aRepository->findRDV($id, "2021-12-13 14:00:00");
-            $L14h30 = $aRepository->findRDV($id, "2021-12-13 14:30:00");
-            $L15h = $aRepository->findRDV($id, "2021-12-13 15:00:00");
-            $L15h30 = $aRepository->findRDV($id, "2021-12-13 15:30:00");
-            $L16h = $aRepository->findRDV($id, "2021-12-13 16:00:00");
-            $L16h30 = $aRepository->findRDV($id, "2021-12-13 16:30:00");
-            $L17h = $aRepository->findRDV($id, "2021-12-13 17:00:00");
-            $L17h30 = $aRepository->findRDV($id, "2021-12-13 17:30:00");
-            $L18h = $aRepository->findRDV($id, "2021-12-13 18:00:00");
-            $L18h30 = $aRepository->findRDV($id, "2021-12-13 18:30:00");
-            $L19h = $aRepository->findRDV($id, "2021-12-13 19:00:00");
-            $L19h30 = $aRepository->findRDV($id, "2021-12-13 19:30:00");
-            $L20h = $aRepository->findRDV($id, "2021-12-13 20:00:00");
+            $L8h = $aRepository->findRDV($id, "$annee-$mois-$lundi 08:00:00");
+            $L8h30 = $aRepository->findRDV($id, "$annee-$mois-$lundi 08:30:00");
+            $L9h = $aRepository->findRDV($id, "$annee-$mois-$lundi 09:00:00");
+            $L9h30 = $aRepository->findRDV($id, "$annee-$mois-$lundi 09:30:00");
+            $L10h = $aRepository->findRDV($id, "$annee-$mois-$lundi 10:00:00");
+            $L10h30 = $aRepository->findRDV($id, "$annee-$mois-$lundi 10:30:00");
+            $L11h = $aRepository->findRDV($id, "$annee-$mois-$lundi 11:00:00");
+            $L11h30 = $aRepository->findRDV($id, "$annee-$mois-$lundi 11:30:00");
+            $L12h = $aRepository->findRDV($id, "$annee-$mois-$lundi 12:00:00");
+            $L12h30 = $aRepository->findRDV($id, "$annee-$mois-$lundi 12:30:00");
+            $L13h = $aRepository->findRDV($id, "$annee-$mois-$lundi 13:00:00");
+            $L13h30 = $aRepository->findRDV($id, "$annee-$mois-$lundi 13:30:00");
+            $L14h = $aRepository->findRDV($id, "$annee-$mois-$lundi 14:00:00");
+            $L14h30 = $aRepository->findRDV($id, "$annee-$mois-$lundi 14:30:00");
+            $L15h = $aRepository->findRDV($id, "$annee-$mois-$lundi 15:00:00");
+            $L15h30 = $aRepository->findRDV($id, "$annee-$mois-$lundi 15:30:00");
+            $L16h = $aRepository->findRDV($id, "$annee-$mois-$lundi 16:00:00");
+            $L16h30 = $aRepository->findRDV($id, "$annee-$mois-$lundi 16:30:00");
+            $L17h = $aRepository->findRDV($id, "$annee-$mois-$lundi 17:00:00");
+            $L17h30 = $aRepository->findRDV($id, "$annee-$mois-$lundi 17:30:00");
+            $L18h = $aRepository->findRDV($id, "$annee-$mois-$lundi 18:00:00");
+            $L18h30 = $aRepository->findRDV($id, "$annee-$mois-$lundi 18:30:00");
+            $L19h = $aRepository->findRDV($id, "$annee-$mois-$lundi 19:00:00");
+            $L19h30 = $aRepository->findRDV($id, "$annee-$mois-$lundi 19:30:00");
+            $L20h = $aRepository->findRDV($id, "$annee-$mois-$lundi 20:00:00");
 
-            $Ma8h = $aRepository->findRDV($id, "2021-12-14 08:00:00");
-            $Ma8h30 = $aRepository->findRDV($id, "2021-12-14 08:30:00");
-            $Ma9h = $aRepository->findRDV($id, "2021-12-14 09:00:00");
-            $Ma9h30 = $aRepository->findRDV($id, "2021-12-14 09:30:00");
-            $Ma10h = $aRepository->findRDV($id, "2021-12-14 10:00:00");
-            $Ma10h30 = $aRepository->findRDV($id, "2021-12-14 10:30:00");
-            $Ma11h = $aRepository->findRDV($id, "2021-12-14 11:00:00");
-            $Ma11h30 = $aRepository->findRDV($id, "2021-12-14 11:30:00");
-            $Ma12h = $aRepository->findRDV($id, "2021-12-14 12:00:00");
-            $Ma12h30 = $aRepository->findRDV($id, "2021-12-14 12:30:00");
-            $Ma13h = $aRepository->findRDV($id, "2021-12-14 13:00:00");
-            $Ma13h30 = $aRepository->findRDV($id, "2021-12-14 13:30:00");
-            $Ma14h = $aRepository->findRDV($id, "2021-12-14 14:00:00");
-            $Ma14h30 = $aRepository->findRDV($id, "2021-12-14 14:30:00");
-            $Ma15h = $aRepository->findRDV($id, "2021-12-14 15:00:00");
-            $Ma15h30 = $aRepository->findRDV($id, "2021-12-14 15:30:00");
-            $Ma16h = $aRepository->findRDV($id, "2021-12-14 16:00:00");
-            $Ma16h30 = $aRepository->findRDV($id, "2021-12-14 16:30:00");
-            $Ma17h = $aRepository->findRDV($id, "2021-12-14 17:00:00");
-            $Ma17h30 = $aRepository->findRDV($id, "2021-12-14 17:30:00");
-            $Ma18h = $aRepository->findRDV($id, "2021-12-14 18:00:00");
-            $Ma18h30 = $aRepository->findRDV($id, "2021-12-14 18:30:00");
-            $Ma19h = $aRepository->findRDV($id, "2021-12-14 19:00:00");
-            $Ma19h30 = $aRepository->findRDV($id, "2021-12-14 19:30:00");
-            $Ma20h = $aRepository->findRDV($id, "2021-12-14 20:00:00");
+            $Ma8h = $aRepository->findRDV($id, "$annee-$mois-$mardi 08:00:00");
+            $Ma8h30 = $aRepository->findRDV($id, "$annee-$mois-$mardi 08:30:00");
+            $Ma9h = $aRepository->findRDV($id, "$annee-$mois-$mardi 09:00:00");
+            $Ma9h30 = $aRepository->findRDV($id, "$annee-$mois-$mardi 09:30:00");
+            $Ma10h = $aRepository->findRDV($id, "$annee-$mois-$mardi 10:00:00");
+            $Ma10h30 = $aRepository->findRDV($id, "$annee-$mois-$mardi 10:30:00");
+            $Ma11h = $aRepository->findRDV($id, "$annee-$mois-$mardi 11:00:00");
+            $Ma11h30 = $aRepository->findRDV($id, "$annee-$mois-$mardi 11:30:00");
+            $Ma12h = $aRepository->findRDV($id, "$annee-$mois-$mardi 12:00:00");
+            $Ma12h30 = $aRepository->findRDV($id, "$annee-$mois-$mardi 12:30:00");
+            $Ma13h = $aRepository->findRDV($id, "$annee-$mois-$mardi 13:00:00");
+            $Ma13h30 = $aRepository->findRDV($id, "$annee-$mois-$mardi 13:30:00");
+            $Ma14h = $aRepository->findRDV($id, "$annee-$mois-$mardi 14:00:00");
+            $Ma14h30 = $aRepository->findRDV($id, "$annee-$mois-$mardi 14:30:00");
+            $Ma15h = $aRepository->findRDV($id, "$annee-$mois-$mardi 15:00:00");
+            $Ma15h30 = $aRepository->findRDV($id, "$annee-$mois-$mardi 15:30:00");
+            $Ma16h = $aRepository->findRDV($id, "$annee-$mois-$mardi 16:00:00");
+            $Ma16h30 = $aRepository->findRDV($id, "$annee-$mois-$mardi 16:30:00");
+            $Ma17h = $aRepository->findRDV($id, "$annee-$mois-$mardi 17:00:00");
+            $Ma17h30 = $aRepository->findRDV($id, "$annee-$mois-$mardi 17:30:00");
+            $Ma18h = $aRepository->findRDV($id, "$annee-$mois-$mardi 18:00:00");
+            $Ma18h30 = $aRepository->findRDV($id, "$annee-$mois-$mardi 18:30:00");
+            $Ma19h = $aRepository->findRDV($id, "$annee-$mois-$mardi 19:00:00");
+            $Ma19h30 = $aRepository->findRDV($id, "$annee-$mois-$mardi 19:30:00");
+            $Ma20h = $aRepository->findRDV($id, "$annee-$mois-$mardi 20:00:00");
 
-            $Me8h = $aRepository->findRDV($id, "2021-12-15 08:00:00");
-            $Me8h30 = $aRepository->findRDV($id, "2021-12-15 08:30:00");
-            $Me9h = $aRepository->findRDV($id, "2021-12-15 09:00:00");
-            $Me9h30 = $aRepository->findRDV($id, "2021-12-15 09:30:00");
-            $Me10h = $aRepository->findRDV($id, "2021-12-15 10:00:00");
-            $Me10h30 = $aRepository->findRDV($id, "2021-12-15 10:30:00");
-            $Me11h = $aRepository->findRDV($id, "2021-12-15 11:00:00");
-            $Me11h30 = $aRepository->findRDV($id, "2021-12-15 11:30:00");
-            $Me12h = $aRepository->findRDV($id, "2021-12-15 12:00:00");
-            $Me12h30 = $aRepository->findRDV($id, "2021-12-15 12:30:00");
-            $Me13h = $aRepository->findRDV($id, "2021-12-15 13:00:00");
-            $Me13h30 = $aRepository->findRDV($id, "2021-12-15 13:30:00");
-            $Me14h = $aRepository->findRDV($id, "2021-12-15 14:00:00");
-            $Me14h30 = $aRepository->findRDV($id, "2021-12-15 14:30:00");
-            $Me15h = $aRepository->findRDV($id, "2021-12-15 15:00:00");
-            $Me15h30 = $aRepository->findRDV($id, "2021-12-15 15:30:00");
-            $Me16h = $aRepository->findRDV($id, "2021-12-15 16:00:00");
-            $Me16h30 = $aRepository->findRDV($id, "2021-12-15 16:30:00");
-            $Me17h = $aRepository->findRDV($id, "2021-12-15 17:00:00");
-            $Me17h30 = $aRepository->findRDV($id, "2021-12-15 17:30:00");
-            $Me18h = $aRepository->findRDV($id, "2021-12-15 18:00:00");
-            $Me18h30 = $aRepository->findRDV($id, "2021-12-15 18:30:00");
-            $Me19h = $aRepository->findRDV($id, "2021-12-15 19:00:00");
-            $Me19h30 = $aRepository->findRDV($id, "2021-12-15 19:30:00");
-            $Me20h = $aRepository->findRDV($id, "2021-12-15 20:00:00");
+            $Me8h = $aRepository->findRDV($id, "$annee-$mois-$mercredi 08:00:00");
+            $Me8h30 = $aRepository->findRDV($id, "$annee-$mois-$mercredi 08:30:00");
+            $Me9h = $aRepository->findRDV($id, "$annee-$mois-$mercredi 09:00:00");
+            $Me9h30 = $aRepository->findRDV($id, "$annee-$mois-$mercredi 09:30:00");
+            $Me10h = $aRepository->findRDV($id, "$annee-$mois-$mercredi 10:00:00");
+            $Me10h30 = $aRepository->findRDV($id, "$annee-$mois-$mercredi 10:30:00");
+            $Me11h = $aRepository->findRDV($id, "$annee-$mois-$mercredi 11:00:00");
+            $Me11h30 = $aRepository->findRDV($id, "$annee-$mois-$mercredi 11:30:00");
+            $Me12h = $aRepository->findRDV($id, "$annee-$mois-$mercredi 12:00:00");
+            $Me12h30 = $aRepository->findRDV($id, "$annee-$mois-$mercredi 12:30:00");
+            $Me13h = $aRepository->findRDV($id, "$annee-$mois-$mercredi 13:00:00");
+            $Me13h30 = $aRepository->findRDV($id, "$annee-$mois-$mercredi 13:30:00");
+            $Me14h = $aRepository->findRDV($id, "$annee-$mois-$mercredi 14:00:00");
+            $Me14h30 = $aRepository->findRDV($id, "$annee-$mois-$mercredi 14:30:00");
+            $Me15h = $aRepository->findRDV($id, "$annee-$mois-$mercredi 15:00:00");
+            $Me15h30 = $aRepository->findRDV($id, "$annee-$mois-$mercredi 15:30:00");
+            $Me16h = $aRepository->findRDV($id, "$annee-$mois-$mercredi 16:00:00");
+            $Me16h30 = $aRepository->findRDV($id, "$annee-$mois-$mercredi 16:30:00");
+            $Me17h = $aRepository->findRDV($id, "$annee-$mois-$mercredi 17:00:00");
+            $Me17h30 = $aRepository->findRDV($id, "$annee-$mois-$mercredi 17:30:00");
+            $Me18h = $aRepository->findRDV($id, "$annee-$mois-$mercredi 18:00:00");
+            $Me18h30 = $aRepository->findRDV($id, "$annee-$mois-$mercredi 18:30:00");
+            $Me19h = $aRepository->findRDV($id, "$annee-$mois-$mercredi 19:00:00");
+            $Me19h30 = $aRepository->findRDV($id, "$annee-$mois-$mercredi 19:30:00");
+            $Me20h = $aRepository->findRDV($id, "$annee-$mois-$mercredi 20:00:00");
 
-            $J8h = $aRepository->findRDV($id, "2021-12-16 08:00:00");
-            $J8h30 = $aRepository->findRDV($id, "2021-12-16 08:30:00");
-            $J9h = $aRepository->findRDV($id, "2021-12-16 09:00:00");
-            $J9h30 = $aRepository->findRDV($id, "2021-12-16 09:30:00");
-            $J10h = $aRepository->findRDV($id, "2021-12-16 10:00:00");
-            $J10h30 = $aRepository->findRDV($id, "2021-12-16 10:30:00");
-            $J11h = $aRepository->findRDV($id, "2021-12-16 11:00:00");
-            $J11h30 = $aRepository->findRDV($id, "2021-12-16 11:30:00");
-            $J12h = $aRepository->findRDV($id, "2021-12-16 12:00:00");
-            $J12h30 = $aRepository->findRDV($id, "2021-12-16 12:30:00");
-            $J13h = $aRepository->findRDV($id, "2021-12-16 13:00:00");
-            $J13h30 = $aRepository->findRDV($id, "2021-12-16 13:30:00");
-            $J14h = $aRepository->findRDV($id, "2021-12-16 14:00:00");
-            $J14h30 = $aRepository->findRDV($id, "2021-12-16 14:30:00");
-            $J15h = $aRepository->findRDV($id, "2021-12-16 15:00:00");
-            $J15h30 = $aRepository->findRDV($id, "2021-12-16 15:30:00");
-            $J16h = $aRepository->findRDV($id, "2021-12-16 16:00:00");
-            $J16h30 = $aRepository->findRDV($id, "2021-12-16 16:30:00");
-            $J17h = $aRepository->findRDV($id, "2021-12-16 17:00:00");
-            $J17h30 = $aRepository->findRDV($id, "2021-12-16 17:30:00");
-            $J18h = $aRepository->findRDV($id, "2021-12-16 18:00:00");
-            $J18h30 = $aRepository->findRDV($id, "2021-12-16 18:30:00");
-            $J19h = $aRepository->findRDV($id, "2021-12-16 19:00:00");
-            $J19h30 = $aRepository->findRDV($id, "2021-12-16 19:30:00");
-            $J20h = $aRepository->findRDV($id, "2021-12-16 20:00:00");
+            $J8h = $aRepository->findRDV($id, "$annee-$mois-$jeudi 08:00:00");
+            $J8h30 = $aRepository->findRDV($id, "$annee-$mois-$jeudi 08:30:00");
+            $J9h = $aRepository->findRDV($id, "$annee-$mois-$jeudi 09:00:00");
+            $J9h30 = $aRepository->findRDV($id, "$annee-$mois-$jeudi 09:30:00");
+            $J10h = $aRepository->findRDV($id, "$annee-$mois-$jeudi 10:00:00");
+            $J10h30 = $aRepository->findRDV($id, "$annee-$mois-$jeudi 10:30:00");
+            $J11h = $aRepository->findRDV($id, "$annee-$mois-$jeudi 11:00:00");
+            $J11h30 = $aRepository->findRDV($id, "$annee-$mois-$jeudi 11:30:00");
+            $J12h = $aRepository->findRDV($id, "$annee-$mois-$jeudi 12:00:00");
+            $J12h30 = $aRepository->findRDV($id, "$annee-$mois-$jeudi 12:30:00");
+            $J13h = $aRepository->findRDV($id, "$annee-$mois-$jeudi 13:00:00");
+            $J13h30 = $aRepository->findRDV($id, "$annee-$mois-$jeudi 13:30:00");
+            $J14h = $aRepository->findRDV($id, "$annee-$mois-$jeudi 14:00:00");
+            $J14h30 = $aRepository->findRDV($id, "$annee-$mois-$jeudi 14:30:00");
+            $J15h = $aRepository->findRDV($id, "$annee-$mois-$jeudi 15:00:00");
+            $J15h30 = $aRepository->findRDV($id, "$annee-$mois-$jeudi 15:30:00");
+            $J16h = $aRepository->findRDV($id, "$annee-$mois-$jeudi 16:00:00");
+            $J16h30 = $aRepository->findRDV($id, "$annee-$mois-$jeudi 16:30:00");
+            $J17h = $aRepository->findRDV($id, "$annee-$mois-$jeudi 17:00:00");
+            $J17h30 = $aRepository->findRDV($id, "$annee-$mois-$jeudi 17:30:00");
+            $J18h = $aRepository->findRDV($id, "$annee-$mois-$jeudi 18:00:00");
+            $J18h30 = $aRepository->findRDV($id, "$annee-$mois-$jeudi 18:30:00");
+            $J19h = $aRepository->findRDV($id, "$annee-$mois-$jeudi 19:00:00");
+            $J19h30 = $aRepository->findRDV($id, "$annee-$mois-$jeudi 19:30:00");
+            $J20h = $aRepository->findRDV($id, "$annee-$mois-$jeudi 20:00:00");
 
-            $V8h = $aRepository->findRDV($id, "2021-12-17 08:00:00");
-            $V8h30 = $aRepository->findRDV($id, "2021-12-17 08:30:00");
-            $V9h = $aRepository->findRDV($id, "2021-12-17 09:00:00");
-            $V9h30 = $aRepository->findRDV($id, "2021-12-17 09:30:00");
-            $V10h = $aRepository->findRDV($id, "2021-12-17 10:00:00");
-            $V10h30 = $aRepository->findRDV($id, "2021-12-17 10:30:00");
-            $V11h = $aRepository->findRDV($id, "2021-12-17 11:00:00");
-            $V11h30 = $aRepository->findRDV($id, "2021-12-17 11:30:00");
-            $V12h = $aRepository->findRDV($id, "2021-12-17 12:00:00");
-            $V12h30 = $aRepository->findRDV($id, "2021-12-17 12:30:00");
-            $V13h = $aRepository->findRDV($id, "2021-12-17 13:00:00");
-            $V13h30 = $aRepository->findRDV($id, "2021-12-17 13:30:00");
-            $V14h = $aRepository->findRDV($id, "2021-12-17 14:00:00");
-            $V14h30 = $aRepository->findRDV($id, "2021-12-17 14:30:00");
-            $V15h = $aRepository->findRDV($id, "2021-12-17 15:00:00");
-            $V15h30 = $aRepository->findRDV($id, "2021-12-17 15:30:00");
-            $V16h = $aRepository->findRDV($id, "2021-12-17 16:00:00");
-            $V16h30 = $aRepository->findRDV($id, "2021-12-17 16:30:00");
-            $V17h = $aRepository->findRDV($id, "2021-12-17 17:00:00");
-            $V17h30 = $aRepository->findRDV($id, "2021-12-17 17:30:00");
-            $V18h = $aRepository->findRDV($id, "2021-12-17 18:00:00");
-            $V18h30 = $aRepository->findRDV($id, "2021-12-17 18:30:00");
-            $V19h = $aRepository->findRDV($id, "2021-12-17 19:00:00");
-            $V19h30 = $aRepository->findRDV($id, "2021-12-17 19:30:00");
-            $V20h = $aRepository->findRDV($id, "2021-12-17 20:00:00");
+            $V8h = $aRepository->findRDV($id, "$annee-$mois-$vendredi 08:00:00");
+            $V8h30 = $aRepository->findRDV($id, "$annee-$mois-$vendredi 08:30:00");
+            $V9h = $aRepository->findRDV($id, "$annee-$mois-$vendredi 09:00:00");
+            $V9h30 = $aRepository->findRDV($id, "$annee-$mois-$vendredi 09:30:00");
+            $V10h = $aRepository->findRDV($id, "$annee-$mois-$vendredi 10:00:00");
+            $V10h30 = $aRepository->findRDV($id, "$annee-$mois-$vendredi 10:30:00");
+            $V11h = $aRepository->findRDV($id, "$annee-$mois-$vendredi 11:00:00");
+            $V11h30 = $aRepository->findRDV($id, "$annee-$mois-$vendredi 11:30:00");
+            $V12h = $aRepository->findRDV($id, "$annee-$mois-$vendredi 12:00:00");
+            $V12h30 = $aRepository->findRDV($id, "$annee-$mois-$vendredi 12:30:00");
+            $V13h = $aRepository->findRDV($id, "$annee-$mois-$vendredi 13:00:00");
+            $V13h30 = $aRepository->findRDV($id, "$annee-$mois-$vendredi 13:30:00");
+            $V14h = $aRepository->findRDV($id, "$annee-$mois-$vendredi 14:00:00");
+            $V14h30 = $aRepository->findRDV($id, "$annee-$mois-$vendredi 14:30:00");
+            $V15h = $aRepository->findRDV($id, "$annee-$mois-$vendredi 15:00:00");
+            $V15h30 = $aRepository->findRDV($id, "$annee-$mois-$vendredi 15:30:00");
+            $V16h = $aRepository->findRDV($id, "$annee-$mois-$vendredi 16:00:00");
+            $V16h30 = $aRepository->findRDV($id, "$annee-$mois-$vendredi 16:30:00");
+            $V17h = $aRepository->findRDV($id, "$annee-$mois-$vendredi 17:00:00");
+            $V17h30 = $aRepository->findRDV($id, "$annee-$mois-$vendredi 17:30:00");
+            $V18h = $aRepository->findRDV($id, "$annee-$mois-$vendredi 18:00:00");
+            $V18h30 = $aRepository->findRDV($id, "$annee-$mois-$vendredi 18:30:00");
+            $V19h = $aRepository->findRDV($id, "$annee-$mois-$vendredi 19:00:00");
+            $V19h30 = $aRepository->findRDV($id, "$annee-$mois-$vendredi 19:30:00");
+            $V20h = $aRepository->findRDV($id, "$annee-$mois-$vendredi 20:00:00");
 
             return $this->render('conseiller/rdv.html.twig', [
                 'controller_name' => 'ConseillerController',
@@ -301,95 +370,95 @@ class ConseillerController extends AbstractController
         }
         else
         {
-            $L10h=$aRepository->findRDV($id, "2021-12-13 10:00:00");
-            $L10h30=$aRepository->findRDV($id, "2021-12-13 10:30:00");
-            $L11h=$aRepository->findRDV($id, "2021-12-13 11:00:00");
-            $L11h30=$aRepository->findRDV($id, "2021-12-13 11:30:00");
-            $L12h=$aRepository->findRDV($id, "2021-12-13 12:00:00");
-            $L12h30=$aRepository->findRDV($id, "2021-12-13 12:30:00");
-            $L13h=$aRepository->findRDV($id, "2021-12-13 13:00:00");
-            $L13h30=$aRepository->findRDV($id, "2021-12-13 13:30:00");
-            $L14h=$aRepository->findRDV($id, "2021-12-13 14:00:00");
-            $L14h30=$aRepository->findRDV($id, "2021-12-13 14:30:00");
-            $L15h=$aRepository->findRDV($id, "2021-12-13 15:00:00");
-            $L15h30=$aRepository->findRDV($id, "2021-12-13 15:30:00");
-            $L16h=$aRepository->findRDV($id, "2021-12-13 16:00:00");
-            $L16h30=$aRepository->findRDV($id, "2021-12-13 16:30:00");
-            $L17h=$aRepository->findRDV($id, "2021-12-13 17:00:00");
-            $L17h30=$aRepository->findRDV($id, "2021-12-13 17:30:00");
-            $L18h=$aRepository->findRDV($id, "2021-12-13 18:00:00");
+            $L10h=$aRepository->findRDV($id, "$annee-$mois-$lundi 10:00:00");
+            $L10h30=$aRepository->findRDV($id, "$annee-$mois-$lundi 10:30:00");
+            $L11h=$aRepository->findRDV($id, "$annee-$mois-$lundi 11:00:00");
+            $L11h30=$aRepository->findRDV($id, "$annee-$mois-$lundi 11:30:00");
+            $L12h=$aRepository->findRDV($id, "$annee-$mois-$lundi 12:00:00");
+            $L12h30=$aRepository->findRDV($id, "$annee-$mois-$lundi 12:30:00");
+            $L13h=$aRepository->findRDV($id, "$annee-$mois-$lundi 13:00:00");
+            $L13h30=$aRepository->findRDV($id, "$annee-$mois-$lundi 13:30:00");
+            $L14h=$aRepository->findRDV($id, "$annee-$mois-$lundi 14:00:00");
+            $L14h30=$aRepository->findRDV($id, "$annee-$mois-$lundi 14:30:00");
+            $L15h=$aRepository->findRDV($id, "$annee-$mois-$lundi 15:00:00");
+            $L15h30=$aRepository->findRDV($id, "$annee-$mois-$lundi 15:30:00");
+            $L16h=$aRepository->findRDV($id, "$annee-$mois-$lundi 16:00:00");
+            $L16h30=$aRepository->findRDV($id, "$annee-$mois-$lundi 16:30:00");
+            $L17h=$aRepository->findRDV($id, "$annee-$mois-$lundi 17:00:00");
+            $L17h30=$aRepository->findRDV($id, "$annee-$mois-$lundi 17:30:00");
+            $L18h=$aRepository->findRDV($id, "$annee-$mois-$lundi 18:00:00");
 
-            $Ma10h=$aRepository->findRDV($id, "2021-12-14 10:00:00");
-            $Ma10h30=$aRepository->findRDV($id, "2021-12-14 10:30:00");
-            $Ma11h=$aRepository->findRDV($id, "2021-12-14 11:00:00");
-            $Ma11h30=$aRepository->findRDV($id, "2021-12-14 11:30:00");
-            $Ma12h=$aRepository->findRDV($id, "2021-12-14 12:00:00");
-            $Ma12h30=$aRepository->findRDV($id, "2021-12-14 12:30:00");
-            $Ma13h=$aRepository->findRDV($id, "2021-12-14 13:00:00");
-            $Ma13h30=$aRepository->findRDV($id, "2021-12-14 13:30:00");
-            $Ma14h=$aRepository->findRDV($id, "2021-12-14 14:00:00");
-            $Ma14h30=$aRepository->findRDV($id, "2021-12-14 14:30:00");
-            $Ma15h=$aRepository->findRDV($id, "2021-12-14 15:00:00");
-            $Ma15h30=$aRepository->findRDV($id, "2021-12-14 15:30:00");
-            $Ma16h=$aRepository->findRDV($id, "2021-12-14 16:00:00");
-            $Ma16h30=$aRepository->findRDV($id, "2021-12-14 16:30:00");
-            $Ma17h=$aRepository->findRDV($id, "2021-12-14 17:00:00");
-            $Ma17h30=$aRepository->findRDV($id, "2021-12-14 17:30:00");
-            $Ma18h=$aRepository->findRDV($id, "2021-12-14 18:00:00");
+            $Ma10h=$aRepository->findRDV($id, "$annee-$mois-$mardi 10:00:00");
+            $Ma10h30=$aRepository->findRDV($id, "$annee-$mois-$mardi 10:30:00");
+            $Ma11h=$aRepository->findRDV($id, "$annee-$mois-$mardi 11:00:00");
+            $Ma11h30=$aRepository->findRDV($id, "$annee-$mois-$mardi 11:30:00");
+            $Ma12h=$aRepository->findRDV($id, "$annee-$mois-$mardi 12:00:00");
+            $Ma12h30=$aRepository->findRDV($id, "$annee-$mois-$mardi 12:30:00");
+            $Ma13h=$aRepository->findRDV($id, "$annee-$mois-$mardi 13:00:00");
+            $Ma13h30=$aRepository->findRDV($id, "$annee-$mois-$mardi 13:30:00");
+            $Ma14h=$aRepository->findRDV($id, "$annee-$mois-$mardi 14:00:00");
+            $Ma14h30=$aRepository->findRDV($id, "$annee-$mois-$mardi 14:30:00");
+            $Ma15h=$aRepository->findRDV($id, "$annee-$mois-$mardi 15:00:00");
+            $Ma15h30=$aRepository->findRDV($id, "$annee-$mois-$mardi 15:30:00");
+            $Ma16h=$aRepository->findRDV($id, "$annee-$mois-$mardi 16:00:00");
+            $Ma16h30=$aRepository->findRDV($id, "$annee-$mois-$mardi 16:30:00");
+            $Ma17h=$aRepository->findRDV($id, "$annee-$mois-$mardi 17:00:00");
+            $Ma17h30=$aRepository->findRDV($id, "$annee-$mois-$mardi 17:30:00");
+            $Ma18h=$aRepository->findRDV($id, "$annee-$mois-$mardi 18:00:00");
 
-            $Me10h=$aRepository->findRDV($id, "2021-12-15 10:00:00");
-            $Me10h30=$aRepository->findRDV($id, "2021-12-15 10:30:00");
-            $Me11h=$aRepository->findRDV($id, "2021-12-15 11:00:00");
-            $Me11h30=$aRepository->findRDV($id, "2021-12-15 11:30:00");
-            $Me12h=$aRepository->findRDV($id, "2021-12-15 12:00:00");
-            $Me12h30=$aRepository->findRDV($id, "2021-12-15 12:30:00");
-            $Me13h=$aRepository->findRDV($id, "2021-12-15 13:00:00");
-            $Me13h30=$aRepository->findRDV($id, "2021-12-15 13:30:00");
-            $Me14h=$aRepository->findRDV($id, "2021-12-15 14:00:00");
-            $Me14h30=$aRepository->findRDV($id, "2021-12-15 14:30:00");
-            $Me15h=$aRepository->findRDV($id, "2021-12-15 15:00:00");
-            $Me15h30=$aRepository->findRDV($id, "2021-12-15 15:30:00");
-            $Me16h=$aRepository->findRDV($id, "2021-12-15 16:00:00");
-            $Me16h30=$aRepository->findRDV($id, "2021-12-15 16:30:00");
-            $Me17h=$aRepository->findRDV($id, "2021-12-15 17:00:00");
-            $Me17h30=$aRepository->findRDV($id, "2021-12-15 17:30:00");
-            $Me18h=$aRepository->findRDV($id, "2021-12-15 18:00:00");
+            $Me10h=$aRepository->findRDV($id, "$annee-$mois-$mercredi 10:00:00");
+            $Me10h30=$aRepository->findRDV($id, "$annee-$mois-$mercredi 10:30:00");
+            $Me11h=$aRepository->findRDV($id, "$annee-$mois-$mercredi 11:00:00");
+            $Me11h30=$aRepository->findRDV($id, "$annee-$mois-$mercredi 11:30:00");
+            $Me12h=$aRepository->findRDV($id, "$annee-$mois-$mercredi 12:00:00");
+            $Me12h30=$aRepository->findRDV($id, "$annee-$mois-$mercredi 12:30:00");
+            $Me13h=$aRepository->findRDV($id, "$annee-$mois-$mercredi 13:00:00");
+            $Me13h30=$aRepository->findRDV($id, "$annee-$mois-$mercredi 13:30:00");
+            $Me14h=$aRepository->findRDV($id, "$annee-$mois-$mercredi 14:00:00");
+            $Me14h30=$aRepository->findRDV($id, "$annee-$mois-$mercredi 14:30:00");
+            $Me15h=$aRepository->findRDV($id, "$annee-$mois-$mercredi 15:00:00");
+            $Me15h30=$aRepository->findRDV($id, "$annee-$mois-$mercredi 15:30:00");
+            $Me16h=$aRepository->findRDV($id, "$annee-$mois-$mercredi 16:00:00");
+            $Me16h30=$aRepository->findRDV($id, "$annee-$mois-$mercredi 16:30:00");
+            $Me17h=$aRepository->findRDV($id, "$annee-$mois-$mercredi 17:00:00");
+            $Me17h30=$aRepository->findRDV($id, "$annee-$mois-$mercredi 17:30:00");
+            $Me18h=$aRepository->findRDV($id, "$annee-$mois-$mercredi 18:00:00");
 
-            $J10h=$aRepository->findRDV($id, "2021-12-16 10:00:00");
-            $J10h30=$aRepository->findRDV($id, "2021-12-16 10:30:00");
-            $J11h=$aRepository->findRDV($id, "2021-12-16 11:00:00");
-            $J11h30=$aRepository->findRDV($id, "2021-12-16 11:30:00");
-            $J12h=$aRepository->findRDV($id, "2021-12-16 12:00:00");
-            $J12h30=$aRepository->findRDV($id, "2021-12-16 12:30:00");
-            $J13h=$aRepository->findRDV($id, "2021-12-16 13:00:00");
-            $J13h30=$aRepository->findRDV($id, "2021-12-16 13:30:00");
-            $J14h=$aRepository->findRDV($id, "2021-12-16 14:00:00");
-            $J14h30=$aRepository->findRDV($id, "2021-12-16 14:30:00");
-            $J15h=$aRepository->findRDV($id, "2021-12-16 15:00:00");
-            $J15h30=$aRepository->findRDV($id, "2021-12-16 15:30:00");
-            $J16h=$aRepository->findRDV($id, "2021-12-16 16:00:00");
-            $J16h30=$aRepository->findRDV($id, "2021-12-16 16:30:00");
-            $J17h=$aRepository->findRDV($id, "2021-12-16 17:00:00");
-            $J17h30=$aRepository->findRDV($id, "2021-12-16 17:30:00");
-            $J18h=$aRepository->findRDV($id, "2021-12-16 18:00:00");
+            $J10h=$aRepository->findRDV($id, "$annee-$mois-$jeudi 10:00:00");
+            $J10h30=$aRepository->findRDV($id, "$annee-$mois-$jeudi 10:30:00");
+            $J11h=$aRepository->findRDV($id, "$annee-$mois-$jeudi 11:00:00");
+            $J11h30=$aRepository->findRDV($id, "$annee-$mois-$jeudi 11:30:00");
+            $J12h=$aRepository->findRDV($id, "$annee-$mois-$jeudi 12:00:00");
+            $J12h30=$aRepository->findRDV($id, "$annee-$mois-$jeudi 12:30:00");
+            $J13h=$aRepository->findRDV($id, "$annee-$mois-$jeudi 13:00:00");
+            $J13h30=$aRepository->findRDV($id, "$annee-$mois-$jeudi 13:30:00");
+            $J14h=$aRepository->findRDV($id, "$annee-$mois-$jeudi 14:00:00");
+            $J14h30=$aRepository->findRDV($id, "$annee-$mois-$jeudi 14:30:00");
+            $J15h=$aRepository->findRDV($id, "$annee-$mois-$jeudi 15:00:00");
+            $J15h30=$aRepository->findRDV($id, "$annee-$mois-$jeudi 15:30:00");
+            $J16h=$aRepository->findRDV($id, "$annee-$mois-$jeudi 16:00:00");
+            $J16h30=$aRepository->findRDV($id, "$annee-$mois-$jeudi 16:30:00");
+            $J17h=$aRepository->findRDV($id, "$annee-$mois-$jeudi 17:00:00");
+            $J17h30=$aRepository->findRDV($id, "$annee-$mois-$jeudi 17:30:00");
+            $J18h=$aRepository->findRDV($id, "$annee-$mois-$jeudi 18:00:00");
 
-            $V10h=$aRepository->findRDV($id, "2021-12-17 10:00:00");
-            $V10h30=$aRepository->findRDV($id, "2021-12-17 10:30:00");
-            $V11h=$aRepository->findRDV($id, "2021-12-17 11:00:00");
-            $V11h30=$aRepository->findRDV($id, "2021-12-17 11:30:00");
-            $V12h=$aRepository->findRDV($id, "2021-12-17 12:00:00");
-            $V12h30=$aRepository->findRDV($id, "2021-12-17 12:30:00");
-            $V13h=$aRepository->findRDV($id, "2021-12-17 13:00:00");
-            $V13h30=$aRepository->findRDV($id, "2021-12-17 13:30:00");
-            $V14h=$aRepository->findRDV($id, "2021-12-17 14:00:00");
-            $V14h30=$aRepository->findRDV($id, "2021-12-17 14:30:00");
-            $V15h=$aRepository->findRDV($id, "2021-12-17 15:00:00");
-            $V15h30=$aRepository->findRDV($id, "2021-12-17 15:30:00");
-            $V16h=$aRepository->findRDV($id, "2021-12-17 16:00:00");
-            $V16h30=$aRepository->findRDV($id, "2021-12-17 16:30:00");
-            $V17h=$aRepository->findRDV($id, "2021-12-17 17:00:00");
-            $V17h30=$aRepository->findRDV($id, "2021-12-17 17:30:00");
-            $V18h=$aRepository->findRDV($id, "2021-12-17 18:00:00");
+            $V10h=$aRepository->findRDV($id, "$annee-$mois-$vendredi 10:00:00");
+            $V10h30=$aRepository->findRDV($id, "$annee-$mois-$vendredi 10:30:00");
+            $V11h=$aRepository->findRDV($id, "$annee-$mois-$vendredi 11:00:00");
+            $V11h30=$aRepository->findRDV($id, "$annee-$mois-$vendredi 11:30:00");
+            $V12h=$aRepository->findRDV($id, "$annee-$mois-$vendredi 12:00:00");
+            $V12h30=$aRepository->findRDV($id, "$annee-$mois-$vendredi 12:30:00");
+            $V13h=$aRepository->findRDV($id, "$annee-$mois-$vendredi 13:00:00");
+            $V13h30=$aRepository->findRDV($id, "$annee-$mois-$vendredi 13:30:00");
+            $V14h=$aRepository->findRDV($id, "$annee-$mois-$vendredi 14:00:00");
+            $V14h30=$aRepository->findRDV($id, "$annee-$mois-$vendredi 14:30:00");
+            $V15h=$aRepository->findRDV($id, "$annee-$mois-$vendredi 15:00:00");
+            $V15h30=$aRepository->findRDV($id, "$annee-$mois-$vendredi 15:30:00");
+            $V16h=$aRepository->findRDV($id, "$annee-$mois-$vendredi 16:00:00");
+            $V16h30=$aRepository->findRDV($id, "$annee-$mois-$vendredi 16:30:00");
+            $V17h=$aRepository->findRDV($id, "$annee-$mois-$vendredi 17:00:00");
+            $V17h30=$aRepository->findRDV($id, "$annee-$mois-$vendredi 17:30:00");
+            $V18h=$aRepository->findRDV($id, "$annee-$mois-$vendredi 18:00:00");
 
             return $this->render('conseiller/rdv.html.twig', [
                 'controller_name' => 'ConseillerController',
