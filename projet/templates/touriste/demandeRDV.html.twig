@@ -47,14 +47,35 @@
             <form class="row g-3 needs-validation" novalidate>
                 <div class="div2">
                     <div class="col-md-3 position-relative">
-                        <label for="validationTooltip04" class="form-label">Langue <img src="drapeauChoixLangue.png" class="d-block w-100" alt="Erreur de chargement de l'image"></label>
+                        <label for="validationTooltip04" class="form-label">Langue <img src="drapeauChoixLangue.png" class="d-block w-100" alt="Erreur de chargement de l'image"/></label>
                         <select class="form-select" id="validationTooltip04" required>
                             <option selected disabled value="">Choisissez une langue</option>
                             <option value="1">Français</option>
                             <option value="2">English</option>
                         </select>
                         <div class="invalid-tooltip"> Sélectionnez une langue valide.</div>
-                        <button class="btn btn-primary boutonValider" type="submit">Valider</button>
+
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary boutonValider" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Valider
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <p>Votre RDV a bien été enregistré!</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn btn-primary" type="submit" href="/espaceTouriste">
+                                            Retour vers Mon Espace
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
                     <span class="span1"></span>
 
