@@ -4,26 +4,53 @@
 
 {% block body %}
     <style>
-        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
         .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-        .containerLGrey { background-color: lightgrey; padding: 1%; }
-        .containerGrey { background-color: grey; padding: 1%; margin: 1%; border-radius: 10px; display:flex; flex-flow: row nowrap; justify-content: space-between; }
         li { list-style: none; }
     </style>
 
-    <div class="example-wrapper">
+    <div class="container-fluid py-4">
         <h1>Mes Rendez-vous</h1>
-        <div class="containerLGrey">
-            <ul>
-                {% for rdv in listeRDV %}
-                    <li>
-                        <div class="containerGrey" >
-                            <p>{{ rdv.horaire|format_datetime('full') }}</p> <p>{{ rdv.Conseiller.nom }} {{ rdv.Conseiller.prenom }}</p>
-                            <button type="button" class="btn btn-primary">Modifier</button>
+        <table class="table table-hover align-middle">
+            <thead>
+            <tr>
+                <th scope="col">Horaire</th>
+                <th scope="col">Conseiller</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for rdv in listeRDV %}
+                <tr>
+                    <td>{{ rdv.horaire|format_datetime('full') }}</td>
+                    <td>{{ rdv.Conseiller.prenom }} {{ rdv.Conseiller.nom }}</td>
+                    <td>
+
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Supprimer
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Supprimer un rendez-vous</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Êtes-vous sûr de vouloir supprimer ce rendez-vous ?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                        <a href="/espaceTouriste/mesRDV/remove/{{ rdv.id }}" class="btn btn-danger" role="button" aria-disabled="true">Supprimer</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}
+
