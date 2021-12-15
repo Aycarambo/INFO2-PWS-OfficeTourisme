@@ -30,67 +30,62 @@ class ConseillerController extends AbstractController
 
         $jour = $date|date('l');
 
-        $lundi = '';
-        $mardi = '';
-        $mercredi = '';
-        $jeudi = '';
-        $vendredi = '';
+        $lundi = $date|date('d');
+        $mardi = $date|date('d');
+        $mercredi = $date|date('d');
+        $jeudi = $date|date('d');
+        $vendredi = $date|date('d');
 
         if($jour == "Monday")
         {
-            $lundi = $date|date('d');
-            $mardi = date_modify($date|date('d'), '+1');
-            $mercredi = date_modify($date|date('d'), '+2');
-            $jeudi = date_modify($date|date('d'), '+3');
-            $vendredi = date_modify($date|date('d'), '+4');
+            date_modify($mardi, '+1 day');
+            date_modify($mercredi, '+2 day');
+            date_modify($jeudi, '+3 day');
+            date_modify($vendredi, '+4 day');
         }
         else if($jour == "Tuesday")
         {
-            $lundi = date_modify($date|date('d'), '-1');
-            $mardi = $date|date('d');
-            $mercredi = date_modify($date|date('d'), '+1');
-            $jeudi = date_modify($date|date('d'), '+2');
-            $vendredi = date_modify($date|date('d'), '+3');
+            date_modify($lundi, '-1 day');
+            date_modify($mercredi, '+1 day');
+            date_modify($jeudi, '+2 day');
+            date_modify($vendredi, '+3 day');
         }
         else if($jour == "Wednesday")
         {
-            $lundi = date_modify($date|date('d'), '-2');
-            $mardi = date_modify($date|date('d'), '-1');
-            $mercredi = $date|date('d');
-            $jeudi = date_modify($date|date('d'), '+1');
-            $vendredi = date_modify($date|date('d'), '+2');
+            date_modify($lundi, '-2 day');
+            date_modify($mardi, '-1 day');
+            date_modify($jeudi, '+1 day');
+            date_modify($vendredi, '+2 day');
         }
         else if($jour == "Thursday")
         {
-            $lundi = date_modify($date|date('d'), '-3');
-            $mardi = date_modify($date|date('d'), '-2');
-            $mercredi = date_modify($date|date('d'), '-1');
-            $jeudi = $date|date('d');
-            $vendredi = date_modify($date|date('d'), '+1');
+            date_modify($lundi, '-3 day');
+            date_modify($mardi, '-2 day');
+            date_modify($mercredi, '-1 day');
+            date_modify($vendredi, '+1 day');
         }
         else if($jour == "Friday")
         {
-            $lundi = date_modify($date|date('d'), '-4');
-            $mardi = date_modify($date|date('d'), '-3');
-            $mercredi = date_modify($date|date('d'), '-2');
-            $jeudi = date_modify($date|date('d'), '-1');
-            $vendredi = $jeudi = $date|date('d');
+            date_modify($lundi, '-4 day');
+            date_modify($mardi, '-3 day');
+            date_modify($mercredi, '-2 day');
+            date_modify($jeudi, '-1 day');
         }
         else if($jour == "Saturday")
         {
-            $lundi = date_modify($date|date('d'), '-5');
-            $mardi = date_modify($date|date('d'), '-4');
-            $mercredi = date_modify($date|date('d'), '-3');
-            $jeudi = date_modify($date|date('d'), '-2');
-            $vendredi = date_modify($date|date('d'), '-1');
+            date_modify($lundi, '-5 day');
+            date_modify($mardi, '-4 day');
+            date_modify($mercredi, '-3 day');
+            date_modify($jeudi, '-2 day');
+            date_modify($vendredi, '-1 day');
         }
         else if($jour == "Sunday")
         {
-            $lundi = date_modify($date|date('d'), '-6');
-            $mardi = date_modify($date|date('d'), '-5');
-            $mercredi = date_modify($date|date('d'), '-4');
-            $jeudi = date_modify($date|date('d'), '-3');
-            $vendredi = date_modify($date|date('d'), '-2');
+            date_modify($lundi, '-6 day');
+            date_modify($mardi, '-5 day');
+            date_modify($mercredi, '-4 day');
+            date_modify($jeudi, '-3 day');
+            date_modify($vendredi, '-2 day');
         }
 
         if('22' < $semaine and $semaine < '35')
