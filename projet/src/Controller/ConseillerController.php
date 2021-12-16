@@ -13,7 +13,7 @@ class ConseillerController extends AbstractController
     #[Route('/espaceConseiller/{id}', name: 'conseiller')]
     public function espaceConseiller(ConseillerRepository $conseillerRepository, RDVRepository $repository, int $id): Response
     {
-        $lrdv = $repository->findBy(['Conseiller' => $id]);
+        $lrdv = $repository->findBy(['Conseiller' => $id], ['horaire' => 'asc']);
         $conseiller = $conseillerRepository->find($id);
         return $this->render('conseiller/index.html.twig', [
             'controller_name' => 'ConseillerController',
