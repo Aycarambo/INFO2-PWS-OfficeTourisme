@@ -46,7 +46,8 @@ class AppFixtures extends Fixture
         $rdv1->setTouriste($touriste1);
         $horaire1 = '12/13/2021 08:30:00';
         $rdv1->setHoraire(new \DateTime($horaire1));
-        $rdv1->setLienVisio('google.com');
+        $rdv1->setLienVisio('https://google.com');
+        $rdv1->setLangue('fr');
         $manager->persist($rdv1);
 
         $rdv2 = new RDV();
@@ -54,14 +55,16 @@ class AppFixtures extends Fixture
         $rdv2->setTouriste($touriste2);
         $horaire2 = '12/15/2021 10:30:00';
         $rdv2->setHoraire(new \DateTime($horaire2));
-        $rdv2->setLienVisio('google.com');
+        $rdv2->setLienVisio('https://google.com');
+        $rdv2->setLangue('fr');
         $manager->persist($rdv2);
 
         $rdv3 = new RDV();
         $rdv3->setConseiller($conseiller1);
         $rdv3->setTouriste($touriste2);
         $rdv3->setHoraire(new \DateTime($horaire2));
-        $rdv3->setLienVisio('google.com');
+        $rdv3->setLienVisio('https://google.com');
+        $rdv3->setLangue('fr');
         $manager->persist($rdv3);
 
         $rdv4 = new RDV();
@@ -69,7 +72,8 @@ class AppFixtures extends Fixture
         $rdv4->setTouriste($touriste1);
         $horaire1 = '12/13/2021 08:00:00';
         $rdv4->setHoraire(new \DateTime($horaire1));
-        $rdv4->setLienVisio('google.com');
+        $rdv4->setLienVisio('https://google.com');
+        $rdv4->setLangue('fr');
         $manager->persist($rdv4);
 
         $rdv5 = new RDV();
@@ -77,7 +81,8 @@ class AppFixtures extends Fixture
         $rdv5->setTouriste($touriste1);
         $horaire1 = '12/16/2021 14:30:00';
         $rdv5->setHoraire(new \DateTime($horaire1));
-        $rdv5->setLienVisio('google.com');
+        $rdv5->setLienVisio('https://google.com');
+        $rdv5->setLangue('fr');
         $manager->persist($rdv5);
 
         $rdv6 = new RDV();
@@ -85,7 +90,8 @@ class AppFixtures extends Fixture
         $rdv6->setTouriste($touriste1);
         $horaire1 = '12/17/2021 17:30:00';
         $rdv6->setHoraire(new \DateTime($horaire1));
-        $rdv6->setLienVisio('google.com');
+        $rdv6->setLienVisio('https://google.com');
+        $rdv6->setLangue('fr');
         $manager->persist($rdv6);
 
         $rdv7 = new RDV();
@@ -93,7 +99,8 @@ class AppFixtures extends Fixture
         $rdv7->setTouriste($touriste1);
         $horaire1 = '12/16/2021 12:00:00';
         $rdv7->setHoraire(new \DateTime($horaire1));
-        $rdv7->setLienVisio('google.com');
+        $rdv7->setLienVisio('https://google.com');
+        $rdv7->setLangue('fr');
         $manager->persist($rdv7);
 
         $rdv8 = new RDV();
@@ -101,7 +108,8 @@ class AppFixtures extends Fixture
         $rdv8->setTouriste($touriste1);
         $horaire1 = '12/13/2021 18:30:00';
         $rdv8->setHoraire(new \DateTime($horaire1));
-        $rdv8->setLienVisio('google.com');
+        $rdv8->setLienVisio('https://google.com');
+        $rdv8->setLangue('fr');
         $manager->persist($rdv8);
 
         $rdv9 = new RDV();
@@ -109,7 +117,8 @@ class AppFixtures extends Fixture
         $rdv9->setTouriste($touriste1);
         $horaire1 = '12/14/2021 09:30:00';
         $rdv9->setHoraire(new \DateTime($horaire1));
-        $rdv9->setLienVisio('google.com');
+        $rdv9->setLienVisio('https://google.com');
+        $rdv9->setLangue('fr');
         $manager->persist($rdv9);
 
         $rdv10 = new RDV();
@@ -117,7 +126,8 @@ class AppFixtures extends Fixture
         $rdv10->setTouriste($touriste1);
         $horaire1 = '12/16/2021 08:00:00';
         $rdv10->setHoraire(new \DateTime($horaire1));
-        $rdv10->setLienVisio('google.com');
+        $rdv10->setLienVisio('https://google.com');
+        $rdv10->setLangue('fr');
         $manager->persist($rdv10);
 
         $rdv11 = new RDV();
@@ -125,7 +135,8 @@ class AppFixtures extends Fixture
         $rdv11->setTouriste($touriste1);
         $horaire1 = '12/17/2021 19:30:00';
         $rdv11->setHoraire(new \DateTime($horaire1));
-        $rdv11->setLienVisio('google.com');
+        $rdv11->setLienVisio('https://google.com');
+        $rdv11->setLangue('fr');
         $manager->persist($rdv11);
 
         $manager->flush();

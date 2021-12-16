@@ -39,12 +39,17 @@ class RDV
      */
     private $Touriste;
 
+    /**
+     * @ORM\Column(type="string", length=2)
+     */
+    private $langue;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getLienVisio(): ?string
+    public function getLien_Visio(): ?string
     {
         return $this->lienVisio;
     }
@@ -55,6 +60,7 @@ class RDV
 
         return $this;
     }
+
 
     public function getHoraire(): ?\DateTimeInterface
     {
@@ -88,6 +94,18 @@ class RDV
     public function setTouriste(?Touriste $Touriste): self
     {
         $this->Touriste = $Touriste;
+
+        return $this;
+    }
+
+    public function getLangue(): ?string
+    {
+        return $this->langue;
+    }
+
+    public function setLangue(string $langue): self
+    {
+        $this->langue = $langue;
 
         return $this;
     }

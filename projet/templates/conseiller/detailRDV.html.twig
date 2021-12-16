@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon espace{% endblock %}
+
+{% block body %}
+    <style>
+        .rdvLayout {
+            border-radius: 10px;
+            background-color: lightgrey;
+            text-align: center;
+            padding:2%;
+        }
+    </style>
+
+    <h2 style="text-align: center;padding:1%;">Bonjour {{ conseiller.prenom }}</h2>
+
+    <table class="table rdvLayout">
+        <tr>
+            <th style="background-color:grey;">
+                Détail du rendez-vous avec {{ RDV.Touriste.nom }} {{ RDV.Touriste.prenom }}
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Date : {{ RDV.horaire|date('d/m/Y/ à H:i') }}
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Langue : {{ RDV.langue }}
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Lien : <a href="{{ RDV.lien_visio }}">{{ RDV.lien_visio }}</a>
+            </th>
+        </tr>
+    </table>
+
+{% endblock %}
