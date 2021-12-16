@@ -57,7 +57,7 @@ class TouristeController extends AbstractController
             $em->flush();
         }
 
-        $listeRDV = $repositoryRDV->findBy(['Touriste' => $touriste]);
+        $listeRDV = $repositoryRDV->findBy(['Touriste' => $touriste], ['horaire' => 'ASC']);
         return $this->render("touriste/mesRDVtouriste.html.twig", [
             'listeRDV' => $listeRDV,
         ]);
