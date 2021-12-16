@@ -47,4 +47,22 @@ class RDVRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findRDV($conseiller, $horaire)
+    {
+        $querybuilder=$this->createQueryBuilder('rdv');
+        $query = $querybuilder->where('rdv.Conseiller = :conseiller')
+            ->andWhere('rdv.horaire = :horaire')
+            ->setParameter('conseiller', $conseiller)
+            ->setParameter('horaire', $horaire)
+            ->getQuery();
+        $results = $query->getResult();
+        if(count($results) != 0 )
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
