@@ -40,20 +40,15 @@
                         Rendez-vous du jour
                     </th>
                 </tr>
-                {% set rdvJour = [] %}
                 {% for rdv in listeRDV %}
                     {% if 'now'|date('d/m/Y/H/i', "Europe/Paris") < rdv.horaire|date('d/m/Y/H/i')
-                        and 'now'|date('d/m/Y', "Europe/Paris") == rdv.horaire|date('d/m/Y')%}
-                        {% set rdvJour = rdvJour|merge([{ horaire: rdv.horaire|date('H:i'), nom: rdv.Touriste.nom, prenom: rdv.Touriste.prenom}]) %}
+                       and 'now'|date('d/m/Y', "Europe/Paris") == rdv.horaire|date('d/m/Y')%}
+                        <tr>
+                            <th>
+                                {{ rdv.horaire|date('H:i') }} {{ rdv.Touriste.nom }} {{ rdv.Touriste.prenom }}
+                            </th>
+                        </tr>
                     {% endif %}
-                {% endfor %}
-
-                {% for rdvTries in rdvJour|sort %}
-                    <tr>
-                        <th>
-                            {{ rdvTries["horaire"] }} {{ rdvTries["nom"] }} {{ rdvTries["prenom"] }}
-                        </th>
-                    </tr>
                 {% endfor %}
                 <tr>
                     <th>
