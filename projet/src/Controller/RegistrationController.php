@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Touriste;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -31,7 +32,13 @@ class RegistrationController extends AbstractController
                 )
             );
             $user->setRoles(['ROLE_TOURISTE']);
+            $touriste = new Touriste();
+            $touriste->setPrenom($form->get("prenom"));
+            $touriste->setNom($form->get("nom"));
+            $touriste->setUser($user);
+            $user->setTouriste($touriste);
             $entityManager->persist($user);
+            $entityManager->persist($touriste);
             $entityManager->flush();
             // do anything else you need here, like send an email
 
