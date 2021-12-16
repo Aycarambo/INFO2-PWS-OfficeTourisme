@@ -34,6 +34,11 @@ class Touriste
      */
     private $rDVs;
 
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="touriste", cascade={"persist", "remove"})
+     */
+    private $user;
+
     public function __construct()
     {
         $this->rDVs = new ArrayCollection();
@@ -94,6 +99,18 @@ class Touriste
                 $rDV->setTouriste(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

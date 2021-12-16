@@ -23,3 +23,19 @@ git add .
 git commit
 
 git push -u origin nomBranche
+
+git push -u origin nomBranche
+
+# Utilisation User
+## Dans template :
+```twig
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <p>Email: {{ app.user.email }}</p>
+{% endif %}
+```
+
+## Dans controller :
+```php
+$user = $this->getUser();
+$mail = $user->getEmail();
+```
