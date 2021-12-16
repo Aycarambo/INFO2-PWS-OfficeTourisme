@@ -39,3 +39,11 @@ git push -u origin nomBranche
 $user = $this->getUser();
 $mail = $user->getEmail();
 ```
+
+# Logins :
+## Responsable
+valentin@yahoo.fr:mdpval
+
+## Conseiller
+theotimeo@free.fr:mdpmdp
+
