@@ -2,10 +2,7 @@
 
 {% block title %}Liste RDV{% endblock %}
 
-
-
 {% block body %}
-    {% set idr = 0 %}
 <div class="container-fluid py-4">
     <h1>Liste des rdv du conseiller {{ conseiller.prenom }}</h1>
     <table class="table table-hover align-middle">
@@ -24,10 +21,54 @@
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modification">
                         Modifier
                     </button>
-                    <a role="button" class="btn btn-danger" data-bs-toggle="modal"  data-bs-target="#suppression" onclick="{% set idr = rdv.id %}">
-                        Supprimer {{ rdv.id }}
+                    <a role="button" class="btn btn-danger" data-bs-toggle="modal"  data-bs-target="#suppression{{ rdv.id }}">
+                        Supprimer
                     </a>
-
+                    <div class="modal fade" id="modification" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modifier le rendez-vous</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Responsable
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                            {% for c in conseillers %}
+                                                {% if conseiller.id != c.id %}
+                                                    <li><a class="dropdown-item" href="#">{{ c.nom }} {{ c.prenom }}</a></li>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="suppression{{ rdv.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Supprimer le rendez-vous</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Etes-vous sûr de vouloir supprimer le rendez-vous ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                    <a role="button" href="/espaceResponsable/ListeDesRDV/{{ conseiller.id }}/remove/{{ rdv.id }}" class="btn btn-danger">Supprimer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
 
@@ -35,49 +76,6 @@
         </tbody>
     </table>
 </div>
-    <div class="modal fade" id="modification" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modifier le rendez-vous</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            Responsable
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            {% for c in conseillers %}
-                                {% if conseiller.id != c.id %}
-                                    <li><a class="dropdown-item" href="#">{{ c.nom }} {{ c.prenom }}</a></li>
-                                {% endif %}
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="suppression" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Supprimer le rendez-vous</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Etez-vous sûr de vouloir supprimer le rendez-vous ? {{ idr }}
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <a role="button" href="/espaceResponsable/ListeDesRDV/{{ conseiller.id }}/remove/{{ idr }}" class="btn btn-danger">Supprimer</a>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
 {% endblock %}
