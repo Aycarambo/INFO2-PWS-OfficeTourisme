@@ -70,7 +70,7 @@ class AppFixtures extends Fixture
         $responsable = new User();
         $responsable->setPassword('$2y$13$Ec.mJbSc0eoMoM4hlWll4OlAPO6qdXFqMC8anrNbM.Jcid/tR1hG.');
         $responsable->setEmail("valentin@yahoo.fr");
-        $responsable->setRoles(["R"]);
+        $responsable->setRoles(["ROLE_RESPONSABLE"]);
         $manager->persist($responsable);
 
 
@@ -78,7 +78,7 @@ class AppFixtures extends Fixture
         $conseiller1 = new User();
         $conseiller1->setPassword('$2y$13$LVGQx8F9FcSuH8nizkW6vuzCwzXleh4JdWxgnKm26RqQPcbC9dyq.');
         $conseiller1->setEmail("theotimeo@free.fr");
-        $conseiller1->setRoles(["C"]);
+        $conseiller1->setRoles(["ROLE_CONSEILLER"]);
         $manager->persist($conseiller1);
         $manager->flush();
     }
