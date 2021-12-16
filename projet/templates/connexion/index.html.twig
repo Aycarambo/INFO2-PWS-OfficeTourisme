@@ -3,10 +3,8 @@
 {% block title %}{{ controller_name }}{% endblock %}
 
 {% block body%}
-<div class="container-fluid py-4">
+    <div class="container col-md-6">
     <main class="form-signin">
-        <div class="row align-items-md-center">
-            <div class="col-md-6">
                 <h1 class="h3 mb-3 fw-normal">Connexion</h1>
                 <form action="{{ path('connexion') }}" method="post">
                     <div class="row g-3">
@@ -23,9 +21,7 @@
                     <input type="hidden" name="_target_path" value="{{ path('connexionRedirection') }}"/>
                     <button class="btn btn-lg btn-primary" type="submit">Connexion</button>
                 </form>
-            </div>
             <p>Pas encore de compte ? <a href="/inscription">S'inscrire</a></p>
-        </div>
     </main>
 </div>
     {% endblock %}
