@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Rdv;
+use App\Entity\RDV;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -47,4 +47,22 @@ class RdvRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findRDV($conseiller, $horaire)
+    {
+        $querybuilder=$this->createQueryBuilder('rdv');
+        $query = $querybuilder->where('rdv.Conseiller = :conseiller')
+            ->andWhere('rdv.horaire = :horaire')
+            ->setParameter('conseiller', $conseiller)
+            ->setParameter('horaire', $horaire)
+            ->getQuery();
+        $results = $query->getResult();
+        if(count($results) != 0 )
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

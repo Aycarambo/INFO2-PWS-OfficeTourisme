@@ -52,7 +52,7 @@
                 {% endfor %}
                 <tr>
                     <th>
-                        <a href="{{ path("conseillerRDV") }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Voir plus</a>
+                        <a href="{{ path('conseillerRDV', { 'id': conseiller.id }) }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Voir plus</a>
                     </th>
                 </tr>
             </table>

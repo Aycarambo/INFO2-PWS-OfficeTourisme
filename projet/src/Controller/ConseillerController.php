@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\ConseillerRepository;
-use App\Repository\RDVRepository;
+use App\Repository\RdvRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -34,11 +34,11 @@ class ConseillerController extends AbstractController
         ]);
     }
 
-    #[Route('/espaceConseiller/MesRDV', name: 'conseillerRDV')]
-    public function conseillerRDV(RDVRepository $aRepository,): Response
+    #[Route('/espaceConseiller/{id}/MesRDV', name: 'conseillerRDV')]
+    public function conseillerRDV(RDVRepository $aRepository, int $id, ConseillerRepository $conseillerRepository): Response
     {
         date_default_timezone_set("Europe/Paris");
-        $id = 1;
+        $conseiller = $conseillerRepository->find($id);
 
         $date = new \DateTime('now');
 
@@ -464,6 +464,7 @@ class ConseillerController extends AbstractController
                 'V20h' => $V20h,
 
                 'hauteSaison' => $saisonHaute,
+                'Conseiller'=> $conseiller,
             ]);
         }
         else
@@ -651,6 +652,7 @@ class ConseillerController extends AbstractController
                 'V18h' => $V18h,
 
                 'hauteSaison' => $saisonHaute,
+                'Conseiller'=> $conseiller,
             ]);
         }
 
