@@ -67,8 +67,19 @@ class AppFixtures extends Fixture
         $manager->persist($rdv3);
 
         //Users
+        $responsable = new User();
+        $responsable->setPassword('$2y$13$Ec.mJbSc0eoMoM4hlWll4OlAPO6qdXFqMC8anrNbM.Jcid/tR1hG.');
+        $responsable->setEmail("valentin@yahoo.fr");
+        $responsable->setRoles(["R"]);
+        $manager->persist($responsable);
 
 
+
+        $conseiller1 = new User();
+        $conseiller1->setPassword('$2y$13$LVGQx8F9FcSuH8nizkW6vuzCwzXleh4JdWxgnKm26RqQPcbC9dyq.');
+        $conseiller1->setEmail("theotimeo@free.fr");
+        $conseiller1->setRoles(["C"]);
+        $manager->persist($conseiller1);
         $manager->flush();
     }
 }
