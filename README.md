@@ -12,3 +12,18 @@ php bin/console d:m:m
 
 php bin/console d:fix:load
 >yes
+
+
+# Utilisation User
+## Dans template :
+```twig
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <p>Email: {{ app.user.email }}</p>
+{% endif %}
+```
+
+## Dans controller :
+```php
+$user = $this->getUser();
+$mail = $user->getEmail();
+```
