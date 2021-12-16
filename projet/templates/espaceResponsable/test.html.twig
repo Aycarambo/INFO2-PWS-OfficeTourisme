@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste RDV{% endblock %}
+
+{% set days = ["Mon","Tue", "Wed", "Thu", "Fri"] %}
+{% set h = '08:00'|date('H:i') %}
+
+{% block body %}
+    <div class="container-fluid py-4">
+        <h1>Liste des rdv du conseiller {{ conseiller.prenom }}</h1>
+        <table class="table table-hover align-middle">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Lundi</th>
+                <th scope="col">Mardi</th>
+                <th scope="col">Mercredi</th>
+                <th scope="col">Jeudi</th>
+                <th scope="col">Vendredi</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in 0..24 %}
+                <tr>
+                    <td>{{ h|date('H:i') }}</td>
+                    {% for day in days %}
+                        {% for rdv in lrdv %}
+                            {% if rdv.getHoraire|date('D') == day and rdv.getHoraire|date('H:i') == h|date('H:i') %}
+                                <td>X</td>
+                            {% else %}
+                                <td>{{ rdv.getHoraire|date('D') }}</td>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </tr>
+                {% set h = h|date_modify('+30 minutes')|date('H:i') %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

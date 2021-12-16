@@ -64,6 +64,14 @@ class AppFixtures extends Fixture
         $rdv3->setLienVisio('google.com');
         $manager->persist($rdv3);
 
+        $rdv4 = new RDV();
+        $rdv4->setConseiller($conseiller1);
+        $rdv4->setTouriste($touriste2);
+        $horaire3 = '10/09/2021 16:30:00';
+        $rdv4->setHoraire(new \DateTime($horaire3));
+        $rdv4->setLienVisio('google.com');
+        $manager->persist($rdv4);
+
         $manager->flush();
     }
 }
