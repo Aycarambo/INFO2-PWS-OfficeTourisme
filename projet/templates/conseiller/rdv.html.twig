@@ -78,7 +78,7 @@
                             <li><a class="dropdown-item" href="#">Semaine X+3</a></li>
                         </ul>
                     </div>
-                    <table class="table">
+                    <table class="table text-center">
                         <thead>
                         <tr>
                             <th>
@@ -102,337 +102,1519 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>
-                                8h
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                8h30
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                9h
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                9h30
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                10h
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                10h30
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                11h
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                11h30
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>X
+                            {% if hauteSaison == true %}
+                            <tr>
+                                <td>
+                                    8h
+                                </td>
+                                {% if L8h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                12h
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                12h30
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                13h
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                13h30
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                14h
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                14h30
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>X
+                                {% if Ma8h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                15h
-                            </td>
-                            <td>X
+                                {% if Me8h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                            <td>
+                                {% if J8h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                            <td>
+                                {% if V8h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                            <td>X
+                            </tr>
+                            <tr>
+                                <td>
+                                    8h30
+                                </td>
+                                {% if L8h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                            <td>X
+                                {% if Ma8h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                15h30
-                            </td>
-                            <td>X
+                                {% if Me8h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                            <td>X
+                                {% if J8h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                            <td>X
+                                {% if V8h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                            <td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    9h
+                                </td>
 
-                            </td>
-                            <td>X
+                                {% if L9h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                16h
-                            </td>
-                            <td>
+                                {% if Ma9h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                            <td>
+                                {% if Me9h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                            <td>
+                                {% if J9h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                            <td>
+                                {% if V9h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                            <td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    9h30
+                                </td>
 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                16h30
-                            </td>
-                            <td>
+                                {% if L9h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                            <td>
+                                {% if Ma9h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                            <td>
-                            </td>
-                            <td>
+                                {% if Me9h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                            <td>
+                                {% if J9h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                17h
-                            </td>
-                            <td>
+                                {% if V9h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                            <td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    10h
+                                </td>
 
-                            </td>
-                            <td>
+                                {% if L10h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                            <td>
+                                {% if Ma10h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                            <td>
+                                {% if Me10h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                17h30
-                            </td>
-                            <td>
+                                {% if J10h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                            <td>
+                                {% if V10h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                            <td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    10h30
+                                </td>
 
-                            </td>
-                            <td>
+                                {% if L10h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                            <td>
+                                {% if Ma10h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
 
-                            </td>
-                        </tr>
+                                {% if Me10h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J10h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V10h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    11h
+                                </td>
+
+                                {% if L11h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma11h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me11h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J11h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V11h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    11h30
+                                </td>
+
+                                {% if L11h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma11h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me11h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J11h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V11h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    12h
+                                </td>
+
+                                {% if L12h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma12h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me12h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J12h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V12h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    12h30
+                                </td>
+
+                                {% if L12h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma12h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me12h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J12h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V12h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    13h
+                                </td>
+
+                                {% if L13h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma13h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me13h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J13h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V13h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    13h30
+                                </td>
+
+                                {% if L13h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma13h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me13h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J13h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V13h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    14h
+                                </td>
+
+                                {% if L14h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma14h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me14h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J14h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V14h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    14h30
+                                </td>
+
+                                {% if L14h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma14h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me14h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J14h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V14h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    15h
+                                </td>
+
+                                {% if L15h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma15h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me15h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J15h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V15h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    15h30
+                                </td>
+
+                                {% if L15h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma15h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me15h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J15h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V15h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    16h
+                                </td>
+
+                                {% if L16h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma16h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me16h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J16h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V16h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    16h30
+                                </td>
+
+                                {% if L16h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma16h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me16h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J16h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V16h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    17h
+                                </td>
+
+                                {% if L17h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma17h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me17h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J17h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V17h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    17h30
+                                </td>
+
+                                {% if L17h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma17h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me17h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J17h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V17h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    18h
+                                </td>
+
+                                {% if L18h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma18h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me18h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J18h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V18h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    18h30
+                                </td>
+
+                                {% if L18h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma18h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me18h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J18h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V18h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    19h
+                                </td>
+
+                                {% if L19h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma19h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me19h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J19h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V19h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    19h30
+                                </td>
+
+                                {% if L19h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma19h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me19h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J19h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V19h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    20h
+                                </td>
+
+                                {% if L20h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma20h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me20h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J20h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V20h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td>
+                                    10h
+                                </td>
+
+                                {% if L10h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma10h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me10h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J10h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V10h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    10h30
+                                </td>
+
+                                {% if L10h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma10h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me10h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J10h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V10h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    11h
+                                </td>
+
+                                {% if L11h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma11h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me11h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J11h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V11h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    11h30
+                                </td>
+
+                                {% if L11h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma11h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me11h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J11h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V11h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    12h
+                                </td>
+
+                                {% if L12h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma12h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me12h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J12h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V12h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    12h30
+                                </td>
+
+                                {% if L12h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma12h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me12h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J12h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V12h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    13h
+                                </td>
+
+                                {% if L13h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma13h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me13h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J13h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V13h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    13h30
+                                </td>
+
+                                {% if L13h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma13h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me13h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J13h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V13h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    14h
+                                </td>
+
+                                {% if L14h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma14h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me14h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J14h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V14h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    14h30
+                                </td>
+
+                                {% if L14h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma14h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me14h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J14h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V14h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    15h
+                                </td>
+
+                                {% if L15h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma15h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me15h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J15h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V15h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    15h30
+                                </td>
+
+                                {% if L15h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma15h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me15h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J15h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V15h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    16h
+                                </td>
+
+                                {% if L16h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma16h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me16h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J16h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V16h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    16h30
+                                </td>
+
+                                {% if L16h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma16h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me16h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J16h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V16h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    17h
+                                </td>
+
+                                {% if L17h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma17h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me17h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J17h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V17h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    17h30
+                                </td>
+
+                                {% if L17h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma17h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me17h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J17h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V17h30 == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    18h
+                                </td>
+
+                                {% if L18h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Ma18h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if Me18h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if J18h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                                {% if V18h == true %}
+                                    <td>X</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+
+                            </tr>
+                            {% endif %}
                         </tbody>
                     </table>
                 </div>
