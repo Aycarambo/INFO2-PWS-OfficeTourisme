@@ -137,11 +137,12 @@ class AppFixtures extends Fixture
         $responsable->setRoles(["ROLE_RESPONSABLE"]);
         $manager->persist($responsable);
 
-        $conseiller1 = new User();
-        $conseiller1->setPassword('$2y$13$LVGQx8F9FcSuH8nizkW6vuzCwzXleh4JdWxgnKm26RqQPcbC9dyq.');
-        $conseiller1->setEmail("theotimeo@free.fr");
-        $conseiller1->setRoles(["ROLE_CONSEILLER"]);
-        $manager->persist($conseiller1);
+        $conseillerU1 = new User();
+        $conseillerU1->setPassword('$2y$13$LVGQx8F9FcSuH8nizkW6vuzCwzXleh4JdWxgnKm26RqQPcbC9dyq.');
+        $conseillerU1->setEmail("theotimeo@free.fr");
+        $conseillerU1->setRoles(["ROLE_CONSEILLER"]);
+        $conseillerU1->setConseiller($conseiller1);
+        $manager->persist($conseillerU1);
 
         $manager->flush();
     }
