@@ -10,15 +10,15 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ConseillerController extends AbstractController
 {
-    private function utilisateurCourant(ConseillerRepository $repositoryTouriste)
+    private function utilisateurCourant(ConseillerRepository $repositoryConseiller)
     {
         $user = $this->getUser();
         $conseiller_id = $user->getConseiller();
-        return $repositoryTouriste->find($conseiller_id);
+        return $repositoryConseiller->find($conseiller_id);
     }
 
-    #[Route('/espaceConseiller/', name: 'conseiller')]
-    public function espaceConseiller(ConseillerRepository $conseillerRepository, RDVRepository $repository): Response
+    #[Route('/espaceConseiller/', name: 'conseillerAuth')]
+    public function espaceConseillerAuth(ConseillerRepository $conseillerRepository, RDVRepository $repository): Response
     {
         $conseiller = $this->utilisateurCourant($conseillerRepository);
         $lrdv = $repository->findBy(['Conseiller' => $conseiller->getId()]);
@@ -28,6 +28,19 @@ class ConseillerController extends AbstractController
             'listeRDV' => $lrdv,
         ]);
     }
+
+    #[Route('/espaceConseiller/{id}', name: 'conseiller')]
+    public function espaceConseiller(ConseillerRepository $conseillerRepository, RDVRepository $repository, int $id): Response
+    {
+        $lrdv = $repository->findBy(['Conseiller' => $id]);
+        $conseiller = $conseillerRepository->find($id);
+        return $this->render('conseiller/index.html.twig', [
+            'controller_name' => 'ConseillerController',
+            'conseiller' => $conseiller,
+            'listeRDV' => $lrdv,
+        ]);
+    }
+
     #[Route('/espaceConseiller/MesRDV', name: 'conseillerRDV')]
     public function conseillerRDV(RDVRepository $aRepository,): Response
     {
