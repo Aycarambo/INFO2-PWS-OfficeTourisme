@@ -42,6 +42,7 @@ class ConnexionController extends AbstractController
         }
     }
 
+
     #[Route('/connexion/logout', name: 'logout')]
     public function logout(): Response
     {
