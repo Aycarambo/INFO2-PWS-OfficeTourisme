@@ -3,34 +3,95 @@
 {% block title %}Liste RDV{% endblock %}
 
 {% set days = ["Mon","Tue", "Wed", "Thu", "Fri"] %}
-{% set h = '08:00'|date('H:i') %}
+{% set p = 1 %}
+{% if p == 1 %}
+    {% set h = '08:00'|date('H:i') %}
+    {% set f = 24 %}
+{% else %}
+    {% set h = '10:00'|date('H:i') %}
+    {% set f = 16 %}
+{% endif %}
+{% set r = 0 %}
 
 {% block body %}
-    <div class="container-fluid py-4">
+    <div class="container py-4">
         <h1>Liste des rdv du conseiller {{ conseiller.prenom }}</h1>
-        <table class="table table-hover align-middle">
+        <table class="table table-responsive-sm table-hover align-middle table-bordered">
             <thead>
             <tr>
-                <th scope="col"></th>
-                <th scope="col">Lundi</th>
-                <th scope="col">Mardi</th>
-                <th scope="col">Mercredi</th>
-                <th scope="col">Jeudi</th>
-                <th scope="col">Vendredi</th>
+                <th scope="col">Horraire</th>
+                <th style="width:20%" scope="col">Lundi</th>
+                <th style="width:20%" scope="col">Mardi</th>
+                <th style="width:20%" scope="col">Mercredi</th>
+                <th style="width:20%" scope="col">Jeudi</th>
+                <th style="width:20%" scope="col">Vendredi</th>
             </tr>
             </thead>
             <tbody>
-            {% for i in 0..24 %}
+            {% for i in 0..f %}
                 <tr>
                     <td>{{ h|date('H:i') }}</td>
                     {% for day in days %}
                         {% for rdv in lrdv %}
-                            {% if rdv.getHoraire|date('D') == day and rdv.getHoraire|date('H:i') == h|date('H:i') %}
-                                <td>X</td>
-                            {% else %}
-                                <td>{{ rdv.getHoraire|date('D') }}</td>
+                            {% if rdv.getHoraire|date('D') == day and rdv.getHoraire|date('H:i') == h|date('H:i') and r == 0%}
+                                {% set r = 1 %}
+                                <td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modification">
+                                        Modifier
+                                    </button>
+                                    <a role="button" class="btn btn-danger" data-bs-toggle="modal"  data-bs-target="#suppression{{ rdv.id }}">
+                                        Supprimer
+                                    </a></td>
+                                    <div class="modal fade" id="modification" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Modifier le rendez-vous</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            Responsable
+                                                        </button>
+                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                            {% for c in conseillers %}
+                                                                {% if conseiller.id != c.id %}
+                                                                    <li><a class="dropdown-item" href="#">{{ c.nom }} {{ c.prenom }}</a></li>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal fade" id="suppression{{ rdv.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Supprimer le rendez-vous</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Etes-vous sûr de vouloir supprimer le rendez-vous ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                                    <a role="button" href="/espaceResponsable/ListeDesRDV/{{ conseiller.id }}/remove/{{ rdv.id }}" class="btn btn-danger">Supprimer</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                             {% endif %}
                         {% endfor %}
+                        {% if r == 0 %}
+                            <td></td>
+                        {% endif %}
+                        {% set r = 0 %}
                     {% endfor %}
                 </tr>
                 {% set h = h|date_modify('+30 minutes')|date('H:i') %}

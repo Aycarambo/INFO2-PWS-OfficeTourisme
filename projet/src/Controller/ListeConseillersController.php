@@ -55,6 +55,7 @@ class ListeConseillersController extends AbstractController
             'controller_name' => 'ListeConseillersController',
             'lrdv' => $lrdv,
             'conseiller' => $conseiller,
+            'conseillers' => $conseillers,
         ]);
     }
 }
