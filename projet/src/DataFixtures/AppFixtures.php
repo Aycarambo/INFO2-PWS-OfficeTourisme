@@ -144,6 +144,13 @@ class AppFixtures extends Fixture
         $conseillerU1->setConseiller($conseiller1);
         $manager->persist($conseillerU1);
 
+        $touristeU1 = new User();
+        $touristeU1->setPassword('$2y$13$LVGQx8F9FcSuH8nizkW6vuzCwzXleh4JdWxgnKm26RqQPcbC9dyq.');
+        $touristeU1->setEmail("chloe@gmail.com");
+        $touristeU1->setRoles(["ROLE_TOURISTE"]);
+        $touristeU1->setTouriste($touriste1);
+        $manager->persist($touristeU1);
+
         $manager->flush();
     }
 }
