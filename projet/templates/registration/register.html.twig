@@ -8,7 +8,7 @@
         <form name="registration_form" class="needs-validation" method="post">
             <div class="row g-3">
                 <div class="form-floating col-md-6">
-                    <input type="text" class="form-control" id="prenom" placeholder="Prénom" value="" required="">
+                    <input type="text" class="form-control" id="prenom" placeholder="Prénom" value="" required="" name="registration_form[prenom]">
                     <label for="prenom" class="form-label">Prénom</label>
                     <div class="invalid-feedback">
                         prénom est obligatoire.
@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="form-floating col-md-6">
-                    <input type="text" class="form-control" id="Nom" placeholder="Nom" value="" required="">
+                    <input type="text" class="form-control" id="Nom" placeholder="Nom" value="" required="" name="registration_form[nom]">
                     <label for="Nom" class="form-label">Nom</label>
                     <div class="invalid-feedback">
                         Nom est obligatoire.
@@ -31,7 +31,7 @@
                 </div>
                 <div class="form-floating">
                     <input class ="form-control" type="password" id="registration_form_plainPassword" placeholder="registration_form_password" name="registration_form[plainPassword]" required="required" autocomplete="new-password" />
-                    <label for="floatingPassword">Mot de passe</label>
+                    <label for="registration_form_plainPassword">Mot de passe</label>
                     <div class="invalid-feedback">
                         MDP est obligatoire.
                     </div>

@@ -10,6 +10,25 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ConseillerController extends AbstractController
 {
+    private function utilisateurCourant(ConseillerRepository $repositoryConseiller)
+    {
+        $user = $this->getUser();
+        $conseiller_id = $user->getConseiller();
+        return $repositoryConseiller->find($conseiller_id);
+    }
+
+    #[Route('/espaceConseiller/', name: 'conseillerAuth')]
+    public function espaceConseillerAuth(ConseillerRepository $conseillerRepository, RDVRepository $repository): Response
+    {
+        $conseiller = $this->utilisateurCourant($conseillerRepository);
+        $lrdv = $repository->findBy(['Conseiller' => $conseiller->getId()]);
+        return $this->render('conseiller/index.html.twig', [
+            'controller_name' => 'ConseillerController',
+            'conseiller' => $conseiller,
+            'listeRDV' => $lrdv,
+        ]);
+    }
+
     #[Route('/espaceConseiller/{id}', name: 'conseiller')]
     public function espaceConseiller(ConseillerRepository $conseillerRepository, RDVRepository $repository, int $id): Response
     {
@@ -21,6 +40,7 @@ class ConseillerController extends AbstractController
             'listeRDV' => $lrdv,
         ]);
     }
+
     #[Route('/espaceConseiller/MesRDV', name: 'conseillerRDV')]
     public function conseillerRDV(RDVRepository $aRepository,): Response
     {

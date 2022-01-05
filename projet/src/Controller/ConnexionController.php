@@ -34,7 +34,7 @@ class ConnexionController extends AbstractController
         }
         else if($this->isGranted('ROLE_CONSEILLER'))
         {
-            return $this->redirectToRoute('conseiller');
+            return $this->redirectToRoute('conseillerAuth');
         }
         else
         {

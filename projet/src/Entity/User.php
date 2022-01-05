@@ -42,6 +42,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $touriste;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Conseiller::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $conseiller;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -130,6 +135,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->touriste = $touriste;
+
+        return $this;
+    }
+
+    public function getConseiller(): ?Conseiller
+    {
+        return $this->conseiller;
+    }
+
+    public function setConseiller(?Conseiller $conseiller): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($conseiller === null && $this->conseiller !== null) {
+            $this->conseiller->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($conseiller !== null && $conseiller->getUser() !== $this) {
+            $conseiller->setUser($this);
+        }
+
+        $this->conseiller = $conseiller;
 
         return $this;
     }
