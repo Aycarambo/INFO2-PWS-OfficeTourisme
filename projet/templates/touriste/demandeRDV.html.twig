@@ -42,12 +42,16 @@
 
     </style>
 
+    <script>
+
+    </script>
+
     <div class="example-wrapper">
         <center>
-            <form class="row g-3 needs-validation" novalidate>
+            <form class="row g-3 needs-validation" novalidate action="TouristeController" method="post">
                 <div class="div2">
                     <div class="col-md-3 position-relative">
-                        <label for="validationTooltip04" class="form-label">Langue <img src="drapeauChoixLangue.png" class="d-block w-100" alt="Erreur de chargement de l'image"/></label>
+                        <label for="validationTooltip04" class="form-label">Langue <img src="images/drapeauChoixLangue.png" class="d-block w-100" alt="Erreur de chargement de l'image"/></label>
                         <select class="form-select" id="validationTooltip04" required>
                             <option selected disabled value="">Choisissez une langue</option>
                             <option value="1">Français</option>
@@ -56,7 +60,7 @@
                         <div class="invalid-tooltip"> Sélectionnez une langue valide.</div>
 
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary boutonValider" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button type="submit" class="btn btn-primary boutonValider" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Valider
                         </button>
                         <!-- Modal -->
@@ -67,7 +71,7 @@
                                         <p>Votre RDV a bien été enregistré!</p>
                                     </div>
                                     <div class="modal-footer">
-                                        <a class="btn btn-primary" type="submit" href="/espaceTouriste">
+                                        <a class="btn btn-primary" href="/espaceTouriste">
                                             Retour vers Mon Espace
                                         </a>
                                     </div>
@@ -114,10 +118,10 @@
                                     8h
                                 </td>
                                 <td>
-                                    <label><input type="radio" name="RDV"/></label>
+                                    <label><input type="radio" name="RDV" value="rdvOk"/></label>
                                 </td>
                                 <td>
-                                    ---
+                                    <label><input type="radio" name="RDV"/></label>
                                 </td>
                                 <td>
                                     <label><input type="radio" name="RDV"/></label>
@@ -203,7 +207,7 @@
                                     <label><input type="radio" name="RDV"/></label>
                                 </td>
                                 <td>
-                                    ---
+                                    <label><input type="radio" name="RDV"/></label>
                                 </td>
                                 <td>
                                     <label><input type="radio" name="RDV"/></label>
@@ -460,7 +464,7 @@
                                     <label><input type="radio" name="RDV"/></label>
                                 </td>
                                 <td>
-                                    ---
+                                    <label><input type="radio" name="RDV"/></label>
                                 </td>
                                 <td>
                                     <label><input type="radio" name="RDV"/></label>
@@ -511,6 +515,9 @@
                             </tr>
                             </tbody>
                         </table>
+                        {% if post.RDV is defined %}
+                            {{ post.RDV }}
+                        {% endif %}
                     </div>
 
                 </div>

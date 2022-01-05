@@ -22,8 +22,11 @@ class TouristeController extends AbstractController
     #[Route('/espaceTouriste/demandeRDV', name: 'demandeRDV')]
     public function demandeRDV(): Response
     {
+        $dateRDV = "la date";
         return $this->render('touriste/demandeRDV.html.twig', [
             'controller_name' => 'TouristeController',
+            'post' => $_POST,
+            'dateRDV' => $dateRDV,
         ]);
     }
 
