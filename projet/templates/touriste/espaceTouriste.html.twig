@@ -6,16 +6,19 @@
     <style>
         .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
         .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-        button{
-            width:300px;
-            height:100px;
+        #but{
+            padding: 20px;
             background-color: #005cbf;
             border-radius:10px;
             font-size: 200%;
+            vertical-align: middle;
+        }
+        #but:hover{
+            background-color: #0056b3;
         }
         .span1{
             padding: 120px 6px 40px 6px;
-            margin-left: 20px;
+            margin: 20px;
             border-left: 3px solid;
             font-size: 0;
             position: relative;
@@ -27,12 +30,12 @@
         }
     </style>
     <div class="example-wrapper">
-        <h1 align="center">Bonjour Chloé</h1>
+        <h1 align="center">Bonjour {{ touriste.prenom }}</h1>
         <br/>
         <div align="center">
-            <button type="button"><a href="espaceTouriste/demandeRDV">Prendre RDV</a></button>
+            <a href="espaceTouriste/demandeRDV" id="but" class="btn btn-primary btn-lg" role="button">Prendre RDV</a>
             <span class="span1"></span>
-            <button type="button"><a href="espaceTouriste/mesRDV">Gérer mes RDV</a></button>
+            <a href="espaceTouriste/mesRDV" id="but" class="btn btn-primary btn-lg" role="button">Gérer mes RDV</a>
         </div>
     </div>
 {% endblock %}
