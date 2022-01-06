@@ -10,14 +10,14 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Conseiller;
 use App\Repository\RDVRepository;
 
-class ListeConseillersController extends AbstractController
+class ResponsableController extends AbstractController
 {
     #[Route('/espaceResponsable', name: 'espace-responsable')]
     public function espaceR(ConseillerRepository $repository): Response
     {
         $conseillers = $repository->findAll();
         return $this->render('espaceResponsable/index.html.twig', [
-            'controller_name' => 'ListeConseillersController',
+            'controller_name' => 'ResponsableController',
             'conseillers' => $conseillers,
         ]);
     }
@@ -29,7 +29,7 @@ class ListeConseillersController extends AbstractController
         $conseillers = $conseillerRepository->findAll();
         $conseiller = $conseillerRepository->find($id);
         return $this->render('espaceResponsable/listeRDV.html.twig', [
-            'controller_name' => 'ListeConseillersController',
+            'controller_name' => 'ResponsableController',
             'lrdv' => $lrdv,
             'conseiller' => $conseiller,
             'conseillers' => $conseillers,
