@@ -26,7 +26,6 @@ class TouristeController extends AbstractController
     {
         $touriste = $this->utilisateurCourant($repositoryTouriste);
         return $this->render('touriste/espaceTouriste.html.twig', [
-            'controller_name' => 'TouristeController',
             'touriste' => $touriste,
         ]);
     }
@@ -35,7 +34,6 @@ class TouristeController extends AbstractController
     public function demandeRDV(): Response
     {
         return $this->render('touriste/demandeRDV.html.twig', [
-            'controller_name' => 'TouristeController',
         ]);
     }
 
