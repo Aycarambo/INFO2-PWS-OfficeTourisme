@@ -52,7 +52,7 @@
                 {% endfor %}
                 <tr>
                     <th>
-                        <a href="{{ path("conseillerRDV") }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Voir plus</a>
+                        <a href="{{ path("conseillerRDV", {id:conseiller.id}) }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Voir plus</a>
                     </th>
                 </tr>
             </table>
@@ -64,6 +64,9 @@
             <a href="https://generationvoyage.fr/visiter-ile-de-re-faire-voir/">Lieux à visiter</a>
         </div>
     </div>
-
+    <a class="weatherwidget-io" href="https://forecast7.com/fr/46d16n1d15/la-rochelle/" data-label_1="LA ROCHELLE" data-label_2="WEATHER" data-theme="original" style="margin-left: 5%; margin-right: 5%;margin-top: 1%;" >LA ROCHELLE WEATHER</a>
+    <script>
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+    </script>
 
 {% endblock %}

@@ -73,6 +73,11 @@ class RDV
         return $this->Conseiller;
     }
 
+    public function getConseillerID(): ?int
+    {
+        return $this->Conseiller->getID();
+    }
+
     public function setConseiller(?Conseiller $Conseiller): self
     {
         $this->Conseiller = $Conseiller;

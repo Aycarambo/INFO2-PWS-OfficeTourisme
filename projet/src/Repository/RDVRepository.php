@@ -65,4 +65,18 @@ class RDVRepository extends ServiceEntityRepository
             return false;
         }
     }
+
+    public function trouveLaListeRDVs(int $id, $premierJourSemaine)
+    {
+        $querybuilder=$this->createQueryBuilder('rdv')
+            ->where('rdv.horaire >= :premierJour')
+            ->andWhere('rdv.horaire <= :finSemaine')
+            ->andWhere('rdv.Conseiller = :idConseiller')
+            ->setParameter('idConseiller', $id)
+            ->setParameter('premierJour', $premierJourSemaine)
+            ->setParameter('finSemaine', $premierJourSemaine->add(new \DateInterval("P5D")));
+        $query=$querybuilder->getQuery();
+        $results = $query->execute();
+        return $results;
+    }
 }
