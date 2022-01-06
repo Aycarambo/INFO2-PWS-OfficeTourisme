@@ -19,10 +19,21 @@
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #007fa4;">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/">Office de Tourisme</a>
-                <a class="btn btn-light" href="/espaceResponsable" role="button">Espace Responsable</a>
-                <a class="btn btn-light" href="/espaceTouriste" role="button">Espace Touriste</a>
-                <a class="btn btn-light" href="/espaceConseiller" role="button">Espace Conseiller</a>
-                <a class="btn btn-light" href="/connexion" role="button">Connexion</a>
+
+
+                {% if is_granted('ROLE_TOURISTE') %}
+                    <a class="btn btn-primary" href="/espaceTouriste" role="button">Espace Touriste</a>
+                {% elseif is_granted('ROLE_CONSEILLER') %}
+                    <a class="btn btn-primary" href="/espaceConseiller" role="button">Mon Espace</a>
+                {% elseif is_granted('ROLE_RESPONSABLE') %}
+                    <a class="btn btn-primary" href="/espaceResponsable" role="button">Mon Espace</a>
+                {% endif %}
+
+                {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <a class="btn btn-primary" href="/connexion" role="button">Connexion</a>
+                {% else %}
+                    <a class="btn btn-primary" href="{{ path('logout') }}" role="button">Déconnexion</a>
+                {% endif %}
             </div>
         </nav>
 

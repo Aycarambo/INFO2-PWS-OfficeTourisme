@@ -7,6 +7,8 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\Conseiller;
 use App\Entity\RDV;
+use App\Entity\User;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
@@ -127,6 +129,19 @@ class AppFixtures extends Fixture
         $rdv11->setHoraire(new \DateTime($horaire1));
         $rdv11->setLienVisio('google.com');
         $manager->persist($rdv11);
+
+        //Users
+        $responsable = new User();
+        $responsable->setPassword('$2y$13$Ec.mJbSc0eoMoM4hlWll4OlAPO6qdXFqMC8anrNbM.Jcid/tR1hG.');
+        $responsable->setEmail("valentin@yahoo.fr");
+        $responsable->setRoles(["ROLE_RESPONSABLE"]);
+        $manager->persist($responsable);
+
+        $conseiller1 = new User();
+        $conseiller1->setPassword('$2y$13$LVGQx8F9FcSuH8nizkW6vuzCwzXleh4JdWxgnKm26RqQPcbC9dyq.');
+        $conseiller1->setEmail("theotimeo@free.fr");
+        $conseiller1->setRoles(["ROLE_CONSEILLER"]);
+        $manager->persist($conseiller1);
 
         $manager->flush();
     }
