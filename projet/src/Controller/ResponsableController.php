@@ -17,7 +17,6 @@ class ResponsableController extends AbstractController
     {
         $conseillers = $repository->findAll();
         return $this->render('espaceResponsable/index.html.twig', [
-            'controller_name' => 'ResponsableController',
             'conseillers' => $conseillers,
         ]);
     }
@@ -29,7 +28,6 @@ class ResponsableController extends AbstractController
         $conseillers = $conseillerRepository->findAll();
         $conseiller = $conseillerRepository->find($id);
         return $this->render('espaceResponsable/listeRDV.html.twig', [
-            'controller_name' => 'ResponsableController',
             'lrdv' => $lrdv,
             'conseiller' => $conseiller,
             'conseillers' => $conseillers,
@@ -41,6 +39,16 @@ class ResponsableController extends AbstractController
     {
         $rdv = $repository->find($idR);
         $em->remove($rdv);
+        $em->flush();
+        return $this->redirect("/espaceResponsable/ListeDesRDV/{$idC}");
+    }
+
+    #[Route('/espaceResponsable/ListeDesRDV/{idC}/modify/{idR}/{NidC}', name: 'modify_rdv_conseillers')]
+    public function modifyRDVC(RDVRepository $repository, ConseillerRepository $Crepository, EntityManagerInterface $em, int $idC, int $idR, int $NidC): Response
+    {
+        $rdv = $repository->find($idR);
+        $cons = $Crepository->find($NidC);
+        $rdv->setConseiller($cons);
         $em->flush();
         return $this->redirect("/espaceResponsable/ListeDesRDV/{$idC}");
     }
