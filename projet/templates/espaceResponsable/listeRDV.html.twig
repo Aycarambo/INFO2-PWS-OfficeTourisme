@@ -2,7 +2,6 @@
 
 {% block title %}Liste RDV{% endblock %}
 
-{% set id = 0 %}
 {% set days = ["Mon","Tue", "Wed", "Thu", "Fri"] %}
 {% set p = haute ? 1 : 0 %}
 {% if p == 1 %}
@@ -13,6 +12,16 @@
     {% set f = 16 %}
 {% endif %}
 {% set r = 0 %}
+{% set id = 0 %}
+
+{% block script %}
+<script>
+    function get(newId) {
+        {% set id = newId %}
+    }
+
+</script>
+{% endblock %}
 
 {% block body %}
     <div class="container py-4">
@@ -49,17 +58,23 @@
                                                 <h5 class="modal-title" id="exampleModalLabel">Modifier le rendez-vous</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                                <select class="form-select" aria-labelledby="dropdownMenuButton1" name="modify">
-                                                    <option>Responsable</option>
-                                                    {% for c in conseillers %}
-                                                        {% if conseiller.id != c.id %}
-                                                            <option value="{{ c.id }}"><a class="dropdown-item">{{ c.nom }} {{ c.prenom }}</a></option>
-                                                        {% endif %}
-                                                    {% endfor %}
-                                                </select>
+                                            <div class="modal-body">
+                                                <div class="dropdown">
+                                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        Responsable
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                        {% for c in conseillers %}
+                                                            {% if conseiller.id != c.id %}
+                                                                <li><a class="dropdown-item" onclick="get('{{ c.id }}');" href="#">{{ c.nom }} {{ c.prenom }}</a></li>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                            </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <a class="btn btn-primary" type="button" href="/espaceResponsable/ListeDesRDV/{{ conseiller.id }}/modify/{{ rdv.id }}">Save changes</a>
+                                                <a class="btn btn-primary" role="button" href="/espaceResponsable/ListeDesRDV/{{ conseiller.id }}/modify/{{ rdv.id }}/{{ id }}">Save changes</a>
                                             </div>
                                         </div>
                                     </div>
