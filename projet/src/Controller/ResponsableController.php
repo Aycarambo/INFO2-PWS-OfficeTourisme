@@ -3,34 +3,40 @@
 namespace App\Controller;
 
 use App\Repository\ConseillerRepository;
+use App\Repository\SaisonRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Conseiller;
 use App\Repository\RDVRepository;
+use App\Entity\Saison;
 
 class ResponsableController extends AbstractController
 {
     #[Route('/espaceResponsable', name: 'espace-responsable')]
-    public function espaceR(ConseillerRepository $repository): Response
+    public function espaceR(ConseillerRepository $repository, SaisonRepository $saison): Response
     {
         $conseillers = $repository->findAll();
+        $haute = $saison->getSaison()->getSaison();
         return $this->render('espaceResponsable/index.html.twig', [
             'conseillers' => $conseillers,
+            'haute' => $haute,
         ]);
     }
 
     #[Route('/espaceResponsable/ListeDesRDV/{id}', name: 'liste_rdv_conseillers')]
-    public function listeRDVC(ConseillerRepository $conseillerRepository, RDVRepository $repository, int $id): Response
+    public function listeRDVC(ConseillerRepository $conseillerRepository, RDVRepository $repository, SaisonRepository $saison, int $id): Response
     {
         $lrdv = $repository->findBy(['Conseiller' => $id]);
         $conseillers = $conseillerRepository->findAll();
         $conseiller = $conseillerRepository->find($id);
+        $haute = $saison->getSaison()->getSaison();
         return $this->render('espaceResponsable/listeRDV.html.twig', [
             'lrdv' => $lrdv,
             'conseiller' => $conseiller,
             'conseillers' => $conseillers,
+            'haute' => $haute,
         ]);
     }
 
@@ -51,5 +57,15 @@ class ResponsableController extends AbstractController
         $rdv->setConseiller($cons);
         $em->flush();
         return $this->redirect("/espaceResponsable/ListeDesRDV/{$idC}");
+    }
+
+    #[Route('/espaceResponsable/modifSaison', name: 'modifSaison')]
+    public function modifSaison(SaisonRepository $saison, EntityManagerInterface $manager): Response
+    {
+        $saison = $saison->getSaison();
+
+        $saison->setSaison(!$saison->getSaison());
+        $manager->flush();
+        return $this->redirect("/espaceResponsable/");
     }
 }

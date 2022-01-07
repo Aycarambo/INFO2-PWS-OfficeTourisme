@@ -4,6 +4,17 @@
 
 {% block body %}
 <div class="container-fluid py-4">
+        <h1>Saison</h1>
+        <p> Saison actuelle :
+        {% if haute %}
+            <strong>Haute</strong>
+        {% else %}
+            <strong>Basse</strong>
+        {% endif %}
+        </p>
+        <a class="btn btn-success" href="/espaceResponsable/modifSaison/">Changer de saison</a>
+</div>
+<div class="container-fluid py-4">
     <h1>Liste des conseillers</h1>
     <table class="table table-hover align-middle">
         <thead>

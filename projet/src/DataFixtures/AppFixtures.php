@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Saison;
 use App\Entity\Touriste;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -71,6 +72,11 @@ class AppFixtures extends Fixture
         $rdv4->setHoraire(new \DateTime($horaire3));
         $rdv4->setLienVisio('google.com');
         $manager->persist($rdv4);
+
+        // La saison
+        $saison = new Saison();
+        $saison->setSaison(True); // Haute saison
+        $manager->persist($saison);
 
         $manager->flush();
     }

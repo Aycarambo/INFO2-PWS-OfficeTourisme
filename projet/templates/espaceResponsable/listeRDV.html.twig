@@ -4,7 +4,7 @@
 
 {% set id = 0 %}
 {% set days = ["Mon","Tue", "Wed", "Thu", "Fri"] %}
-{% set p = 1 %}
+{% set p = haute ? 1 : 0 %}
 {% if p == 1 %}
     {% set h = '08:00'|date('H:i') %}
     {% set f = 24 %}
