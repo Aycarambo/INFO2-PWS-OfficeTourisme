@@ -152,25 +152,175 @@ class TouristeController extends AbstractController
                 'expanded' => true,
             ],
             )
+
             ->add('Valider', SubmitType::class)
             ->getForm();
 
-        $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $task = $form->getData();
+            $rdv = $form->getData();
+
+            $creneau = ""; // Initialisation
 
             //Quel jour qu'on est ?
+            date_default_timezone_set("Europe/Paris");
             $currentDate = new \DateTime('now');
+            $currentDay = $currentDate->format('d');
+            $currentMonth = $date->format('m');
+            $currentWeek = $date->format('w');
+            $currentYear = $date->format('Y');
+
 
             $day = $horaire[0];
             $day .= $horaire[1];
-            // ENLEVER LES DEUX PREMIERS CARACTERES DE HORAIRE. ENSUITE, FAIRE UN SWITCH POUR CHOISIR LE NUMERO DU CHOISIR PAR RAPPORT A LA DATE SYSTEME PUIS LA CONCATENER AVEC L'HORAIRE
-            //$horaire->
+            substr($horaire, 1);
+            substr($horaire, 1);
+            if ($semaine == "CS")//Cette semaine
+            {
+                if ($day == "lu")
+                {
+                    if ($currentDayName == "Monday")
+                    {
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Tuesday")
+                    {
+                        $currentDay -= 1;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Wednesday")
+                    {
+                        $currentDay -= 2;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Thursday")
+                    {
+                        $currentDay -= 3;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Friday")
+                    {
+                        $currentDay -= 4;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                }
+                else if ($day == "ma")
+                {
+                    if ($currentDayName == "Monday")
+                    {
+                        $currentDay += 1;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Tuesday")
+                    {
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Wednesday")
+                    {
+                        $currentDay -= 1;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Thursday")
+                    {
+                        $currentDay -= 2;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Friday")
+                    {
+                        $currentDay -= 3;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                }
+                else if ($day == "me")
+                {
+                    if ($currentDayName == "Monday")
+                    {
+                        $currentDay += 2;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Tuesday")
+                    {
+                        $currentDay += 1;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Wednesday")
+                    {
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Thursday")
+                    {
+                        $currentDay -= 1;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Friday")
+                    {
+                        $currentDay -= 2;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                }
+                else if ($day == "je")
+                {
+                    if ($currentDayName == "Monday")
+                    {
+                        $currentDay += 3;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Tuesday")
+                    {
+                        $currentDay += 2;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Wednesday")
+                    {
+                        $currentDay += 1;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Thursday")
+                    {
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Friday")
+                    {
+                        $currentDay -= 1;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                }
+                else if ($day == "ve")
+                {
+                    if ($currentDayName == "Monday")
+                    {
+                        $currentDay += 4;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Tuesday")
+                    {
+                        $currentDay += 3;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Wednesday")
+                    {
+                        $currentDay += 2;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Thursday")
+                    {
+                        $currentDay += 1;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Friday")
+                    {
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                }
+            }
+            else if ($semaine == "SP")//Semaine prochaine
+            {
 
-            $horaire = '01/14/2021 08:00:00';
-            $rdv->setHoraire(new \DateTime($horaire));
+            }
+
+            $rdv->setHoraire(new \DateTime($creneau));
             $rdv->setLangue($form->get('langue')->getData());
             $rdv->setConseiller(1);
             $rdv->setTouriste(1);
