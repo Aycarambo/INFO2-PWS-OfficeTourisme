@@ -39,6 +39,12 @@ class RDV
      */
     private $Touriste;
 
+    /**
+     * @ORM\Column(type="string", length=2)
+     */
+    private $langue;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -91,4 +97,17 @@ class RDV
 
         return $this;
     }
+
+    public function getLangue(): ?string
+    {
+        return $this->langue;
+    }
+
+    public function setLangue(string $langue): self
+    {
+        $this->langue = $langue;
+
+        return $this;
+    }
+
 }

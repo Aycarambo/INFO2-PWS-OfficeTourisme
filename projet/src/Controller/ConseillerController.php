@@ -29,6 +29,21 @@ class ConseillerController extends AbstractController
         ]);
     }
 
+    #[Route('/espaceConseiller/detailRDV/{id}', name: 'detail rdv')]
+    public function detailRDVConseiller(ConseillerRepository $conseillerRepository, RDVRepository $repository, int $id): Response
+    {
+        $conseiller = $this->utilisateurCourant($conseillerRepository);
+        $lrdv = $repository->findBy(['Conseiller' => $conseiller->getId()]);
+
+        return $this->render('conseiller/detailRDV.html.twig', [
+            'controller_name' => 'ConseillerController',
+            'conseiller' => $conseiller,
+            'LRDV' => $lrdv,
+            'idRDV' => $id,
+        ]);
+    }
+
+
     #[Route('/espaceConseiller/MesRDV', name: 'conseillerRDV')]
     public function conseillerRDV(RDVRepository $aRepository,): Response
     {
