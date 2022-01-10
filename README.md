@@ -47,3 +47,6 @@ valentin@yahoo.fr:mdpval
 ## Conseiller
 theotimeo@free.fr:mdpmdp
 
+## Touriste
+chloe@gmail.com:mdpmdp
+
