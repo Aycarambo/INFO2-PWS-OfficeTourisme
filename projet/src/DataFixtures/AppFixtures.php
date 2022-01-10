@@ -46,17 +46,19 @@ class AppFixtures extends Fixture
         $rdv1 = new RDV();
         $rdv1->setConseiller($conseiller1);
         $rdv1->setTouriste($touriste1);
-        $horaire1 = '12/13/2021 08:30:00';
+        $horaire1 = '01/06/2022 10:30:00';
         $rdv1->setHoraire(new \DateTime($horaire1));
         $rdv1->setLienVisio('google.com');
+        $rdv1->setLangue('FR');
         $manager->persist($rdv1);
 
         $rdv2 = new RDV();
         $rdv2->setConseiller($conseiller2);
         $rdv2->setTouriste($touriste2);
-        $horaire2 = '12/15/2021 10:30:00';
+        $horaire2 = '01/06/2022 12:30:00';
         $rdv2->setHoraire(new \DateTime($horaire2));
         $rdv2->setLienVisio('google.com');
+        $rdv2->setLangue('EN');
         $manager->persist($rdv2);
 
         $rdv3 = new RDV();
@@ -64,70 +66,79 @@ class AppFixtures extends Fixture
         $rdv3->setTouriste($touriste2);
         $rdv3->setHoraire(new \DateTime($horaire2));
         $rdv3->setLienVisio('google.com');
+        $rdv3->setLangue('FR');
         $manager->persist($rdv3);
 
         $rdv4 = new RDV();
         $rdv4->setConseiller($conseiller1);
         $rdv4->setTouriste($touriste1);
-        $horaire1 = '12/13/2021 08:00:00';
+        $horaire1 = '01/06/2022 15:30:00';
         $rdv4->setHoraire(new \DateTime($horaire1));
         $rdv4->setLienVisio('google.com');
+        $rdv4->setLangue('EN');
         $manager->persist($rdv4);
 
         $rdv5 = new RDV();
         $rdv5->setConseiller($conseiller1);
         $rdv5->setTouriste($touriste1);
-        $horaire1 = '12/16/2021 14:30:00';
+        $horaire1 = '01/07/2022 14:30:00';
         $rdv5->setHoraire(new \DateTime($horaire1));
         $rdv5->setLienVisio('google.com');
+        $rdv5->setLangue('FR');
         $manager->persist($rdv5);
 
         $rdv6 = new RDV();
         $rdv6->setConseiller($conseiller1);
         $rdv6->setTouriste($touriste1);
-        $horaire1 = '12/17/2021 17:30:00';
+        $horaire1 = '01/07/2022 08:30:00';
         $rdv6->setHoraire(new \DateTime($horaire1));
         $rdv6->setLienVisio('google.com');
+        $rdv6->setLangue('EN');
         $manager->persist($rdv6);
 
         $rdv7 = new RDV();
         $rdv7->setConseiller($conseiller1);
         $rdv7->setTouriste($touriste1);
-        $horaire1 = '12/16/2021 12:00:00';
+        $horaire1 = '01/08/2022 12:00:00';
         $rdv7->setHoraire(new \DateTime($horaire1));
         $rdv7->setLienVisio('google.com');
+        $rdv7->setLangue('FR');
         $manager->persist($rdv7);
 
         $rdv8 = new RDV();
         $rdv8->setConseiller($conseiller1);
         $rdv8->setTouriste($touriste1);
-        $horaire1 = '12/13/2021 18:30:00';
+        $horaire1 = '12/13/2022 18:30:00';
         $rdv8->setHoraire(new \DateTime($horaire1));
         $rdv8->setLienVisio('google.com');
+        $rdv8->setLangue('EN');
         $manager->persist($rdv8);
 
         $rdv9 = new RDV();
         $rdv9->setConseiller($conseiller1);
         $rdv9->setTouriste($touriste1);
-        $horaire1 = '12/14/2021 09:30:00';
+        $horaire1 = '12/14/2022 09:30:00';
         $rdv9->setHoraire(new \DateTime($horaire1));
         $rdv9->setLienVisio('google.com');
+        $rdv9->setLangue('FR');
         $manager->persist($rdv9);
 
         $rdv10 = new RDV();
         $rdv10->setConseiller($conseiller1);
         $rdv10->setTouriste($touriste1);
-        $horaire1 = '12/16/2021 08:00:00';
+        $horaire1 = '12/16/2022 08:00:00';
         $rdv10->setHoraire(new \DateTime($horaire1));
         $rdv10->setLienVisio('google.com');
+        $rdv10->setLangue('EN');
         $manager->persist($rdv10);
 
         $rdv11 = new RDV();
         $rdv11->setConseiller($conseiller1);
         $rdv11->setTouriste($touriste1);
-        $horaire1 = '12/17/2021 19:30:00';
+        $horaire1 = '12/17/2022 19:30:00';
         $rdv11->setHoraire(new \DateTime($horaire1));
         $rdv11->setLienVisio('google.com');
+        $rdv11->setLangue('FR');
         $manager->persist($rdv11);
 
         //Users
