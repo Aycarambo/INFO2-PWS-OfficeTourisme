@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\ModifierRDVResponsable;
 use App\Repository\ConseillerRepository;
 use App\Repository\SaisonRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -11,6 +12,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Conseiller;
 use App\Repository\RDVRepository;
 use App\Entity\Saison;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class ResponsableController extends AbstractController
 {
@@ -32,11 +35,13 @@ class ResponsableController extends AbstractController
         $conseillers = $conseillerRepository->findAll();
         $conseiller = $conseillerRepository->find($id);
         $haute = $saison->getSaison()->getSaison();
+        $form = $this->createForm(ModifierRDVResponsable::class, null, ['conseillers' => $conseillers, 'conseiller' => $conseiller]);
         return $this->render('espaceResponsable/listeRDV.html.twig', [
             'lrdv' => $lrdv,
             'conseiller' => $conseiller,
             'conseillers' => $conseillers,
             'haute' => $haute,
+            'form' => $form->createView(),
         ]);
     }
 

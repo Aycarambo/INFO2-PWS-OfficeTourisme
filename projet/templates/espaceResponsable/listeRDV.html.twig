@@ -24,6 +24,8 @@
 {% endblock %}
 
 {% block body %}
+    {% form_theme form 'bootstrap_5_layout.html.twig' %}
+
     <div class="container py-4">
         <h1>Liste des rdv du conseiller {{ conseiller.prenom }}</h1>
         <table class="table table-responsive-sm table-hover align-middle table-bordered">
@@ -53,12 +55,15 @@
                                     </a></td>
                                 <div class="modal fade" id="modification" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
+                                        {{ form_start(form) }}
                                         <div class="modal-content">
+
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">Modifier le rendez-vous</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
+                                                {{ form_widget(form) }}
                                                 <div class="dropdown">
                                                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                                         Responsable
@@ -71,6 +76,7 @@
                                                         {% endfor %}
                                                     </ul>
                                                 </div>
+                                                {{ form_end(form) }}
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -109,4 +115,5 @@
             </tbody>
         </table>
     </div>
+
 {% endblock %}
