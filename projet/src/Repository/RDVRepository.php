@@ -47,22 +47,17 @@ class RDVRepository extends ServiceEntityRepository
         ;
     }
     */
-    public function findRDV($conseiller, $horaire)
+    public function trouveLaListeRDVs(int $id, $premierJourSemaine, $finDeSemaine)
     {
-        $querybuilder=$this->createQueryBuilder('rdv');
-        $query = $querybuilder->where('rdv.Conseiller = :conseiller')
-            ->andWhere('rdv.horaire = :horaire')
-            ->setParameter('conseiller', $conseiller)
-            ->setParameter('horaire', $horaire)
-            ->getQuery();
-        $results = $query->getResult();
-        if(count($results) != 0 )
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        $querybuilder=$this->createQueryBuilder('rdv')
+            ->where('rdv.horaire >= :premierJour')
+            ->andWhere('rdv.horaire <= :finSemaine')
+            ->andWhere('rdv.Conseiller = :idConseiller')
+            ->setParameter('idConseiller', $id)
+            ->setParameter('premierJour', $premierJourSemaine)
+            ->setParameter('finSemaine', $finDeSemaine);
+        $query=$querybuilder->getQuery();
+        $results = $query->execute();
+        return $results;
     }
 }
