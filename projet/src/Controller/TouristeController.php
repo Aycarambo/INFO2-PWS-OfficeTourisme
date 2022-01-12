@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\RDV;
+use App\Entity\Touriste;
+use App\Repository\ConseillerRepository;
 use App\Repository\RDVRepository;
 use App\Repository\TouristeRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -24,7 +27,7 @@ class TouristeController extends AbstractController
     }
 
     #[Route('/espaceTouriste/demandeRDV', name: 'demandeRDV')]
-    public function demandeRDV(Request $request): Response
+    public function demandeRDV(Request $request, ManagerRegistry $doctrine, ConseillerRepository $conseillerRepository, TouristeRepository $touristeRepository, RDVRepository $RDVRepository): Response
     {
         $dateRDV = "la date";
 
@@ -45,7 +48,7 @@ class TouristeController extends AbstractController
                 'placeholder' => 'Choisissez une langue',
             ],
             )
-            ->add('horaire', ChoiceType::class, [
+            ->add('lienVisio', ChoiceType::class, [
                 'choices' => [
                     'Lundi 8h00' => "lu08:00:00",
                     'Lundi 8h30' => "lu08:30:00",
@@ -157,22 +160,23 @@ class TouristeController extends AbstractController
             ->getForm();
 
 
-
+        $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
             $rdv = $form->getData();
 
             $creneau = ""; // Initialisation
 
-            //Quel jour qu'on est ?
             date_default_timezone_set("Europe/Paris");
             $currentDate = new \DateTime('now');
-            $currentDay = $currentDate->format('d');
-            $currentMonth = $date->format('m');
-            $currentWeek = $date->format('w');
-            $currentYear = $date->format('Y');
+            $currentDayName = $currentDate->format('d');
+            $currentMonth = $currentDate->format('m');
+            $currentWeek = $currentDate->format('w');
+            $currentYear = $currentDate->format('Y');
 
 
+            $semaine = $form->get('semaine')->getData();
+            $horaire = $form->get('lienVisio')->getData();
             $day = $horaire[0];
             $day .= $horaire[1];
             substr($horaire, 1);
@@ -320,19 +324,58 @@ class TouristeController extends AbstractController
 
             }
 
+            $entityManager = $doctrine->getManager();
+
             $rdv->setHoraire(new \DateTime($creneau));
             $rdv->setLangue($form->get('langue')->getData());
-            $rdv->setConseiller(1);
-            $rdv->setTouriste(1);
+            $rdv->setTouriste($touristeRepository->find(1));//utiliser $this->utilisateurCourant($touristeRepository);
             $rdv->setLienVisio('google.com');
-            $manager->persist($rdv);
+
+            $listeRDV = $RDVRepository->findAll();
+            $listeConseiller = $conseillerRepository->findAll();
+
+            $conseillerLibre = true;
+            $bonneLangue = true;
+            $conseiller = $conseillerRepository->find(1);
+            foreach($listeConseiller as $unConseiller)
+            {
+                if ($unConseiller->getLanguesParlees() != $rdv->getLangue()) // s'il parle la langue du rdv
+                {
+                    $bonneLangue = false;
+                }
+                else
+                {
+                    foreach ($listeRDV as $unRDV)
+                    {
+                        if ($rdv->getHoraire() == $unRDV->getHoraire())
+                        {
+                            if ($unConseiller->getNom())
+                            {
+                                if ($unConseiller->getPrenom())
+                                {
+                                    $conseillerLibre = false;
+                                }
+                            }
+                        }
+                    }
+                }
+                if ($conseillerLibre == true and $bonneLangue == true)
+                {
+                    $conseiller = $unConseiller;
+                    break;
+                }
+            }
+
+
+            $rdv->setConseiller($conseiller);
+
+            $entityManager->persist($rdv);
+            $entityManager->flush();
 
             return $this->redirectToRoute('espaceTouriste');
         }
 
         return $this->render('touriste/demandeRDV.html.twig', [
-            'post' => $_POST,
-            'dateRDV' => $dateRDV,
             'form' => $form->createView(),
         ]);
     }
