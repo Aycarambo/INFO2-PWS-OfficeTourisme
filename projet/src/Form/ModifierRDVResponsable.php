@@ -34,10 +34,13 @@ class ModifierRDVResponsable extends AbstractType
                 },
                 'required' => false,
                 /*'preferred_choices' => [$conseiller],*/
-                'row_attr' => ['onChange' => "changement()"]
+                'row_attr' => [
+                    'onChange' => "changement()"
+                    ]
             ])
-            ->add('submit', SubmitType::class, ['label' => 'Sauvegarder'])
+            ->add('submit', SubmitType::class, ['label' => 'Sauvegarder', 'disabled' => true])
             ->add('newId', HiddenType::class, ['data' => 0])
+            ->add('newDate', HiddenType::class, ['data' => 0])
             ->getForm();
     }
 

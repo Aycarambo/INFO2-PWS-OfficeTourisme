@@ -10,6 +10,7 @@
 {% set r = 0 %}
 {% set id = 0 %}
 
+
 <table class="table table-sm align-middle table-bordered">
     <thead>
     <tr>
@@ -33,11 +34,14 @@
                     {% endif %}
                 {% endfor %}
                 {% if r == 0 %}
-                    <td class="td-hover" href="/espaceResponsable"></td>
+                    <td id="mt{{ id }}" class="td-hover" href="/espaceResponsable" onclick="miniTableClick('mt{{ id }}')" value="{{ monday|format_datetime(pattern="yyyy-MM-dd") }} {{ h|date('H:i:s') }}"></td>
                 {% endif %}
                 {% set r = 0 %}
+                {% set id = id + 1 %}
+                {% set monday = monday|date_modify('+1 day') %}
             {% endfor %}
         </tr>
+        {% set monday = monday|date_modify('-5 day')|date("Y-m-d") %}
         {% set h = h|date_modify('+30 minutes')|date('H:i') %}
     {% endfor %}
     </tbody>

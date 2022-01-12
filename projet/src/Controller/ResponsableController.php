@@ -6,14 +6,11 @@ use App\Form\ModifierRDVResponsable;
 use App\Repository\ConseillerRepository;
 use App\Repository\SaisonRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Conseiller;
 use App\Repository\RDVRepository;
-use App\Entity\Saison;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class ResponsableController extends AbstractController
 {
@@ -29,13 +26,26 @@ class ResponsableController extends AbstractController
     }
 
     #[Route('/espaceResponsable/ListeDesRDV/{id}', name: 'liste_rdv_conseillers')]
-    public function listeRDVC(ConseillerRepository $conseillerRepository, RDVRepository $repository, SaisonRepository $saison, int $id): Response
+    public function listeRDVC(Request $request, ConseillerRepository $conseillerRepository, RDVRepository $repository, SaisonRepository $saison, EntityManagerInterface $em, int $id): Response
     {
         $lrdv = $repository->findBy(['Conseiller' => $id]);
         $conseillers = $conseillerRepository->findAll();
         $conseiller = $conseillerRepository->find($id);
         $haute = $saison->getSaison()->getSaison();
         $form = $this->createForm(ModifierRDVResponsable::class, null, ['conseillers' => $conseillers, 'conseiller' => $conseiller]);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $date = $form->get("newDate")->getData();
+
+            $rdv = $repository->find($form->get("newId")->getData());
+            $cons = $conseillerRepository->find($form->get("nouveauConseiller")->getData());
+            $rdv->setConseiller($cons);
+            $rdv->setHoraire(date_create_from_format("Y-m-d H:i:s", $date));
+            $em->flush();
+            return $this->redirect("/espaceResponsable/ListeDesRDV/{$id}");
+        }
+
         return $this->render('espaceResponsable/listeRDV.html.twig', [
             'lrdv' => $lrdv,
             'conseiller' => $conseiller,
@@ -50,11 +60,13 @@ class ResponsableController extends AbstractController
     {
         $lrdv = $repository->findBy(['Conseiller' => $id]);
         $conseiller = $conseillerRepository->find($id);
+        $monday = date_create_from_format("Y-m-d", "2021-10-11");
         $haute = $saison->getSaison()->getSaison();
         return $this->render('espaceResponsable/miniCalendar.html.twig', [
             'lrdv' => $lrdv,
             'conseiller' => $conseiller,
             'haute' => $haute,
+            'monday' =>$monday
         ]);
     }
 

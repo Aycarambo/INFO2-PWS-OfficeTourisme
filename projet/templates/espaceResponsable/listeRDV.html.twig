@@ -104,13 +104,12 @@
                     {{ form_start(form) }}
                         {{ form_row(form.nouveauConseiller) }}
                         {{ form_row(form.newId) }}
+                        {{ form_row(form.newDate) }}
                     <div id="miniCalendar"></div>
-                    {{ form_end(form) }}
-
-                </div>
+                    </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a class="btn btn-primary" role="button" href="/espaceResponsable/ListeDesRDV/{{ conseiller.id }}/modify/">Save changes</a>
+                    {{ form_row(form.submit) }}
+                    {{ form_end(form) }}
                 </div>
             </div>
         </div>
@@ -131,5 +130,14 @@
             xhttp.send();
         }
         changement();
+        var selected = "";
+        function miniTableClick(id) {
+            if(selected != "")
+                document.getElementById(selected).style.background = "";
+            document.getElementById(id).style.background = "#007bff";
+            selected = id;
+            document.getElementById("modifier_rdv_responsable_newDate").value = document.getElementById(id).getAttribute("value");
+            document.getElementById("modifier_rdv_responsable_submit").disabled = "";
+        }
     </script>
 {% endblock %}
