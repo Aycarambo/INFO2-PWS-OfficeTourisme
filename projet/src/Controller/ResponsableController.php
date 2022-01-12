@@ -45,6 +45,19 @@ class ResponsableController extends AbstractController
         ]);
     }
 
+    #[Route('/espaceResponsable/miniCal/{id}', name: 'miniCal')]
+    public function miniCal(ConseillerRepository $conseillerRepository, RDVRepository $repository, SaisonRepository $saison, int $id): Response
+    {
+        $lrdv = $repository->findBy(['Conseiller' => $id]);
+        $conseiller = $conseillerRepository->find($id);
+        $haute = $saison->getSaison()->getSaison();
+        return $this->render('espaceResponsable/miniCalendar.html.twig', [
+            'lrdv' => $lrdv,
+            'conseiller' => $conseiller,
+            'haute' => $haute,
+        ]);
+    }
+
     #[Route('/espaceResponsable/ListeDesRDV/{idC}/remove/{idR}', name: 'remove_rdv_conseillers')]
     public function removeRDVC(RDVRepository $repository, EntityManagerInterface $em, int $idC, int $idR): Response
     {

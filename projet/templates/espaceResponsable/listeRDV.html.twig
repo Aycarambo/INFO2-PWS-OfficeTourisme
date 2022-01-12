@@ -14,17 +14,24 @@
 {% set r = 0 %}
 {% set id = 0 %}
 
-{% block script %}
+{% block javascripts %}
 <script>
-    function get(newId) {
-        {% set id = newId %}
-    }
 
 </script>
 {% endblock %}
 
+{% block stylesheets %}
+<style>
+    .td-hover:hover{
+        background: #007bff;
+    }
+    .modal-lg{
+        max-width: 35%;
+    }
+</style>
+{% endblock %}
+
 {% block body %}
-    {% form_theme form 'bootstrap_5_layout.html.twig' %}
 
     <div class="container py-4">
         <h1>Liste des rdv du conseiller {{ conseiller.prenom }}</h1>
@@ -47,44 +54,13 @@
                         {% for rdv in lrdv %}
                             {% if rdv.getHoraire|date('D') == day and rdv.getHoraire|date('H:i') == h|date('H:i') and r == 0%}
                                 {% set r = 1 %}
-                                <td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modification">
+                                <td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modification" onclick="setIdModal({{ rdv.id }})">
                                         Modifier
                                     </button>
                                     <a role="button" class="btn btn-danger" data-bs-toggle="modal"  data-bs-target="#suppression{{ rdv.id }}">
                                         Supprimer
                                     </a></td>
-                                <div class="modal fade" id="modification" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        {{ form_start(form) }}
-                                        <div class="modal-content">
 
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Modifier le rendez-vous</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                {{ form_widget(form) }}
-                                                <div class="dropdown">
-                                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        Responsable
-                                                    </button>
-                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                        {% for c in conseillers %}
-                                                            {% if conseiller.id != c.id %}
-                                                                <li><a class="dropdown-item" onclick="get('{{ c.id }}');" href="#">{{ c.nom }} {{ c.prenom }}</a></li>
-                                                            {% endif %}
-                                                        {% endfor %}
-                                                    </ul>
-                                                </div>
-                                                {{ form_end(form) }}
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <a class="btn btn-primary" role="button" href="/espaceResponsable/ListeDesRDV/{{ conseiller.id }}/modify/{{ rdv.id }}/{{ id }}">Save changes</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="modal fade" id="suppression{{ rdv.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -115,5 +91,45 @@
             </tbody>
         </table>
     </div>
+    <div class="modal fade" id="modification" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modifier le rendez-vous</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
 
+                <div class="modal-body">
+                    {% form_theme form 'bootstrap_5_layout.html.twig' %}
+                    {{ form_start(form) }}
+                        {{ form_row(form.nouveauConseiller) }}
+                        {{ form_row(form.newId) }}
+                    <div id="miniCalendar"></div>
+                    {{ form_end(form) }}
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a class="btn btn-primary" role="button" href="/espaceResponsable/ListeDesRDV/{{ conseiller.id }}/modify/">Save changes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function setIdModal(newId) {
+            document.getElementById("modifier_rdv_responsable_newId").setAttribute("value", newId);
+        }
+        function changement(){
+            console.log("test");
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                document.getElementById("miniCalendar").innerHTML = this.responseText;
+            }
+            var select = document.getElementById('modifier_rdv_responsable_nouveauConseiller');
+            var value = select.options[select.selectedIndex].value;
+            xhttp.open("GET", "/espaceResponsable/miniCal/" + value, true);
+            xhttp.send();
+        }
+        changement();
+    </script>
 {% endblock %}
