@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Domain\Command\SuppressionRdVCommand;
+use App\Domain\Command\SuppressionRdVHandler;
 use App\Repository\RDVRepository;
 use App\Repository\TouristeRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -48,21 +50,19 @@ class TouristeController extends AbstractController
     }
 
     #[Route('/espaceTouriste/mesRDV/remove/{idR}', name: 'remove_rdv_touriste')]
-    public function removeRDVT(RDVRepository $repositoryRDV, TouristeRepository $repositoryTouriste, EntityManagerInterface $em, int $idR): Response
+    public function removeRDVT(
+        RDVRepository $repositoryRDV,
+        TouristeRepository $repositoryTouriste,
+        int $idR,
+        SuppressionRdVHandler $handler
+    ): Response
     {
         $touriste = $this->utilisateurCourant($repositoryTouriste);
 
-        $rdv = $repositoryRDV->find($idR);
-        if ($rdv != NULL)
-        {
-            $em->remove($rdv);
-            $em->flush();
-        }
+        $commandeSuppression=new SuppressionRdVCommand($touriste->getId(),$idR);
+        $handler->handle($commandeSuppression);
 
-        $listeRDV = $repositoryRDV->findBy(['Touriste' => $touriste], ['horaire' => 'ASC']);
-        return $this->render("touriste/mesRDVtouriste.html.twig", [
-            'listeRDV' => $listeRDV,
-        ]);
+        return $this->redirectToRoute("mesRDVtouriste");
     }
 
 }
