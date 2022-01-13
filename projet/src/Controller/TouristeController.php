@@ -4,18 +4,29 @@ namespace App\Controller;
 
 use App\Repository\RDVRepository;
 use App\Repository\TouristeRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\User;
 
 
 class TouristeController extends AbstractController
 {
-    #[Route('/espaceTouriste', name: 'espaceTouriste')]
-    public function espaceTouriste(): Response
+    private function utilisateurCourant(TouristeRepository $repositoryTouriste)
     {
+        $user = $this->getUser();
+        $touriste_id = $user->getTouriste();
+        return $repositoryTouriste->find($touriste_id);
+        //return $repositoryTouriste->findOneBy(['prenom' => 'Chloé']);
+    }
+
+    #[Route('/espaceTouriste', name: 'espaceTouriste')]
+    public function espaceTouriste(TouristeRepository $repositoryTouriste): Response
+    {
+        $touriste = $this->utilisateurCourant($repositoryTouriste);
         return $this->render('touriste/espaceTouriste.html.twig', [
-            'controller_name' => 'TouristeController',
+            'touriste' => $touriste,
         ]);
     }
 
@@ -23,16 +34,8 @@ class TouristeController extends AbstractController
     public function demandeRDV(): Response
     {
         return $this->render('touriste/demandeRDV.html.twig', [
-            'controller_name' => 'TouristeController',
         ]);
     }
-
-    // todo : Modifier le code pour utiliser l'id de la session
-    private function utilisateurCourant(TouristeRepository $repositoryTouriste)
-    {
-        return $repositoryTouriste->findOneBy(['prenom' => 'Chloé']);
-    }
-
 
     #[Route('/espaceTouriste/mesRDV', name: 'mesRDVtouriste')]
     public function mesRDV(RDVRepository $repositoryRDV, TouristeRepository $repositoryTouriste): Response
@@ -43,4 +46,23 @@ class TouristeController extends AbstractController
             'listeRDV' => $listeRDV,
         ]);
     }
+
+    #[Route('/espaceTouriste/mesRDV/remove/{idR}', name: 'remove_rdv_touriste')]
+    public function removeRDVT(RDVRepository $repositoryRDV, TouristeRepository $repositoryTouriste, EntityManagerInterface $em, int $idR): Response
+    {
+        $touriste = $this->utilisateurCourant($repositoryTouriste);
+
+        $rdv = $repositoryRDV->find($idR);
+        if ($rdv != NULL)
+        {
+            $em->remove($rdv);
+            $em->flush();
+        }
+
+        $listeRDV = $repositoryRDV->findBy(['Touriste' => $touriste], ['horaire' => 'ASC']);
+        return $this->render("touriste/mesRDVtouriste.html.twig", [
+            'listeRDV' => $listeRDV,
+        ]);
+    }
+
 }

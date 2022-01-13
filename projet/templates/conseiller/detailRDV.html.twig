@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon espace{% endblock %}
+
+{% block body %}
+    <style>
+        .rdvLayout {
+            border-radius: 10px;
+            background-color: lightgrey;
+            text-align: center;
+            padding:2%;
+        }
+    </style>
+
+    <h2 style="text-align: center;padding:1%;">Bonjour {{ conseiller.prenom }}</h2>
+
+    {% set repeatFor = true %}
+    {% set indexNextDay = 0 %}
+    {% set stopIndexCount = false %}
+
+    {% set lenRDV = 0 %}
+    {% for RDV in LRDV %}
+        {% set lenRDV = lenRDV + 1 %}
+        {% if stopIndexCount == false %}
+            {% set indexNextDay = indexNextDay + 1 %}
+        {% endif %}
+        {% if 'now'|date('Y/m/d/H/i', "Europe/Paris") < RDV.horaire|date('Y/m/d/H/i') %}
+            {% set stopIndexCount = true %}
+        {% endif %}
+    {% endfor %}
+
+    {% for i in 1..1000 %}
+        {% if repeatFor == true %}
+            {% set index = i %}
+            {% for RDV in LRDV|slice(-(indexNextDay-i-2),lenRDV) %}
+                {% if idRDV == index and repeatFor == true
+                   and 'now'|date('Y/m/d/H/i', "Europe/Paris") < RDV.horaire|date('Y/m/d/H/i') %}
+                    <table class="table rdvLayout">
+                        <tr>
+                            <th style="background-color:grey;">
+                                Détail du rendez-vous avec {{ RDV.Touriste.nom }} {{ RDV.Touriste.prenom }}
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                Langue : {{ RDV.langue }}
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                Lien : <a href="https://{{ RDV.lienvisio }}">{{ RDV.lienvisio }}</a>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                Date : {{ RDV.horaire|date('d/m/Y/ à H:i') }}
+                            </th>
+                        </tr>
+                    </table>
+                    {% set repeatFor=false %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}
