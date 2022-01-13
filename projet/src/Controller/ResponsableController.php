@@ -79,16 +79,6 @@ class ResponsableController extends AbstractController
         return $this->redirect("/espaceResponsable/ListeDesRDV/{$idC}");
     }
 
-    #[Route('/espaceResponsable/ListeDesRDV/{idC}/modify/{idR}/{NidC}', name: 'modify_rdv_conseillers')]
-    public function modifyRDVC(RDVRepository $repository, ConseillerRepository $Crepository, EntityManagerInterface $em, int $idC, int $idR, int $NidC): Response
-    {
-        $rdv = $repository->find($idR);
-        $cons = $Crepository->find($NidC);
-        $rdv->setConseiller($cons);
-        $em->flush();
-        return $this->redirect("/espaceResponsable/ListeDesRDV/{$idC}");
-    }
-
     #[Route('/espaceResponsable/modifSaison', name: 'modifSaison')]
     public function modifSaison(SaisonRepository $saison, EntityManagerInterface $manager): Response
     {

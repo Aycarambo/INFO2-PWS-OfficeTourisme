@@ -54,12 +54,35 @@
                         {% for rdv in lrdv %}
                             {% if rdv.getHoraire|date('D') == day and rdv.getHoraire|date('H:i') == h|date('H:i') and r == 0%}
                                 {% set r = 1 %}
-                                <td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modification" onclick="setIdModal({{ rdv.id }})">
-                                        Modifier
-                                    </button>
-                                    <a role="button" class="btn btn-danger" data-bs-toggle="modal"  data-bs-target="#suppression{{ rdv.id }}">
-                                        Supprimer
+                                <td>
+                                    <a role="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#detail{{ rdv.id }}">
+                                        Touriste : {{ rdv.getTouriste().nom }} {{ rdv.getTouriste().prenom }}
                                     </a></td>
+                                <div class="modal fade" id="detail{{ rdv.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Information détaille</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Touriste : {{ rdv.getTouriste().nom }} {{ rdv.getTouriste().prenom }}</p>
+                                                <p>Conseiller : {{ conseiller.nom }} {{ conseiller.prenom }}</p>
+                                                <p>Date : {{ rdv.getHoraire()|date("j/n/Y")}}</p>
+                                                <p>Horaire : {{ rdv.getHoraire()|date('H:i') }}</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modification" onclick="setIdModal({{ rdv.id }})">
+                                                    Modifier
+                                                </button>
+                                                <a role="button" class="btn btn-danger" data-bs-toggle="modal"  data-bs-target="#suppression{{ rdv.id }}">
+                                                    Supprimer
+                                                </a>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="modal fade" id="suppression{{ rdv.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
