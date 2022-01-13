@@ -68,7 +68,7 @@
                                             <div class="modal-body">
                                                 <p>Touriste : {{ rdv.getTouriste().nom }} {{ rdv.getTouriste().prenom }}</p>
                                                 <p>Conseiller : {{ conseiller.nom }} {{ conseiller.prenom }}</p>
-                                                <p>Date : {{ rdv.getHoraire()|date("j/n/Y")}}</p>
+                                                <p>Date : {{ rdv.getHoraire()|date("j/m/Y")}}</p>
                                                 <p>Horaire : {{ rdv.getHoraire()|date('H:i') }}</p>
                                             </div>
                                             <div class="modal-footer">

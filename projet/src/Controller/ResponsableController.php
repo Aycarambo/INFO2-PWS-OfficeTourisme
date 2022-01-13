@@ -60,7 +60,7 @@ class ResponsableController extends AbstractController
     {
         $lrdv = $repository->findBy(['Conseiller' => $id]);
         $conseiller = $conseillerRepository->find($id);
-        $monday = date_create_from_format("Y-m-d", "2021-10-11");
+        $monday = new \DateTime("last Monday");
         $haute = $saison->getSaison()->getSaison();
         return $this->render('espaceResponsable/miniCalendar.html.twig', [
             'lrdv' => $lrdv,

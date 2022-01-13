@@ -24,17 +24,17 @@
 
 
                 {% if is_granted('ROLE_TOURISTE') %}
-                    <a class="btn btn-primary" href="/espaceTouriste" role="button">Espace Touriste</a>
+                    <a class="btn btn-light" href="/espaceTouriste" role="button">Espace Touriste</a>
                 {% elseif is_granted('ROLE_CONSEILLER') %}
-                    <a class="btn btn-primary" href="/espaceConseiller" role="button">Mon Espace</a>
+                    <a class="btn btn-light" href="/espaceConseiller" role="button">Mon Espace</a>
                 {% elseif is_granted('ROLE_RESPONSABLE') %}
-                    <a class="btn btn-primary" href="/espaceResponsable" role="button">Mon Espace</a>
+                    <a class="btn btn-light" href="/espaceResponsable" role="button">Mon Espace</a>
                 {% endif %}
 
                 {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <a class="btn btn-primary" href="/connexion" role="button">Connexion</a>
+                    <a class="btn btn-light" href="/connexion" role="button">Connexion</a>
                 {% else %}
-                    <a class="btn btn-primary" href="{{ path('logout') }}" role="button">Déconnexion</a>
+                    <a class="btn btn-light" href="{{ path('logout') }}" role="button">Déconnexion</a>
                 {% endif %}
             </div>
         </nav>
