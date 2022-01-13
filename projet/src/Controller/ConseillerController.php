@@ -4,15 +4,20 @@ namespace App\Controller;
 
 use App\Repository\ConseillerRepository;
 use App\Repository\RDVRepository;
+use mysql_xdevapi\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 class ConseillerController extends AbstractController
 {
     private function utilisateurCourant(ConseillerRepository $repositoryConseiller)
     {
         $user = $this->getUser();
+        if(!$user){
+            throw new AuthenticationException("non connecté");
+        }
         $conseiller_id = $user->getConseiller();
         return $repositoryConseiller->find($conseiller_id);
     }
@@ -44,11 +49,11 @@ class ConseillerController extends AbstractController
     }
 
 
-    #[Route('/espaceConseiller/{id}/MesRDV/semaine+{semaine}', name: 'conseillerRDV/SemainesFutursOuEnCours')]
-    public function conseillerRDVSemainesFutursOuEnCours(RDVRepository $aRepository, int $id, int $semaine): Response
+    #[Route('/espaceConseiller/MesRDV/semaine+{semaine}', name: 'conseillerRDV/SemainesFutursOuEnCours')]
+    public function conseillerRDVSemainesFutursOuEnCours(ConseillerRepository $conseillerRepository, RDVRepository $aRepository, int $semaine): Response
     {
         date_default_timezone_set("Europe/Paris");
-        $idConseiller = $id;
+        $idConseiller = $this->utilisateurCourant($conseillerRepository)->getId();
 
         $date = new \DateTime('now');
 
@@ -107,14 +112,17 @@ class ConseillerController extends AbstractController
         }
         return $this->render('conseiller/rdv.html.twig', [
             'agenda' => $agenda,
+            'premierJourSemaine' => $premierJourSemaine->format("d/m"),
+            'dernierJourSemaine' => $dernierJourSemaine->format("d/m"),
+            'year' => $dernierJourSemaine->format("Y"),
         ]);
     }
 
-    #[Route('/espaceConseiller/{id}/MesRDV/semaine-{semaine}', name: 'conseillerRDV/AutreSemaine')]
-    public function conseillerRDVAutreSemaine(RDVRepository $aRepository, int $id, int $semaine): Response
+    #[Route('/espaceConseiller/MesRDV/semaine-{semaine}', name: 'conseillerRDV/AutreSemaine')]
+    public function conseillerRDVAutreSemaine(ConseillerRepository $conseillerRepository, RDVRepository $aRepository, int $semaine): Response
     {
         date_default_timezone_set("Europe/Paris");
-        $idConseiller = $id;
+        $idConseiller = $this->utilisateurCourant($conseillerRepository)->getId();
 
         $date = new \DateTime('now');
 
@@ -175,6 +183,9 @@ class ConseillerController extends AbstractController
         }
         return $this->render('conseiller/rdv.html.twig', [
             'agenda' => $agenda,
+            'premierJourSemaine' => $premierJourSemaine->format("d/m"),
+            'dernierJourSemaine' => $dernierJourSemaine->format("d/m"),
+            'year' => $dernierJourSemaine->format("Y"),
         ]);
     }
 
