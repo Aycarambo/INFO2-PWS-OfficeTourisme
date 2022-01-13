@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 
 class TouristeController extends AbstractController
@@ -16,9 +17,12 @@ class TouristeController extends AbstractController
     private function utilisateurCourant(TouristeRepository $repositoryTouriste)
     {
         $user = $this->getUser();
+        if (!$user)
+        {
+            throw new AuthenticationException("Non connecté");
+        }
         $touriste_id = $user->getTouriste();
         return $repositoryTouriste->find($touriste_id);
-        //return $repositoryTouriste->findOneBy(['prenom' => 'Chloé']);
     }
 
     #[Route('/espaceTouriste', name: 'espaceTouriste')]
@@ -59,6 +63,7 @@ class TouristeController extends AbstractController
             $em->flush();
         }
 
+        // return $this->redirectToRoute("mesRDVtouriste");
         $listeRDV = $repositoryRDV->findBy(['Touriste' => $touriste], ['horaire' => 'ASC']);
         return $this->render("touriste/mesRDVtouriste.html.twig", [
             'listeRDV' => $listeRDV,
