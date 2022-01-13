@@ -32,7 +32,7 @@ class TouristeController extends AbstractController
 
         $rdv = new RDV();
 
-        $jours = [
+        /*$jours = [
             'Lundi 8h00' => "lu08:00:00",
             'Lundi 8h30' => "lu08:30:00",
             'Lundi 9h00' => "lu09:00:00",
@@ -132,13 +132,47 @@ class TouristeController extends AbstractController
             'Vendredi 16h00' => "ve16:08:00",
             'Vendredi 16h30' => "ve16:30:00",
             'Vendredi 17h00' => "ve17:00:00",
-            'Vendredi 17h30' => "ve17:30:00",];
+            'Vendredi 17h30' => "ve17:30:00",];*/
         $jour8h = ["Lundi" => "lu08:00:00", "Mardi" => "ma08:00:00", "mercredi" => "Me08:00:00", "Jeudi" => "je08:00:00", "Vendredi" => "ve08:00:00"];
         $jour8h30 = ["Lundi" => "lu08:30:00", "Mardi" => "ma08:30:00", "mercredi" => "Me08:30:00", "Jeudi" => "je08:30:00", "Vendredi" => "ve08:30:00"];
         $jour9h = ["Lundi" => "lu09:00:00", "Mardi" => "ma09:00:00", "mercredi" => "Me09:00:00", "Jeudi" => "je09:00:00", "Vendredi" => "ve09:00:00"];
+        $jour9h30 = ["Lundi" => "lu09:30:00", "Mardi" => "ma09:30:00", "mercredi" => "Me09:30:00", "Jeudi" => "je09:30:00", "Vendredi" => "ve09:30:00"];
+        $jour10h = ["Lundi" => "lu10:00:00", "Mardi" => "ma10:00:00", "mercredi" => "Me10:00:00", "Jeudi" => "je10:00:00", "Vendredi" => "ve10:00:00"];
+        $jour10h30 = ["Lundi" => "lu10:30:00", "Mardi" => "ma10:30:00", "mercredi" => "Me10:30:00", "Jeudi" => "je10:30:00", "Vendredi" => "ve10:30:00"];
+        $jour11h = ["Lundi" => "lu11:00:00", "Mardi" => "ma11:00:00", "mercredi" => "Me11:00:00", "Jeudi" => "je11:00:00", "Vendredi" => "ve11:00:00"];
+        $jour11h30 = ["Lundi" => "lu11:30:00", "Mardi" => "ma11:30:00", "mercredi" => "Me11:30:00", "Jeudi" => "je11:30:00", "Vendredi" => "ve11:30:00"];
+        $jour12h = ["Lundi" => "lu12:00:00", "Mardi" => "ma12:00:00", "mercredi" => "Me12:00:00", "Jeudi" => "je12:00:00", "Vendredi" => "ve12:00:00"];
+        $jour12h30 = ["Lundi" => "lu12:30:00", "Mardi" => "ma12:30:00", "mercredi" => "Me12:30:00", "Jeudi" => "je12:30:00", "Vendredi" => "ve12:30:00"];
+        $jour13h = ["Lundi" => "lu13:00:00", "Mardi" => "ma13:00:00", "mercredi" => "Me13:00:00", "Jeudi" => "je13:00:00", "Vendredi" => "ve13:00:00"];
+        $jour13h30 = ["Lundi" => "lu13:30:00", "Mardi" => "ma13:30:00", "mercredi" => "Me13:30:00", "Jeudi" => "je13:30:00", "Vendredi" => "ve13:30:00"];
+        $jour14h = ["Lundi" => "lu14:00:00", "Mardi" => "ma14:00:00", "mercredi" => "Me14:00:00", "Jeudi" => "je14:00:00", "Vendredi" => "ve14:00:00"];
+        $jour14h30 = ["Lundi" => "lu14:30:00", "Mardi" => "ma14:30:00", "mercredi" => "Me14:30:00", "Jeudi" => "je14:30:00", "Vendredi" => "ve14:30:00"];
+        $jour15h = ["Lundi" => "lu15:00:00", "Mardi" => "ma15:00:00", "mercredi" => "Me15:00:00", "Jeudi" => "je15:00:00", "Vendredi" => "ve15:00:00"];
+        $jour15h30 = ["Lundi" => "lu15:30:00", "Mardi" => "ma15:30:00", "mercredi" => "Me15:30:00", "Jeudi" => "je15:30:00", "Vendredi" => "ve15:30:00"];
+        $jour16h = ["Lundi" => "lu16:00:00", "Mardi" => "ma16:00:00", "mercredi" => "Me16:00:00", "Jeudi" => "je16:00:00", "Vendredi" => "ve16:00:00"];
+        $jour16h30 = ["Lundi" => "lu16:30:00", "Mardi" => "ma16:30:00", "mercredi" => "Me16:30:00", "Jeudi" => "je16:30:00", "Vendredi" => "ve16:30:00"];
+        $jour17h = ["Lundi" => "lu17:00:00", "Mardi" => "ma17:00:00", "mercredi" => "Me17:00:00", "Jeudi" => "je17:00:00", "Vendredi" => "ve17:00:00"];
+        $jour17h30 = ["Lundi" => "lu17:30:00", "Mardi" => "ma17:30:00", "mercredi" => "Me17:30:00", "Jeudi" => "je17:30:00", "Vendredi" => "ve17:30:00"];
         $jours = ["8h" => $jour8h,
                 "8h30" => $jour8h30,
                 "9h" => $jour9h,
+                "9h30" => $jour9h30,
+                "10h" => $jour10h,
+                "10h30" => $jour10h30,
+                "11h" => $jour11h,
+                "11h30" => $jour11h30,
+                "12h" => $jour12h,
+                "12h30" => $jour12h30,
+                "13h" => $jour13h,
+                "13h30" => $jour13h30,
+                "14h" => $jour14h,
+                "14h30" => $jour14h30,
+                "15h" => $jour15h,
+                "15h30" => $jour15h30,
+                "16h" => $jour16h,
+                "16h30" => $jour16h30,
+                "17h" => $jour17h,
+                "17h30" => $jour17h30,
         ];
 
         $form = $this->createFormBuilder($rdv)
