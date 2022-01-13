@@ -11,12 +11,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\RDVRepository;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 class ResponsableController extends AbstractController
 {
+    private function utilisateurCourant()
+    {
+        $user = $this->getUser();
+        if (!$user)
+        {
+            throw new AuthenticationException("Non connecté");
+        }
+    }
+
     #[Route('/espaceResponsable', name: 'espace-responsable')]
     public function espaceR(ConseillerRepository $repository, SaisonRepository $saison): Response
     {
+        $this->utilisateurCourant();
         $conseillers = $repository->findAll();
         $haute = $saison->getSaison()->getSaison();
         return $this->render('espaceResponsable/index.html.twig', [
