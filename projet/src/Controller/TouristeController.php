@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 
 class TouristeController extends AbstractController
@@ -18,9 +19,12 @@ class TouristeController extends AbstractController
     private function utilisateurCourant(TouristeRepository $repositoryTouriste)
     {
         $user = $this->getUser();
+        if (!$user)
+        {
+            throw new AuthenticationException("Non connecté");
+        }
         $touriste_id = $user->getTouriste();
         return $repositoryTouriste->find($touriste_id);
-        //return $repositoryTouriste->findOneBy(['prenom' => 'Chloé']);
     }
 
     #[Route('/espaceTouriste', name: 'espaceTouriste')]
