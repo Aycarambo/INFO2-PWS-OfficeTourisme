@@ -1,0 +1,48 @@
+{% set days = ["Mon","Tue", "Wed", "Thu", "Fri"] %}
+{% set p = haute ? 1 : 0 %}
+{% if p == 1 %}
+    {% set h = '08:00'|date('H:i') %}
+    {% set f = 24 %}
+{% else %}
+    {% set h = '10:00'|date('H:i') %}
+    {% set f = 16 %}
+{% endif %}
+{% set r = 0 %}
+{% set id = 0 %}
+
+
+<table class="table table-sm align-middle table-bordered">
+    <thead>
+    <tr>
+        <th scope="col">Horraire</th>
+        <th style="width:20%" scope="col">Lundi</th>
+        <th style="width:20%" scope="col">Mardi</th>
+        <th style="width:20%" scope="col">Mercredi</th>
+        <th style="width:20%" scope="col">Jeudi</th>
+        <th style="width:20%" scope="col">Vendredi</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in 0..f %}
+        <tr>
+            <td>{{ h|date('H:i') }}</td>
+            {% for day in days %}
+                {% for rdv in lrdv %}
+                    {% if rdv.getHoraire|date('D') == day and rdv.getHoraire|date('H:i') == h|date('H:i') and r == 0%}
+                        {% set r = 1 %}
+                        <td class="table-secondary"></td>
+                    {% endif %}
+                {% endfor %}
+                {% if r == 0 %}
+                    <td id="mt{{ id }}" class="td-hover" href="/espaceResponsable" onclick="miniTableClick('mt{{ id }}')" value="{{ monday|format_datetime(pattern="yyyy-MM-dd") }} {{ h|date('H:i:s') }}"></td>
+                {% endif %}
+                {% set r = 0 %}
+                {% set id = id + 1 %}
+                {% set monday = monday|date_modify('+1 day') %}
+            {% endfor %}
+        </tr>
+        {% set monday = monday|date_modify('-5 day')|date("Y-m-d") %}
+        {% set h = h|date_modify('+30 minutes')|date('H:i') %}
+    {% endfor %}
+    </tbody>
+</table>

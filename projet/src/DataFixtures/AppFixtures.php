@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Saison;
 use App\Entity\Touriste;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -231,6 +232,11 @@ class AppFixtures extends Fixture
         $touristeU1->setRoles(["ROLE_TOURISTE"]);
         $touristeU1->setTouriste($touriste1);
         $manager->persist($touristeU1);
+
+        // La saison
+        $saison = new Saison();
+        $saison->setSaison(True); // Haute saison
+        $manager->persist($saison);
 
         $manager->flush();
     }
