@@ -1,5 +1,7 @@
 <?php
 
+use App\Repository\UserRepository;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class TouristeControllerTest extends WebTestCase
@@ -12,4 +14,26 @@ class TouristeControllerTest extends WebTestCase
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
     }
 
+    public function test_client_accede_espace_si_connecte()
+    {
+        $client = static::createClient();
+        $userRepository = static::getContainer()->get(UserRepository::class);
+
+        // Récupérer l'utilisateur test
+        //$testUser = $userRepository->findOneBy(['email' => 'chloe@gmail.com']);
+        $chloe = $userRepository->findOneBy(['email' => 'chloe@gmail.com']);
+
+        $testUser = new User();
+        $testUser->setEmail("chloe@gmail.com");
+        $testUser->setRoles(["ROLE_TOURISTE"]);
+        $testUser->setPassword("mdpmdp");
+        $testUser->setTouriste($chloe);
+
+        // simuler la connection de testUser
+        $client->loginUser($testUser);
+
+        // test d'accès à la page
+        $client->request('GET', '/espaceTouriste');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
 }
