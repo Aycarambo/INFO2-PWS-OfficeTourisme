@@ -14,6 +14,75 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+        $date = new \DateTime('now');
+
+        $jour = $date->format('l');
+
+        $mois = $date->format('m');
+
+        $annee = $date->format('Y');
+
+        $interval = new \DateInterval('P1D');
+
+        if($jour != "Monday")
+        {
+            $lundi = new \DateTime("last Monday");
+            $mardi = new \DateTime('last Monday');
+            $mercredi = new \DateTime('last Monday');
+            $jeudi = new \DateTime('last Monday');
+            $vendredi = new \DateTime('last Monday');
+
+            $lundi = $lundi->format('d');
+
+            $mardi = $mardi->add($interval);
+            $mardi = $mardi->format('d');
+
+            $mercredi = $mercredi->add($interval);
+            $mercredi = $mercredi->add($interval);
+            $mercredi = $mercredi->format('d');
+
+            $jeudi = $jeudi->add($interval);
+            $jeudi = $jeudi->add($interval);
+            $jeudi = $jeudi->add($interval);
+            $jeudi = $jeudi->format('d');
+
+            $vendredi = $vendredi->add($interval);
+            $vendredi = $vendredi->add($interval);
+            $vendredi = $vendredi->add($interval);
+            $vendredi = $vendredi->add($interval);
+            $vendredi = $vendredi->format('d');
+        }
+        else
+        {
+            $lundi = new \DateTime('now');
+            $mardi = new \DateTime('now');
+            $mercredi = new \DateTime('now');
+            $jeudi = new \DateTime('now');
+            $vendredi = new \DateTime('now');
+
+            $lundi = $lundi->format('d');
+
+            $mardi = $mardi->add($interval);
+            $mardi = $mardi->format('d');
+
+            $mercredi = $mercredi->add($interval);
+            $mercredi = $mercredi->add($interval);
+            $mercredi = $mercredi->format('d');
+
+            $jeudi = $jeudi->add($interval);
+            $jeudi = $jeudi->add($interval);
+            $jeudi = $jeudi->add($interval);
+            $jeudi = $jeudi->format('d');
+
+            $vendredi = $vendredi->add($interval);
+            $vendredi = $vendredi->add($interval);
+            $vendredi = $vendredi->add($interval);
+            $vendredi = $vendredi->add($interval);
+            $vendredi = $vendredi->format('d');
+        }
+
+
+
         //Touriste
         $touriste1 = new Touriste();
         $touriste1->setNom("UwU");
@@ -46,8 +115,8 @@ class AppFixtures extends Fixture
         $rdv1 = new RDV();
         $rdv1->setConseiller($conseiller1);
         $rdv1->setTouriste($touriste1);
-        $horaire1 = '01/06/2022 10:30:00';
-        $rdv1->setHoraire(new \DateTime($horaire1));
+        $horaire = "$mois/$lundi/$annee 10:30:00";
+        $rdv1->setHoraire(new \DateTime($horaire));
         $rdv1->setLienVisio('google.com');
         $rdv1->setLangue('FR');
         $manager->persist($rdv1);
@@ -55,8 +124,8 @@ class AppFixtures extends Fixture
         $rdv2 = new RDV();
         $rdv2->setConseiller($conseiller2);
         $rdv2->setTouriste($touriste2);
-        $horaire2 = '01/06/2022 12:30:00';
-        $rdv2->setHoraire(new \DateTime($horaire2));
+        $horaire = "$mois/$lundi/$annee 8:30:00";
+        $rdv2->setHoraire(new \DateTime($horaire));
         $rdv2->setLienVisio('google.com');
         $rdv2->setLangue('EN');
         $manager->persist($rdv2);
@@ -64,7 +133,8 @@ class AppFixtures extends Fixture
         $rdv3 = new RDV();
         $rdv3->setConseiller($conseiller1);
         $rdv3->setTouriste($touriste2);
-        $rdv3->setHoraire(new \DateTime($horaire2));
+        $horaire = "$mois/$mardi/$annee 13:30:00";
+        $rdv3->setHoraire(new \DateTime($horaire));
         $rdv3->setLienVisio('google.com');
         $rdv3->setLangue('FR');
         $manager->persist($rdv3);
@@ -72,8 +142,8 @@ class AppFixtures extends Fixture
         $rdv4 = new RDV();
         $rdv4->setConseiller($conseiller1);
         $rdv4->setTouriste($touriste1);
-        $horaire1 = '01/06/2022 15:30:00';
-        $rdv4->setHoraire(new \DateTime($horaire1));
+        $horaire = "$mois/$mardi/$annee 18:00:00";
+        $rdv4->setHoraire(new \DateTime($horaire));
         $rdv4->setLienVisio('google.com');
         $rdv4->setLangue('EN');
         $manager->persist($rdv4);
@@ -81,8 +151,8 @@ class AppFixtures extends Fixture
         $rdv5 = new RDV();
         $rdv5->setConseiller($conseiller1);
         $rdv5->setTouriste($touriste1);
-        $horaire1 = '01/07/2022 14:30:00';
-        $rdv5->setHoraire(new \DateTime($horaire1));
+        $horaire = "$mois/$mercredi/$annee 14:30:00";
+        $rdv5->setHoraire(new \DateTime($horaire));
         $rdv5->setLienVisio('google.com');
         $rdv5->setLangue('FR');
         $manager->persist($rdv5);
@@ -90,8 +160,8 @@ class AppFixtures extends Fixture
         $rdv6 = new RDV();
         $rdv6->setConseiller($conseiller1);
         $rdv6->setTouriste($touriste1);
-        $horaire1 = '01/07/2022 08:30:00';
-        $rdv6->setHoraire(new \DateTime($horaire1));
+        $horaire = "$mois/$mercredi/$annee 16:00:00";
+        $rdv6->setHoraire(new \DateTime($horaire));
         $rdv6->setLienVisio('google.com');
         $rdv6->setLangue('EN');
         $manager->persist($rdv6);
@@ -99,8 +169,8 @@ class AppFixtures extends Fixture
         $rdv7 = new RDV();
         $rdv7->setConseiller($conseiller1);
         $rdv7->setTouriste($touriste1);
-        $horaire1 = '01/08/2022 12:00:00';
-        $rdv7->setHoraire(new \DateTime($horaire1));
+        $horaire = "$mois/$jeudi/$annee 19:30:00";
+        $rdv7->setHoraire(new \DateTime($horaire));
         $rdv7->setLienVisio('google.com');
         $rdv7->setLangue('FR');
         $manager->persist($rdv7);
@@ -108,8 +178,8 @@ class AppFixtures extends Fixture
         $rdv8 = new RDV();
         $rdv8->setConseiller($conseiller1);
         $rdv8->setTouriste($touriste1);
-        $horaire1 = '12/13/2022 18:30:00';
-        $rdv8->setHoraire(new \DateTime($horaire1));
+        $horaire = "$mois/$jeudi/$annee 12:30:00";
+        $rdv8->setHoraire(new \DateTime($horaire));
         $rdv8->setLienVisio('google.com');
         $rdv8->setLangue('EN');
         $manager->persist($rdv8);
@@ -117,8 +187,8 @@ class AppFixtures extends Fixture
         $rdv9 = new RDV();
         $rdv9->setConseiller($conseiller1);
         $rdv9->setTouriste($touriste1);
-        $horaire1 = '12/14/2022 09:30:00';
-        $rdv9->setHoraire(new \DateTime($horaire1));
+        $horaire = "$mois/$vendredi/$annee 17:30:00";
+        $rdv9->setHoraire(new \DateTime($horaire));
         $rdv9->setLienVisio('google.com');
         $rdv9->setLangue('FR');
         $manager->persist($rdv9);
@@ -126,8 +196,8 @@ class AppFixtures extends Fixture
         $rdv10 = new RDV();
         $rdv10->setConseiller($conseiller1);
         $rdv10->setTouriste($touriste1);
-        $horaire1 = '12/16/2022 08:00:00';
-        $rdv10->setHoraire(new \DateTime($horaire1));
+        $horaire = "$mois/$vendredi/$annee 11:00:00";
+        $rdv10->setHoraire(new \DateTime($horaire));
         $rdv10->setLienVisio('google.com');
         $rdv10->setLangue('EN');
         $manager->persist($rdv10);
@@ -135,8 +205,8 @@ class AppFixtures extends Fixture
         $rdv11 = new RDV();
         $rdv11->setConseiller($conseiller1);
         $rdv11->setTouriste($touriste1);
-        $horaire1 = '12/17/2022 19:30:00';
-        $rdv11->setHoraire(new \DateTime($horaire1));
+        $horaire = "$mois/$mardi/$annee 10:30:00";
+        $rdv11->setHoraire(new \DateTime($horaire));
         $rdv11->setLienVisio('google.com');
         $rdv11->setLangue('FR');
         $manager->persist($rdv11);
