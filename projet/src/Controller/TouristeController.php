@@ -29,7 +29,6 @@ class TouristeController extends AbstractController
     #[Route('/espaceTouriste/demandeRDV', name: 'demandeRDV')]
     public function demandeRDV(Request $request, ManagerRegistry $doctrine, ConseillerRepository $conseillerRepository, TouristeRepository $touristeRepository, RDVRepository $RDVRepository): Response
     {
-        $dateRDV = "la date";
 
         $rdv = new RDV();
 
@@ -169,7 +168,8 @@ class TouristeController extends AbstractController
 
             date_default_timezone_set("Europe/Paris");
             $currentDate = new \DateTime('now');
-            $currentDayName = $currentDate->format('d');
+            $currentDayName = $currentDate->format('l');
+            $currentDay = $currentDate->format('d');
             $currentMonth = $currentDate->format('m');
             $currentWeek = $currentDate->format('w');
             $currentYear = $currentDate->format('Y');
@@ -179,8 +179,8 @@ class TouristeController extends AbstractController
             $horaire = $form->get('lienVisio')->getData();
             $day = $horaire[0];
             $day .= $horaire[1];
-            substr($horaire, 1);
-            substr($horaire, 1);
+            $horaire = substr($horaire, 1);
+            $horaire = substr($horaire, 1);
             if ($semaine == "CS")//Cette semaine
             {
                 if ($day == "lu")
@@ -321,7 +321,146 @@ class TouristeController extends AbstractController
             }
             else if ($semaine == "SP")//Semaine prochaine
             {
-
+                if ($day == "lu")
+                {
+                    if ($currentDayName == "Monday")
+                    {
+                        $currentDay += 7;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Tuesday")
+                    {
+                        $currentDay += 6;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Wednesday")
+                    {
+                        $currentDay += 5;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Thursday")
+                    {
+                        $currentDay += 4;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Friday")
+                    {
+                        $currentDay += 3;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                }
+                else if ($day == "ma")
+                {
+                    if ($currentDayName == "Monday")
+                    {
+                        $currentDay += 8;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Tuesday")
+                    {
+                        $currentDay += 7;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Wednesday")
+                    {
+                        $currentDay += 6;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Thursday")
+                    {
+                        $currentDay += 5;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Friday")
+                    {
+                        $currentDay += 4;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                }
+                else if ($day == "me")
+                {
+                    if ($currentDayName == "Monday")
+                    {
+                        $currentDay += 9;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Tuesday")
+                    {
+                        $currentDay += 8;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Wednesday")
+                    {
+                        $currentDay += 7;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Thursday")
+                    {
+                        $currentDay += 6;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Friday")
+                    {
+                        $currentDay += 5;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                }
+                else if ($day == "je")
+                {
+                    if ($currentDayName == "Monday")
+                    {
+                        $currentDay += 10;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Tuesday")
+                    {
+                        $currentDay += 9;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Wednesday")
+                    {
+                        $currentDay += 8;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Thursday")
+                    {
+                        $currentDay += 7;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Friday")
+                    {
+                        $currentDay += 6;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                }
+                else if ($day == "ve")
+                {
+                    if ($currentDayName == "Monday")
+                    {
+                        $currentDay += 11;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Tuesday")
+                    {
+                        $currentDay += 10;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Wednesday")
+                    {
+                        $currentDay += 9;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Thursday")
+                    {
+                        $currentDay += 8;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                    if ($currentDayName == "Friday")
+                    {
+                        $currentDay += 7;
+                        $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
+                    }
+                }
             }
 
             $entityManager = $doctrine->getManager();
@@ -336,22 +475,32 @@ class TouristeController extends AbstractController
 
             $conseillerLibre = true;
             $bonneLangue = true;
-            $conseiller = $conseillerRepository->find(1);
+            $conseiller = null;
             foreach($listeConseiller as $unConseiller)
             {
-                if ($unConseiller->getLanguesParlees() != $rdv->getLangue()) // s'il parle la langue du rdv
+                if ($rdv->getLangue() == "fr")
                 {
-                    $bonneLangue = false;
+                    if (!(($unConseiller->getLanguesParlees() == "fr") or ($unConseiller->getLanguesParlees() == "fr;en") or ($unConseiller->getLanguesParlees() == "en;fr"))) // s'il ne parle pas la langue du rdv
+                    {
+                        $bonneLangue = false;
+                    }
                 }
-                else
+                else if ($rdv->getLangue())
+                {
+                    if (!(($unConseiller->getLanguesParlees() == "en") or ($unConseiller->getLanguesParlees() == "fr;en") or ($unConseiller->getLanguesParlees() == "en;fr")))
+                    {
+                        $bonneLangue = false;
+                    }
+                }
+                if ($bonneLangue == true)
                 {
                     foreach ($listeRDV as $unRDV)
                     {
                         if ($rdv->getHoraire() == $unRDV->getHoraire())
                         {
-                            if ($unConseiller->getNom())
+                            if ($unConseiller->getNom() == $unRDV->getConseiller()->getNom())
                             {
-                                if ($unConseiller->getPrenom())
+                                if ($unConseiller->getPrenom() == $unRDV->getConseiller()->getPrenom())
                                 {
                                     $conseillerLibre = false;
                                 }
@@ -362,17 +511,21 @@ class TouristeController extends AbstractController
                 if ($conseillerLibre == true and $bonneLangue == true)
                 {
                     $conseiller = $unConseiller;
-                    break;
                 }
             }
 
-
-            $rdv->setConseiller($conseiller);
-
-            $entityManager->persist($rdv);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('espaceTouriste');
+            if ($conseiller != null)
+            {
+                $rdv->setConseiller($conseiller);
+                $entityManager->persist($rdv);
+                $entityManager->flush();
+                return $this->redirectToRoute('espaceTouriste');
+            }
+            else
+            {
+                //echo "<script>alert(\"Aucun conseiller disponible pour cet horaire\")</script>";
+                return $this->redirectToRoute('espaceTouriste');
+            }
         }
 
         return $this->render('touriste/demandeRDV.html.twig', [

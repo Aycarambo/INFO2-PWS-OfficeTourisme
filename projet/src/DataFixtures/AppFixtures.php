@@ -47,6 +47,7 @@ class AppFixtures extends Fixture
         $horaire1 = '10/12/2021 08:30:00';
         $rdv1->setHoraire(new \DateTime($horaire1));
         $rdv1->setLienVisio('google.com');
+        $rdv1->setLangue("fr");
         $manager->persist($rdv1);
 
         $rdv2 = new RDV();
@@ -55,6 +56,7 @@ class AppFixtures extends Fixture
         $horaire2 = '10/15/2021 10:30:00';
         $rdv2->setHoraire(new \DateTime($horaire2));
         $rdv2->setLienVisio('google.com');
+        $rdv2->setLangue("fr");
         $manager->persist($rdv2);
 
         $rdv3 = new RDV();
@@ -62,6 +64,7 @@ class AppFixtures extends Fixture
         $rdv3->setTouriste($touriste2);
         $rdv3->setHoraire(new \DateTime($horaire2));
         $rdv3->setLienVisio('google.com');
+        $rdv3->setLangue("fr");
         $manager->persist($rdv3);
 
         $manager->flush();
