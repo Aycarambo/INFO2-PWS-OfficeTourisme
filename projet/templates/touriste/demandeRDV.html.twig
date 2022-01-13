@@ -2,21 +2,37 @@
 {% form_theme form _self %}
 
 {%- block choice_widget_expanded -%}
-<div {{ block('widget_container_attributes') }}>
+
+    <table style="text-align :center" {{ block('widget_container_attributes') }}>
+    <thead><tr><th>
+    Horaire</th><th>
+    Lundi</th><th>
+    Mardi</th><th>
+    Mecredi
+</th>
+<th>
+    Jeudi
+</th>
+<th>
+    Vendredi
+</th></tr></thead>
     {% for name, choices in form.vars.choices %}
         {% if choices is iterable  %}
 
-            <label class="choice_category">
+            <tr>
+
+            <td><label class="choice_category">
                 <strong>
                     {{ choice_translation_domain is same as(false) ? name : name|trans({}, choice_translation_domain) }}
                 </strong>
-            </label>
-            <div>
+            </label></td>
+
                 {% for key,choice in choices %}
-                    {{ form_widget(form[key]) }}
-                    {{ form_label(form[key]) }}
+                    <td>{{ form_widget(form[key]) }}
+                        </td>
                 {% endfor %}
-            </div>
+
+            </tr>
 
         {% else %}
 
@@ -25,6 +41,7 @@
 
         {% endif %}
     {% endfor %}
+    </table>
 {%- endblock choice_widget_expanded -%}
 
 {% block title %}Demander un RDV{% endblock %}
