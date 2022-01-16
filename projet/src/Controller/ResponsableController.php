@@ -27,7 +27,6 @@ class ResponsableController extends AbstractController
     #[Route('/espaceResponsable', name: 'espace-responsable')]
     public function espaceR(ConseillerRepository $repository, SaisonRepository $saison): Response
     {
-        $this->utilisateurCourant();
         $conseillers = $repository->findAll();
         $haute = $saison->getSaison()->getSaison();
         return $this->render('espaceResponsable/index.html.twig', [
