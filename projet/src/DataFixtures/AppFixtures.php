@@ -118,7 +118,7 @@ class AppFixtures extends Fixture
         $rdv1->setTouriste($touriste1);
         $horaire = "$mois/$lundi/$annee 10:30:00";
         $rdv1->setHoraire(new \DateTime($horaire));
-        $rdv1->setLienVisio('google.com');
+        $rdv1->setLienVisio('whereby.com/theo-timeo');
         $rdv1->setLangue('FR');
         $manager->persist($rdv1);
 
@@ -127,7 +127,7 @@ class AppFixtures extends Fixture
         $rdv2->setTouriste($touriste2);
         $horaire = "$mois/$lundi/$annee 8:30:00";
         $rdv2->setHoraire(new \DateTime($horaire));
-        $rdv2->setLienVisio('google.com');
+        $rdv2->setLienVisio('whereby.com/theo-timeo');
         $rdv2->setLangue('EN');
         $manager->persist($rdv2);
 
@@ -136,7 +136,7 @@ class AppFixtures extends Fixture
         $rdv3->setTouriste($touriste2);
         $horaire = "$mois/$mardi/$annee 13:30:00";
         $rdv3->setHoraire(new \DateTime($horaire));
-        $rdv3->setLienVisio('google.com');
+        $rdv3->setLienVisio('whereby.com/theo-timeo');
         $rdv3->setLangue('FR');
         $manager->persist($rdv3);
 
@@ -145,7 +145,7 @@ class AppFixtures extends Fixture
         $rdv4->setTouriste($touriste1);
         $horaire = "$mois/$mardi/$annee 18:00:00";
         $rdv4->setHoraire(new \DateTime($horaire));
-        $rdv4->setLienVisio('google.com');
+        $rdv4->setLienVisio('whereby.com/theo-timeo');
         $rdv4->setLangue('EN');
         $manager->persist($rdv4);
 
@@ -154,7 +154,7 @@ class AppFixtures extends Fixture
         $rdv5->setTouriste($touriste1);
         $horaire = "$mois/$mercredi/$annee 14:30:00";
         $rdv5->setHoraire(new \DateTime($horaire));
-        $rdv5->setLienVisio('google.com');
+        $rdv5->setLienVisio('whereby.com/theo-timeo');
         $rdv5->setLangue('FR');
         $manager->persist($rdv5);
 
@@ -163,7 +163,7 @@ class AppFixtures extends Fixture
         $rdv6->setTouriste($touriste1);
         $horaire = "$mois/$mercredi/$annee 16:00:00";
         $rdv6->setHoraire(new \DateTime($horaire));
-        $rdv6->setLienVisio('google.com');
+        $rdv6->setLienVisio('whereby.com/theo-timeo');
         $rdv6->setLangue('EN');
         $manager->persist($rdv6);
 
@@ -172,7 +172,7 @@ class AppFixtures extends Fixture
         $rdv7->setTouriste($touriste1);
         $horaire = "$mois/$jeudi/$annee 19:30:00";
         $rdv7->setHoraire(new \DateTime($horaire));
-        $rdv7->setLienVisio('google.com');
+        $rdv7->setLienVisio('whereby.com/theo-timeo');
         $rdv7->setLangue('FR');
         $manager->persist($rdv7);
 
@@ -181,7 +181,7 @@ class AppFixtures extends Fixture
         $rdv8->setTouriste($touriste1);
         $horaire = "$mois/$jeudi/$annee 12:30:00";
         $rdv8->setHoraire(new \DateTime($horaire));
-        $rdv8->setLienVisio('google.com');
+        $rdv8->setLienVisio('whereby.com/theo-timeo');
         $rdv8->setLangue('EN');
         $manager->persist($rdv8);
 
@@ -190,7 +190,7 @@ class AppFixtures extends Fixture
         $rdv9->setTouriste($touriste1);
         $horaire = "$mois/$vendredi/$annee 17:30:00";
         $rdv9->setHoraire(new \DateTime($horaire));
-        $rdv9->setLienVisio('google.com');
+        $rdv9->setLienVisio('whereby.com/theo-timeo');
         $rdv9->setLangue('FR');
         $manager->persist($rdv9);
 
@@ -199,7 +199,7 @@ class AppFixtures extends Fixture
         $rdv10->setTouriste($touriste1);
         $horaire = "$mois/$vendredi/$annee 11:00:00";
         $rdv10->setHoraire(new \DateTime($horaire));
-        $rdv10->setLienVisio('google.com');
+        $rdv10->setLienVisio('whereby.com/theo-timeo');
         $rdv10->setLangue('EN');
         $manager->persist($rdv10);
 
@@ -208,7 +208,7 @@ class AppFixtures extends Fixture
         $rdv11->setTouriste($touriste1);
         $horaire = "$mois/$mardi/$annee 10:30:00";
         $rdv11->setHoraire(new \DateTime($horaire));
-        $rdv11->setLienVisio('google.com');
+        $rdv11->setLienVisio('whereby.com/theo-timeo');
         $rdv11->setLangue('FR');
         $manager->persist($rdv11);
 
