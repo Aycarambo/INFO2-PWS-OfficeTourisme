@@ -1,4 +1,4 @@
-se -# Démarrage de la stack
+# Démarrage de la stack
 
 docker-compose up --build -d
 

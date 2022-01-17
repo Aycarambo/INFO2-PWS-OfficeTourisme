@@ -3,22 +3,16 @@
 {% block title %}Liste RDV{% endblock %}
 
 {% set days = ["Mon","Tue", "Wed", "Thu", "Fri"] %}
-{% set p = haute ? 1 : 0 %}
-{% if p == 1 %}
-    {% set h = '08:00'|date('H:i') %}
-    {% set f = 24 %}
+{% set saison = haute ? 1 : 0 %}
+{% if saison == 1 %}
+    {% set horraire = '08:00'|date('H:i') %}
+    {% set nbHorraire = 24 %}
 {% else %}
-    {% set h = '10:00'|date('H:i') %}
-    {% set f = 16 %}
+    {% set horraire = '10:00'|date('H:i') %}
+    {% set nbHorraire = 16 %}
 {% endif %}
-{% set r = 0 %}
+{% set rdvDisplayed = 0 %}
 {% set id = 0 %}
-
-{% block javascripts %}
-<script>
-
-</script>
-{% endblock %}
 
 {% block stylesheets %}
 <style>
@@ -47,13 +41,13 @@
             </tr>
             </thead>
             <tbody>
-            {% for i in 0..f %}
+            {% for i in 0..nbHorraire %}
                 <tr>
-                    <td>{{ h|date('H:i') }}</td>
+                    <td>{{ horraire|date('H:i') }}</td>
                     {% for day in days %}
                         {% for rdv in lrdv %}
-                            {% if rdv.getHoraire|date('D') == day and rdv.getHoraire|date('H:i') == h|date('H:i') and r == 0%}
-                                {% set r = 1 %}
+                            {% if rdv.getHoraire|date('D') == day and rdv.getHoraire|date('H:i') == horraire|date('H:i') and rdvDisplayed == 0%}
+                                {% set rdvDisplayed = 1 %}
                                 <td>
                                     <a role="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#detail{{ rdv.id }}">
                                         Touriste : {{ rdv.getTouriste().nom }} {{ rdv.getTouriste().prenom }}
@@ -103,13 +97,13 @@
                                 </div>
                             {% endif %}
                         {% endfor %}
-                        {% if r == 0 %}
+                        {% if rdvDisplayed == 0 %}
                             <td></td>
                         {% endif %}
-                        {% set r = 0 %}
+                        {% set rdvDisplayed = 0 %}
                     {% endfor %}
                 </tr>
-                {% set h = h|date_modify('+30 minutes')|date('H:i') %}
+                {% set horraire = horraire|date_modify('+30 minutes')|date('H:i') %}
             {% endfor %}
             </tbody>
         </table>
