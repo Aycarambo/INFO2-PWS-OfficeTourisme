@@ -29,20 +29,4 @@ class TouristeControllerTest extends WebTestCase
         $client->request('GET', '/espaceTouriste');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
-
-    public function test_client_accede_espace_si_connecte()
-    {
-        $client = static::createClient();
-        $userRepository = $this->getContainer()->get(UserRepository::class);
-
-        // Récupérer l'utilisateur test
-        $testUser = $userRepository->findOneBy(['email' => 'chloe@gmail.com']);
-
-        // simuler la connection de testUser
-        $client->loginUser($testUser);
-
-        // test d'accès à la page
-        $client->request('GET', '/espaceTouriste');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-    }
 }
