@@ -138,6 +138,8 @@
       <excludeFolder url="file://$MODULE_DIR$/projet/vendor/symfony/http-foundation" />
       <excludeFolder url="file://$MODULE_DIR$/projet/vendor/symfony/framework-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/projet/vendor/symfony/polyfill-php81" />
+      <excludeFolder url="file://$MODULE_DIR$/projet/vendor/symfonycasts/verify-email-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/projet/vendor/twbs/bootstrap" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

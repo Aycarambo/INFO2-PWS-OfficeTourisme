@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Domain\Agenda;
 use App\Entity\RDV;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -12,8 +13,19 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method RDV[]    findAll()
  * @method RDV[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class RDVRepository extends ServiceEntityRepository
+class RDVRepository extends ServiceEntityRepository implements Agenda
 {
+    public function supprimerRdv($touristeId, $rdvId)
+    {
+
+        $rdv = $this->find($rdvId);
+        if ($rdv != NULL)
+        {
+            $this->getEntityManager()->remove($rdv);
+            $this->getEntityManager()->flush();
+        }
+    }
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, RDV::class);
@@ -47,4 +59,17 @@ class RDVRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function trouveLaListeRDVs(int $id, $premierJourSemaine, $finDeSemaine)
+    {
+        $querybuilder=$this->createQueryBuilder('rdv')
+            ->where('rdv.horaire >= :premierJour')
+            ->andWhere('rdv.horaire <= :finSemaine')
+            ->andWhere('rdv.Conseiller = :idConseiller')
+            ->setParameter('idConseiller', $id)
+            ->setParameter('premierJour', $premierJourSemaine)
+            ->setParameter('finSemaine', $finDeSemaine);
+        $query=$querybuilder->getQuery();
+        $results = $query->execute();
+        return $results;
+    }
 }
