@@ -29,4 +29,18 @@ class TouristeControllerTest extends WebTestCase
         $client->request('GET', '/espaceTouriste');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
+
+    public function test_supprimer_un_rdv_utilise_agenda()
+    {
+        $agenda=$this->createMock(Agenda::class);
+        $agenda->expects($this->once())->method("supprimerRdv");
+
+        $touristeId = 1;
+        $rdvId = 1;
+
+        $suppressionRdVHandler=new SuppressionRdVHandler($agenda);
+        $suppressionRdVCommand = new SuppressionRdVCommand($touristeId,$rdvId);
+
+        $suppressionRdVHandler->handle($suppressionRdVCommand);
+    }
 }
