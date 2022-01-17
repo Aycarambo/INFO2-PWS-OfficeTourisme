@@ -100,7 +100,7 @@ class AppFixtures extends Fixture
         $conseiller1 = new Conseiller();
         $conseiller1->setPrenom('Théo-Timéo');
         $conseiller1->setNom('John');
-        $conseiller1->setLanguesParlees("fr");
+        $conseiller1->setLanguesParlees("fr;en");
 
         $manager->persist($conseiller1);
 
