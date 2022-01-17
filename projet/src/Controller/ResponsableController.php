@@ -17,6 +17,7 @@ class ResponsableController extends AbstractController
 {
     private function utilisateurCourant()
     {
+        // vérifie qu'un utilisateur est connecté
         $user = $this->getUser();
         if (!$user)
         {
@@ -27,6 +28,7 @@ class ResponsableController extends AbstractController
     #[Route('/espaceResponsable', name: 'espace-responsable')]
     public function espaceR(ConseillerRepository $repository, SaisonRepository $saison): Response
     {
+        // récupère la liste de tous les conseillers
         $conseillers = $repository->findAll();
         // récupère la saison (haute ou basse)
         $haute = $saison->getSaison()->getSaison();
