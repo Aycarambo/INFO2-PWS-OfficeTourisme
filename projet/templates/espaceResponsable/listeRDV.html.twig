@@ -2,16 +2,16 @@
 
 {% block title %}Liste RDV{% endblock %}
 
-{% set days = ["Mon","Tue", "Wed", "Thu", "Fri"] %}
+{% set jours = ["Mon","Tue", "Wed", "Thu", "Fri"] %}
 {% set saison = haute ? 1 : 0 %}
 {% if saison == 1 %}
-    {% set horraire = '08:00'|date('H:i') %}
-    {% set nbHorraire = 24 %}
+    {% set horaire = '08:00'|date('H:i') %}
+    {% set nbHoraire = 24 %}
 {% else %}
-    {% set horraire = '10:00'|date('H:i') %}
-    {% set nbHorraire = 16 %}
+    {% set horaire = '10:00'|date('H:i') %}
+    {% set nbHoraire = 16 %}
 {% endif %}
-{% set rdvDisplayed = 0 %}
+{% set rdvAffiche = 0 %}
 {% set id = 0 %}
 
 {% block stylesheets %}
@@ -32,7 +32,7 @@
         <table class="table table-responsive-sm table-hover align-middle table-bordered">
             <thead>
             <tr>
-                <th scope="col">Horraire</th>
+                <th scope="col">Horaire</th>
                 <th style="width:20%" scope="col">Lundi</th>
                 <th style="width:20%" scope="col">Mardi</th>
                 <th style="width:20%" scope="col">Mercredi</th>
@@ -41,13 +41,13 @@
             </tr>
             </thead>
             <tbody>
-            {% for i in 0..nbHorraire %}
+            {% for i in 0..nbHoraire %}
                 <tr>
-                    <td>{{ horraire|date('H:i') }}</td>
-                    {% for day in days %}
+                    <td>{{ horaire|date('H:i') }}</td>
+                    {% for jour in jours %}
                         {% for rdv in lrdv %}
-                            {% if rdv.getHoraire|date('D') == day and rdv.getHoraire|date('H:i') == horraire|date('H:i') and rdvDisplayed == 0%}
-                                {% set rdvDisplayed = 1 %}
+                            {% if rdv.getHoraire|date('D') == jour and rdv.getHoraire|date('H:i') == horaire|date('H:i') and rdvAffiche == 0%}
+                                {% set rdvAffiche = 1 %}
                                 <td>
                                     <a role="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#detail{{ rdv.id }}">
                                         Touriste : {{ rdv.getTouriste().nom }} {{ rdv.getTouriste().prenom }}
@@ -63,7 +63,7 @@
                                                 <p>Touriste : {{ rdv.getTouriste().nom }} {{ rdv.getTouriste().prenom }}</p>
                                                 <p>Conseiller : {{ conseiller.nom }} {{ conseiller.prenom }}</p>
                                                 <p>Date : {{ rdv.getHoraire()|date("j/m/Y")}}</p>
-                                                <p>Horaire : {{ rdv.getHoraire()|date('H:i') }}</p>
+                                                <p>Horaire : {{ rdv.getHoraire()|date('H:i') }} - {{ rdv.getHoraire()|date_modify('+20 minutes')|date('H:i') }}</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modification" onclick="setIdModal({{ rdv.id }})">
@@ -97,13 +97,13 @@
                                 </div>
                             {% endif %}
                         {% endfor %}
-                        {% if rdvDisplayed == 0 %}
+                        {% if rdvAffiche == 0 %}
                             <td></td>
                         {% endif %}
-                        {% set rdvDisplayed = 0 %}
+                        {% set rdvAffiche = 0 %}
                     {% endfor %}
                 </tr>
-                {% set horraire = horraire|date_modify('+30 minutes')|date('H:i') %}
+                {% set horaire = horaire|date_modify('+30 minutes')|date('H:i') %}
             {% endfor %}
             </tbody>
         </table>
