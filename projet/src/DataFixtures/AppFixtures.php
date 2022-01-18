@@ -25,6 +25,8 @@ class AppFixtures extends Fixture
 
         $interval = new \DateInterval('P1D');
 
+        $intervalSemaine = new \DateInterval('P7D');
+
         if($jour != "Monday")
         {
             $lundi = new \DateTime("last Monday");
@@ -172,7 +174,7 @@ class AppFixtures extends Fixture
         $rdv5 = new RDV();
         $rdv5->setConseiller($conseiller1);
         $rdv5->setTouriste($touriste1);
-        $horaire = "$mois/$mercredi/$annee 14:30:00";
+        $horaire = "$mois/$mercredi/$annee 10:30:00";
         $rdv5->setHoraire(new \DateTime($horaire));
         $rdv5->setLienVisio('whereby.com/theo-timeo');
         $rdv5->setLangue('FR');
@@ -181,7 +183,7 @@ class AppFixtures extends Fixture
         $rdv6 = new RDV();
         $rdv6->setConseiller($conseiller1);
         $rdv6->setTouriste($touriste1);
-        $horaire = "$mois/$mercredi/$annee 16:00:00";
+        $horaire = "$mois/$mercredi/$annee 11:00:00";
         $rdv6->setHoraire(new \DateTime($horaire));
         $rdv6->setLienVisio('whereby.com/theo-timeo');
         $rdv6->setLangue('EN');
@@ -231,6 +233,133 @@ class AppFixtures extends Fixture
         $rdv11->setLienVisio('whereby.com/theo-timeo');
         $rdv11->setLangue('FR');
         $manager->persist($rdv11);
+
+        $rdv12 = new RDV();
+        $rdv12->setConseiller($conseiller1);
+        $rdv12->setTouriste($touriste1);
+        $horaire = "$mois/$lundi/$annee 10:30:00";
+        $rdv12->setHoraire(new \DateTime($horaire));
+        $rdv12->setLienVisio('whereby.com/theo-timeo');
+        $rdv12->setLangue('EN');
+        $manager->persist($rdv12);
+
+        $rdv20 = new RDV();
+        $rdv20->setConseiller($conseiller1);
+        $rdv20->setTouriste($touriste1);
+        $horaire = "$mois/$mercredi/$annee 11:30:00";
+        $rdv20->setHoraire(new \DateTime($horaire));
+        $rdv20->setLienVisio('whereby.com/theo-timeo');
+        $rdv20->setLangue('FR');
+        $manager->persist($rdv20);
+
+        $rdv21 = new RDV();
+        $rdv21->setConseiller($conseiller1);
+        $rdv21->setTouriste($touriste1);
+        $horaire = "$mois/$mercredi/$annee 14:00:00";
+        $rdv21->setHoraire(new \DateTime($horaire));
+        $rdv21->setLienVisio('whereby.com/theo-timeo');
+        $rdv21->setLangue('FR');
+        $manager->persist($rdv21);
+
+        $rdv22 = new RDV();
+        $rdv22->setConseiller($conseiller1);
+        $rdv22->setTouriste($touriste1);
+        $horaire = "$mois/$mercredi/$annee 16:30:00";
+        $rdv22->setHoraire(new \DateTime($horaire));
+        $rdv22->setLienVisio('whereby.com/theo-timeo');
+        $rdv22->setLangue('FR');
+        $manager->persist($rdv22);
+
+        $lundi = new \DateTime("last Monday");
+        $mardi = new \DateTime("last Tuesday");
+        $vendredi = new \DateTime("last Friday");
+        $lundi = $lundi->sub($intervalSemaine);
+        $mardi = $mardi->sub($intervalSemaine);
+        $vendredi = $vendredi->sub($intervalSemaine);
+        $lundi = $lundi->format("d");
+        $mardi = $mardi->format("d");
+        $vendredi = $vendredi->format("d");
+
+        $rdv13 = new RDV();
+        $rdv13->setConseiller($conseiller1);
+        $rdv13->setTouriste($touriste1);
+        $horaire = "$mois/$lundi/$annee 10:30:00";
+        $rdv13->setHoraire(new \DateTime($horaire));
+        $rdv13->setLienVisio('whereby.com/theo-timeo');
+        $rdv13->setLangue('EN');
+        $manager->persist($rdv13);
+
+        $rdv14 = new RDV();
+        $rdv14->setConseiller($conseiller1);
+        $rdv14->setTouriste($touriste1);
+        $horaire = "$mois/$lundi/$annee 15:30:00";
+        $rdv14->setHoraire(new \DateTime($horaire));
+        $rdv14->setLienVisio('whereby.com/theo-timeo');
+        $rdv14->setLangue('EN');
+        $manager->persist($rdv14);
+
+        $rdv15 = new RDV();
+        $rdv15->setConseiller($conseiller1);
+        $rdv15->setTouriste($touriste2);
+        $horaire = "$mois/$mardi/$annee 12:30:00";
+        $rdv15->setHoraire(new \DateTime($horaire));
+        $rdv15->setLienVisio('whereby.com/theo-timeo');
+        $rdv15->setLangue('FR');
+        $manager->persist($rdv15);
+
+        $rdv16 = new RDV();
+        $rdv16->setConseiller($conseiller1);
+        $rdv16->setTouriste($touriste2);
+        $horaire = "$mois/$vendredi/$annee 8:30:00";
+        $rdv16->setHoraire(new \DateTime($horaire));
+        $rdv16->setLienVisio('whereby.com/theo-timeo');
+        $rdv16->setLangue('FR');
+        $manager->persist($rdv16);
+
+        $lundi = new \DateTime("last Monday");
+        $mercredi = new \DateTime("last Thursday");
+        $lundi = $lundi->add($intervalSemaine);
+        $lundi = $lundi->add($intervalSemaine);
+        $mercredi = $mercredi->add($intervalSemaine);
+        $mercredi = $mercredi->add($intervalSemaine);
+        $lundi = $lundi->format("d");
+        $mercredi = $mercredi->format("d");
+
+        $rdv17 = new RDV();
+        $rdv17->setConseiller($conseiller1);
+        $rdv17->setTouriste($touriste2);
+        $horaire = "$mois/$lundi/$annee 8:30:00";
+        $rdv17->setHoraire(new \DateTime($horaire));
+        $rdv17->setLienVisio('whereby.com/theo-timeo');
+        $rdv17->setLangue('FR');
+        $manager->persist($rdv17);
+
+        $rdv18 = new RDV();
+        $rdv18->setConseiller($conseiller1);
+        $rdv18->setTouriste($touriste2);
+        $horaire = "$mois/$mercredi/$annee 16:30:00";
+        $rdv18->setHoraire(new \DateTime($horaire));
+        $rdv18->setLienVisio('whereby.com/theo-timeo');
+        $rdv18->setLangue('EN');
+        $manager->persist($rdv18);
+
+        $rdv19 = new RDV();
+        $rdv19->setConseiller($conseiller1);
+        $rdv19->setTouriste($touriste2);
+        $horaire = "$mois/$mercredi/$annee 12:00:00";
+        $rdv19->setHoraire(new \DateTime($horaire));
+        $rdv19->setLienVisio('whereby.com/theo-timeo');
+        $rdv19->setLangue('FR');
+        $manager->persist($rdv19);
+
+        $rdv19 = new RDV();
+        $rdv19->setConseiller($conseiller1);
+        $rdv19->setTouriste($touriste2);
+        $horaire = "08/05/2022 12:00:00";
+        $rdv19->setHoraire(new \DateTime($horaire));
+        $rdv19->setLienVisio('whereby.com/theo-timeo');
+        $rdv19->setLangue('FR');
+        $manager->persist($rdv19);
 
         //Users
         $responsable = new User();

@@ -52,7 +52,7 @@
                                 {% if rdv.horaire|date('Y/m/d/H/i') < dateNow  and rdv.horaire|date('Y/m/d/H/i') > date30MinAgo %}
                                     🔴
                                 {% endif %}
-                                <a href="detailRDV/{{ index }}">{{ rdv.horaire|date('H:i') }} {{ rdv.Touriste.nom }} {{ rdv.Touriste.prenom }}</a>
+                                <a href="detailRDV/{{ rdv.id }}">{{ rdv.horaire|date('H:i') }} {{ rdv.Touriste.nom }} {{ rdv.Touriste.prenom }}</a>
                             </th>
                         </tr>
                         {% set index = index + 1 %}

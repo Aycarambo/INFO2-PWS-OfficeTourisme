@@ -14,53 +14,40 @@
 
     <h2 style="text-align: center;padding:1%;">Bonjour {{ conseiller.prenom }}</h2>
 
-    {% set rdvComing = [] %}
-    {% for RDV in LRDV %}
-        {% if 'now -30 min'|date('Y/m/d/H/i', "Europe/Paris") < RDV.horaire|date('Y/m/d/H/i') %}
-            {% set rdvComing = rdvComing|merge([{nom: RDV.Touriste.nom, prenom: RDV.Touriste.prenom, langue: RDV.langue, lienvisio: RDV.lienvisio, horaire:RDV.horaire|date('d/m/Y/ à H:i')}]) %}
-        {% endif %}
+    {% for RDV in LeRDV %}
+        <table class="table rdvLayout">
+            <tr>
+                <th style="background-color:grey;">
+                    Détail du rendez-vous avec {{ RDV.Touriste.nom }} {{ RDV.Touriste.prenom }}
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    Langue : {{ RDV.langue }}
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    Lien : <a href="https://{{ RDV.lienvisio }}">{{ RDV.lienvisio }}</a>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    Date : {{ RDV.horaire|date('d/m/Y H:i') }}
+                    {% set date30MinAgo =  'now -30 min'|date('d/m/Y/ à H:i')%}
+                    {% set dateNow =  'now'|date('d/m/Y/ à H:i', "Europe/Paris")%}
+                    {% if RDV.horaire < dateNow  and RDV.horaire > date30MinAgo %}
+                        🔴
+                    {% endif %}
+                </th>
+            </tr>
+        </table>
     {% endfor %}
 
-    {% set indexRDV = 0 %}
-    {% set rdvAlreadyDisplayed = false %}
-    {% for RDV in rdvComing %}
-        {% set indexRDV = indexRDV + 1 %}
-        {% if rdvAlreadyDisplayed == false and indexRDV == idRDV %}
-            <table class="table rdvLayout">
-                <tr>
-                    <th style="background-color:grey;">
-                        Détail du rendez-vous avec {{ RDV.nom }} {{ RDV.prenom }}
-                    </th>
-                </tr>
-                <tr>
-                    <th>
-                        Langue : {{ RDV.langue }}
-                    </th>
-                </tr>
-                <tr>
-                    <th>
-                        Lien : <a href="https://{{ RDV.lienvisio }}">{{ RDV.lienvisio }}</a>
-                    </th>
-                </tr>
-                <tr>
-                    <th>
-                        Date : {{ RDV.horaire }}
-                        {% set date30MinAgo =  'now -30 min'|date('d/m/Y/ à H:i', "Europe/Paris")%}
-                        {% set dateNow =  'now'|date('d/m/Y/ à H:i', "Europe/Paris")%}
-                        {% if RDV.horaire < dateNow  and RDV.horaire > date30MinAgo %}
-                            🔴
-                        {% endif %}
-                    </th>
-                </tr>
-            </table>
-            {% set rdvAlreadyDisplayed = true %}
-        {% endif %}
-    {% endfor %}
-
-    {% if rdvAlreadyDisplayed == false %}
+    {% if LeRDV|length < 1 %}
         <h4 style="text-align: center">Erreur : Le rendez-vous chargé n'existe pas !</h4>
     {% endif %}
 
-    <a style="margin-top:2%; margin-left: 44%;" href="{{ path("conseillerRDV") }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Voir mes RDV</a>
+    <a style="margin-top:2%; margin-left: 44%;" href="{{ path("conseillerRDV/SemainesFutursOuEnCours", {semaine:0})  }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Voir mes RDV</a>
 
 {% endblock %}

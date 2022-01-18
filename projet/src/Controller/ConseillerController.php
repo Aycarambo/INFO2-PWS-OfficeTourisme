@@ -12,6 +12,8 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 class ConseillerController extends AbstractController
 {
+    private $idRDV=0;
+
     private function utilisateurCourant(ConseillerRepository $repositoryConseiller)
     {
         $user = $this->getUser();
@@ -38,13 +40,11 @@ class ConseillerController extends AbstractController
     public function detailRDVConseiller(ConseillerRepository $conseillerRepository, RDVRepository $repository, int $id): Response
     {
         $conseiller = $this->utilisateurCourant($conseillerRepository);
-        $lrdv = $repository->findBy(['Conseiller' => $conseiller->getId()]);
+        $leRdv = $repository->findBy(['id' => $id]);
 
         return $this->render('conseiller/detailRDV.html.twig', [
-            'controller_name' => 'ConseillerController',
             'conseiller' => $conseiller,
-            'LRDV' => $lrdv,
-            'idRDV' => $id,
+            'LeRDV' => $leRdv,
         ]);
     }
 
@@ -52,6 +52,8 @@ class ConseillerController extends AbstractController
     #[Route('/espaceConseiller/MesRDV/semaine+{semaine}', name: 'conseillerRDV/SemainesFutursOuEnCours')]
     public function conseillerRDVSemainesFutursOuEnCours(ConseillerRepository $conseillerRepository, RDVRepository $aRepository, int $semaine): Response
     {
+        $indexSemaine=$semaine;
+
         date_default_timezone_set("Europe/Paris");
         $idConseiller = $this->utilisateurCourant($conseillerRepository)->getId();
 
@@ -92,12 +94,16 @@ class ConseillerController extends AbstractController
         }
 
         $agenda=[];
+        $idRDVs=[];
 
         if($saisonHaute){
 
             for ($jour=1 ; $jour<=5 ; $jour++){
                 for ($heure=8.0 ; $heure<=20 ; $heure+=0.5) {
                     $agenda[$this->nomJour($jour)][$this->nomHeure($heure)]=$this->RDVExiste($jour, $heure, $listeRDVs, $premierJourSemaine);
+                    if($agenda[$this->nomJour($jour)][$this->nomHeure($heure)]) {
+                        $idRDVs[$this->nomJour($jour)][$this->nomHeure($heure)] = $this->idRDV;
+                    }
                 }
             }
         }
@@ -107,10 +113,15 @@ class ConseillerController extends AbstractController
             for ($jour=1 ; $jour<=5 ; $jour++){
                 for ($heure=10.0 ; $heure<=18.0 ; $heure+=0.5) {
                     $agenda[$this->nomJour($jour)][$this->nomHeure($heure)]=$this->RDVExiste($jour, $heure, $listeRDVs, $premierJourSemaine);
+                    if($agenda[$this->nomJour($jour)][$this->nomHeure($heure)]) {
+                        $idRDVs[$this->nomJour($jour)][$this->nomHeure($heure)] = $this->idRDV;
+                    }
                 }
             }
         }
         return $this->render('conseiller/rdv.html.twig', [
+            'semaine' => $indexSemaine,
+            'idRDVs' => $idRDVs,
             'agenda' => $agenda,
             'premierJourSemaine' => $premierJourSemaine->format("d/m"),
             'dernierJourSemaine' => $dernierJourSemaine->format("d/m"),
@@ -118,15 +129,17 @@ class ConseillerController extends AbstractController
         ]);
     }
 
-    #[Route('/espaceConseiller/MesRDV/semaine-{semaine}', name: 'conseillerRDV/AutreSemaine')]
+    #[Route('/espaceConseiller/MesRDV/semaine{semaine}', name: 'conseillerRDV/AutreSemaine')]
     public function conseillerRDVAutreSemaine(ConseillerRepository $conseillerRepository, RDVRepository $aRepository, int $semaine): Response
     {
+        $indexSemaine=$semaine;
+
         date_default_timezone_set("Europe/Paris");
         $idConseiller = $this->utilisateurCourant($conseillerRepository)->getId();
 
         $date = new \DateTime('now');
 
-        $nombreJours=7*$semaine;
+        $nombreJours=7*$semaine*-1;
         $interval= new \DateInterval("P".$nombreJours."D");
         $semaine = clone $date;
         $semaine->sub($interval);
@@ -163,12 +176,16 @@ class ConseillerController extends AbstractController
         }
 
         $agenda=[];
+        $idRDVs=[];
 
         if($saisonHaute){
 
             for ($jour=1 ; $jour<=5 ; $jour++){
                 for ($heure=8.0 ; $heure<=20 ; $heure+=0.5) {
                     $agenda[$this->nomJour($jour)][$this->nomHeure($heure)]=$this->RDVExiste($jour, $heure, $listeRDVs, $premierJourSemaine);
+                    if($agenda[$this->nomJour($jour)][$this->nomHeure($heure)]) {
+                        $idRDVs[$this->nomJour($jour)][$this->nomHeure($heure)] = $this->idRDV;
+                    }
                 }
             }
         }
@@ -178,10 +195,15 @@ class ConseillerController extends AbstractController
             for ($jour=1 ; $jour<=5 ; $jour++){
                 for ($heure=10.0 ; $heure<=18.0 ; $heure+=0.5) {
                     $agenda[$this->nomJour($jour)][$this->nomHeure($heure)]=$this->RDVExiste($jour, $heure, $listeRDVs, $premierJourSemaine);
+                    if($agenda[$this->nomJour($jour)][$this->nomHeure($heure)]) {
+                        $idRDVs[$this->nomJour($jour)][$this->nomHeure($heure)] = $this->idRDV;
+                    }
                 }
             }
         }
         return $this->render('conseiller/rdv.html.twig', [
+            'semaine' => $indexSemaine,
+            'idRDVs' => $idRDVs,
             'agenda' => $agenda,
             'premierJourSemaine' => $premierJourSemaine->format("d/m"),
             'dernierJourSemaine' => $dernierJourSemaine->format("d/m"),
@@ -247,8 +269,10 @@ class ConseillerController extends AbstractController
         foreach ($listeRDV as $element){
             if($element->getHoraire()->format("Y-m-d H:i:s")==$rdv){
                 $RDVExiste=true;
+                $this->idRDV=$element->getId();
             }
         }
+
 
 
         return $RDVExiste;
