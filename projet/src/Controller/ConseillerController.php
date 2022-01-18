@@ -52,6 +52,8 @@ class ConseillerController extends AbstractController
     #[Route('/espaceConseiller/MesRDV/semaine+{semaine}', name: 'conseillerRDV/SemainesFutursOuEnCours')]
     public function conseillerRDVSemainesFutursOuEnCours(ConseillerRepository $conseillerRepository, RDVRepository $aRepository, int $semaine): Response
     {
+        $indexSemaine=$semaine;
+
         date_default_timezone_set("Europe/Paris");
         $idConseiller = $this->utilisateurCourant($conseillerRepository)->getId();
 
@@ -118,6 +120,7 @@ class ConseillerController extends AbstractController
             }
         }
         return $this->render('conseiller/rdv.html.twig', [
+            'semaine' => $indexSemaine,
             'idRDVs' => $idRDVs,
             'agenda' => $agenda,
             'premierJourSemaine' => $premierJourSemaine->format("d/m"),
@@ -126,15 +129,17 @@ class ConseillerController extends AbstractController
         ]);
     }
 
-    #[Route('/espaceConseiller/MesRDV/semaine-{semaine}', name: 'conseillerRDV/AutreSemaine')]
+    #[Route('/espaceConseiller/MesRDV/semaine{semaine}', name: 'conseillerRDV/AutreSemaine')]
     public function conseillerRDVAutreSemaine(ConseillerRepository $conseillerRepository, RDVRepository $aRepository, int $semaine): Response
     {
+        $indexSemaine=$semaine;
+
         date_default_timezone_set("Europe/Paris");
         $idConseiller = $this->utilisateurCourant($conseillerRepository)->getId();
 
         $date = new \DateTime('now');
 
-        $nombreJours=7*$semaine;
+        $nombreJours=7*$semaine*-1;
         $interval= new \DateInterval("P".$nombreJours."D");
         $semaine = clone $date;
         $semaine->sub($interval);
@@ -197,6 +202,7 @@ class ConseillerController extends AbstractController
             }
         }
         return $this->render('conseiller/rdv.html.twig', [
+            'semaine' => $indexSemaine,
             'idRDVs' => $idRDVs,
             'agenda' => $agenda,
             'premierJourSemaine' => $premierJourSemaine->format("d/m"),
