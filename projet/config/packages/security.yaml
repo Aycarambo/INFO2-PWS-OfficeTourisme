@@ -40,7 +40,6 @@ security:
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: '^/espaceResponsable', roles: ROLE_RESPONSABLE}
         - { path: '^/espaceConseiller', roles: ROLE_CONSEILLER}
-        - { path: '^/espaceResponsable', roles: ROLE_TOURISTE}
     role_hierarchy:
         ROLE_ADMIN: ROLE_TOURISTE
         ROLE_SUPER_ADMIN: [ ROLE_CONSEILLER, ROLE_RESPONSABLE ]
