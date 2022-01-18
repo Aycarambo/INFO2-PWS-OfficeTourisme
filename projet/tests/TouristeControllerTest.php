@@ -2,6 +2,9 @@
 
 use App\Repository\UserRepository;
 use App\Entity\User;
+use App\Domain\Agenda;
+use App\Domain\Command\SuppressionRdVHandler;
+use App\Domain\Command\SuppressionRdVCommand;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class TouristeControllerTest extends WebTestCase
