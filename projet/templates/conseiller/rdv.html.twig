@@ -33,22 +33,34 @@
         .div2 {
             display: flex;
             flex-direction: row;
+            margin-left: 15%;
+            margin-right: 15%;
         }
+
     </style>
 
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            Semaine X
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <a class="dropdown-item" href="#">Semaine X+1</a>
-            <a class="dropdown-item" href="#">Semaine X+2</a>
-            <a class="dropdown-item" href="#">Semaine X+3</a>
+    <div class="example-wrapper" style="display:flex;">
+        <div style="flex-basis:10%;">
+            {% set semaineSuivante=semaine+1 %} {% set semainePrecedente=semaine-1 %}
+
+            {% if(semainePrecedente)<0 %}
+                <a href="{{ path("conseillerRDV/AutreSemaine", {semaine:semainePrecedente}) }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Semaine précédente</a>
+            {% else %}
+                <a href="{{ path("conseillerRDV/SemainesFutursOuEnCours", {semaine:semainePrecedente}) }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Semaine précédente</a>
+            {% endif %}
+        </div>
+        <div style="flex-basis:80%;"><h1 style="text-align: center;">Semaine du {{ premierJourSemaine }} au {{ dernierJourSemaine }}/{{ year }}</h1></div>
+
+        <div style="flex-basis:10%;">
+            {% if(semaineSuivante)<0 %}
+                <a  href="{{ path("conseillerRDV/AutreSemaine", {semaine:semaineSuivante}) }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Semaine suivante</a>
+            {% else %}
+                <a href="{{ path("conseillerRDV/SemainesFutursOuEnCours", {semaine:semaineSuivante}) }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Semaine suivante</a>
+            {% endif %}
         </div>
     </div>
 
-    <div class="example-wrapper"><h1>semaine du {{ premierJourSemaine }} au {{ dernierJourSemaine }} {{ year }}</h1>
-        <br>
+    <br>
         <div class="div2">
             <span class="span1"></span>
             <table class="table text-center">
@@ -68,8 +80,8 @@
                         <td>{{ heure }}</td>
                         {% for jour in agenda|keys %}
                             <td>
-                            {%  if agenda[jour][heure] %}
-                                🟦
+                            {% if agenda[jour][heure] %}
+                                <a href="http://localhost:8888/espaceConseiller/detailRDV/{{ idRDVs[jour][heure] }}" style="text-decoration: none;">🟩</a>
                             {% endif %}
                             </td>
                         {% endfor %}
