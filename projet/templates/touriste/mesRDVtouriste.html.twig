@@ -22,6 +22,7 @@
                 {% if 'now'|date('Y/m/d/H/i', "Europe/Paris") < rdv.horaire|date('Y/m/d/H/i') %}
                     <tr>
                         <td>{{ rdv.horaire|format_datetime('full') }}</td>
+                        <td><a href="https://{{ rdv.lienVisio }}">Visio-conférence</a></td>
                         <td>{{ rdv.Conseiller.prenom }} {{ rdv.Conseiller.nom }}</td>
                         <td>
 
