@@ -47,7 +47,7 @@
         </div>
     </div>
 
-    <div class="example-wrapper"><h1>semaine du {{ premierJourSemaine }} au {{ dernierJourSemaine }} {{ year }}</h1>
+    <div class="example-wrapper"><h1 style="text-align: center;">Semaine du {{ premierJourSemaine }} au {{ dernierJourSemaine }} {{ year }}</h1>
         <br>
         <div class="div2">
             <span class="span1"></span>
@@ -68,8 +68,8 @@
                         <td>{{ heure }}</td>
                         {% for jour in agenda|keys %}
                             <td>
-                            {%  if agenda[jour][heure] %}
-                                🟦
+                            {% if agenda[jour][heure] %}
+                                <a href="http://localhost:8888/espaceConseiller/detailRDV/{{ idRDVs[jour][heure] }}" style="text-decoration: none;">🟩</a>
                             {% endif %}
                             </td>
                         {% endfor %}
