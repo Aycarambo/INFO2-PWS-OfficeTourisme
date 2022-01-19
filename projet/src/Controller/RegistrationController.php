@@ -21,34 +21,42 @@ class RegistrationController extends AbstractController
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
+        // Création du formulaire
         $form = $this->createForm(RegistrationFormType::class, $user);
+
+        // Ajout de nouveaux attributs dans le formulaire, pour le nom et prénom
         $form->add('nom', TextType::class, array(
             'mapped' => false,
             'label' => 'nom'));
         $form->add('prenom', TextType::class, array(
             'mapped' => false,
             'label' => 'prenom'));
+
+        // Reçois la requete du formulaire (si il y a)
         $form->handleRequest($request);
 
-
+        // Si le formulaire a été validé et est valide
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
+            // Encode le mot de passe
             $user->setPassword(
             $userPasswordHasher->hashPassword(
                     $user,
                     $form->get('plainPassword')->getData()
                 )
             );
+
+            // Création du touriste
             $user->setRoles(['ROLE_TOURISTE']);
             $touriste = new Touriste();
             $touriste->setNom($form->get("nom")->getData());
             $touriste->setPrenom($form->get("prenom")->getData());
             $touriste->setUser($user);
             $user->setTouriste($touriste);
+
+            // Ajout à la base de données
             $entityManager->persist($user);
             $entityManager->persist($touriste);
             $entityManager->flush();
-            // do anything else you need here, like send an email
 
             return $this->redirectToRoute('connexion');
         }
