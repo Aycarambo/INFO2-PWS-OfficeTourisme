@@ -12,8 +12,11 @@
                 alert('Connectez-vous pour continuer !')
                 window.location.href="/connexion";
         }
-        function Connected(){
+        function touristeConnected(){
             window.location.href="/espaceTouriste/demandeRDV";
+        }
+        function conseillerConnected(){
+            window.location.href="/espaceConseiller";
         }
     </script>
     <div class="container-fluid py-4 bg-light">
@@ -24,9 +27,9 @@
                         <h1 class="display-5 fw-bold">Ile de Ré<a class="btn btn-primary" style="position: relative; left: 150px" onclick="notConnected()">Prendre RDV</a></h1>
                     {% endif %}
                     {% if is_granted('ROLE_TOURISTE') %}
-                        <h1 class="display-5 fw-bold">Ile de Ré<a class="btn btn-primary" style="position: relative; left: 150px" href="/espaceTouriste/demandeRDV">Prendre RDV</a></h1>
+                        <h1 class="display-5 fw-bold">Ile de Ré<a class="btn btn-primary" style="position: relative; left: 150px" onclick="touristeConnected()">Prendre RDV</a></h1>
                     {% elseif is_granted('ROLE_CONSEILLER') %}
-                        <h1 class="display-5 fw-bold">Ile de Ré<a class="btn btn-primary" style="position: relative; left: 150px" href="/espaceConseiller">Gérer RDV</a></h1>
+                        <h1 class="display-5 fw-bold">Ile de Ré<a class="btn btn-primary" style="position: relative; left: 150px" onclick="conseillerConnected()">Gérer RDV</a></h1>
                     {% elseif is_granted('ROLE_RESPONSABLE') %}
                          <h1 class="display-5 fw-bold">Ile de Ré</h1>
                     {% endif %}
