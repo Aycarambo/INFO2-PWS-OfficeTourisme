@@ -52,7 +52,7 @@ class TouristeController extends AbstractController
 
         $rdv = new RDV();
 
-
+        // Pour chaque horaire, on créé un tableau contenant les jours
         $jour8h = ["Lundi" => "lu08:00:00", "Mardi" => "ma08:00:00", "mercredi" => "Me08:00:00", "Jeudi" => "je08:00:00", "Vendredi" => "ve08:00:00"];
         $jour8h30 = ["Lundi" => "lu08:30:00", "Mardi" => "ma08:30:00", "mercredi" => "Me08:30:00", "Jeudi" => "je08:30:00", "Vendredi" => "ve08:30:00"];
         $jour9h = ["Lundi" => "lu09:00:00", "Mardi" => "ma09:00:00", "mercredi" => "Me09:00:00", "Jeudi" => "je09:00:00", "Vendredi" => "ve09:00:00"];
@@ -124,12 +124,15 @@ class TouristeController extends AbstractController
 
 
         $form->handleRequest($request);
+
+        // Lorsque le formulaire est confirmé et complet, on rentre dans le if
         if ($form->isSubmitted() && $form->isValid()) {
 
             $rdv = $form->getData();
 
             $creneau = ""; // Initialisation
 
+            // On récupère la date courante
             date_default_timezone_set("Europe/Paris");
             $currentDate = new \DateTime('now');
             $currentDayName = $currentDate->format('l');
@@ -145,11 +148,11 @@ class TouristeController extends AbstractController
             $day .= $horaire[1];
             $horaire = substr($horaire, 1);
             $horaire = substr($horaire, 1);
-            if ($semaine == "CS")//Cette semaine
+            if ($semaine == "CS")// Cette semaine
             {
-                if ($day == "lu")
+                if ($day == "lu") // Si on prend un RDV un lundi
                 {
-                    if ($currentDayName == "Monday")
+                    if ($currentDayName == "Monday") // Si le jour courant est lundi
                     {
                         $creneau = "$currentYear-$currentMonth-$currentDay $horaire";
                     }
@@ -283,7 +286,7 @@ class TouristeController extends AbstractController
                     }
                 }
             }
-            else if ($semaine == "SP")//Semaine prochaine
+            else if ($semaine == "SP")// Semaine prochaine
             {
                 if ($day == "lu")
                 {
@@ -440,7 +443,9 @@ class TouristeController extends AbstractController
             $conseillerLibre = true;
             $bonneLangue = true;
             $conseiller = null;
-            foreach($listeConseiller as $unConseiller)
+            // On vérifie qu'un conseiller est disponible et parle la bonne langue. Si oui, on le prend
+            // Sinon, on essaie avec un autre conseiller
+            foreach($listeConseiller as $unConseiller) 
             {
                 if ($rdv->getLangue() == "fr")
                 {
@@ -460,34 +465,34 @@ class TouristeController extends AbstractController
                 {
                     foreach ($listeRDV as $unRDV)
                     {
-                        if ($rdv->getHoraire() == $unRDV->getHoraire())
+                        if ($rdv->getHoraire() == $unRDV->getHoraire()) // S'il y a déjà un RDV au même horaire
                         {
-                            if ($unConseiller->getNom() == $unRDV->getConseiller()->getNom())
+                            if ($unConseiller->getNom() == $unRDV->getConseiller()->getNom()) // Si c'est le même conseiller (nom)
                             {
-                                if ($unConseiller->getPrenom() == $unRDV->getConseiller()->getPrenom())
+                                if ($unConseiller->getPrenom() == $unRDV->getConseiller()->getPrenom()) // Si c'est le même conseiller (prénom)
                                 {
-                                    $conseillerLibre = false;
+                                    $conseillerLibre = false; // Alors il est déjà occupé
                                 }
                             }
                         }
                     }
                 }
-                if ($conseillerLibre == true and $bonneLangue == true)
+                if ($conseillerLibre == true and $bonneLangue == true) // Si le conseiller remplit favorablement les deux conditions, on le récupère
                 {
                     $conseiller = $unConseiller;
                 }
             }
 
-            if ($conseiller != null)
+            if ($conseiller != null) // S'il y a bien un conseiller adapté (bonne langue) de disponible
             {
                 $rdv->setConseiller($conseiller);
                 $entityManager->persist($rdv);
                 $entityManager->flush();
                 return $this->redirectToRoute('espaceTouriste');
             }
-            else
+            else // Si aucun conseiller adapté (bonne langue) n'est disponible
             {
-                //echo "<script>alert(\"Aucun conseiller disponible pour cet horaire\")</script>";
+                // Rajouter un message pour informer que le RDV n'a pas été pris.
                 return $this->redirectToRoute('espaceTouriste');
             }
         }
