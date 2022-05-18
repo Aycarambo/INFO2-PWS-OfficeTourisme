@@ -1,3 +1,10 @@
+# EDIT :
+## This repo is an old school projet imported from GitLab.
+This project was realised during my studies at [La Rochelle université](https://www.iut-larochelle.fr/formations/departement-informatique/)
+
+# -- Initial README --
+
+
 # Démarrage de la stack
 
 docker-compose up --build -d
